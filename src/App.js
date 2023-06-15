@@ -4,17 +4,26 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Shop from "./components/Shop";
 import Artist from "./components/Artist";
 import News from "./components/News";
+import Login from "./components/Login";
+import { useState } from "react";
+import Logout from "./components/Logout";
+import Product from "./components/Product";
 
 function App() {
+  const [isAuth, setIsAuth ] = useState(localStorage.getItem("isAuth"));
+
   return (
 
     <Router>
-      <MenuBar />
+      <MenuBar  isAuth={isAuth} />
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/shop' element={<Shop />}/>
         <Route path='/artist' element={<Artist />}/>
         <Route path='/news' element={<News />}/>
+        <Route path='/product' element={<Product />}/>
+        <Route path='/login' element={<Login  setIsAuth={setIsAuth} />}/>
+        <Route path='/logout' element={<Logout  setIsAuth={setIsAuth} />}/>
       </Routes>
     </Router>
   );

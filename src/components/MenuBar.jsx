@@ -27,20 +27,21 @@ const MenuBar = () => {
     <Link to="/artist" class="text-2xl font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">Artist</Link>
 
     <Link to="/news" class="text-2xl font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">News</Link>
+    <Link to="/product" class="text-2xl font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">Product</Link>
   </nav>
 
 
 
   <div class="flex divide-x border-r sm:border-l">
-    <a href="#" class="hidden h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:flex sm:h-20 sm:w-20 md:h-24 md:w-24">
+    <Link to="/login" class="hidden h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:flex sm:h-20 sm:w-20 md:h-24 md:w-24">
 
-      <span class="hidden text-xl font-semibold text-white sm:block">Wishlist</span>
-    </a>
+      <span class="hidden text-xl font-semibold text-white sm:block">Login</span>
+    </Link>
 
-    <a href="#" class="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24">
+    <Link to="/logout" class="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24">
 
-      <span class="hidden text-xl font-semibold text-white sm:block">Account</span>
-    </a>
+      <span class="hidden text-xl font-semibold text-white sm:block">Logout</span>
+    </Link>
 
     <a href="#" class="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24">
 

@@ -1,8 +1,35 @@
-import React from 'react'
+import { collection, deleteDoc, doc, getDocs, orderBy, query } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react'
+import { db } from '../firebase';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ja'; // 必要に応じてロケールを指定してください
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 const Shop = () => {
+  const [postList, setPostList] = useState([]);
+
+  useEffect(() => {
+    const getPosts = async () => {
+      const data = await getDocs(query(collection(db, 'posts'), orderBy('createdAt', 'desc')));
+      setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+    getPosts();
+  }, []);
+
+  const handleDelete = async (id) => {
+    await deleteDoc(doc(db, 'posts', id));
+    window.location.href = '/setblog';
+  };
+
+  const sortedLists = postList.sort((a, b) => b.createdAt - a.createdAt);
+
 
   return (
+    <>
     <div class="bg-white py-6 sm:py-8 lg:py-12">
     <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
       
@@ -98,6 +125,29 @@ const Shop = () => {
       </div>
     </div>
   </div>
+
+<div>
+
+{sortedLists.map((post) => (
+  <div>
+    <div  class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg mt-20">
+      <img src={post.imgUrl} loading="lazy" alt="Photo by Austin Wade" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110 mb-20 " />
+
+      <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
+      <span className='text-gray-800 text-xl block'>
+                  {dayjs.unix(Number(post.createdAt)).tz('Asia/Tokyo').format('MM/DD HH:mm')}
+                </span>
+      <h2 className='text-gray-900 text-2xl font-bold ml-2'>{post.title}</h2>
+      
+
+              <button className='text-red-400  text-xl hover:text-red-800 transition-colors duration-300 mt-2' onClick={() => handleDelete(post.id)}>削除</button>
+      </div>
+    </div>
+  </div>
+    ))}
+    </div>
+    </>
+
   )
 }
 
