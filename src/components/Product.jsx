@@ -8,11 +8,9 @@ function Product() {
   const [title, setTitle] = useState('');
   const [postText, setPostText] = useState('');
   const [postText2, setPostText2] = useState('');
-  const [postText3, setPostText3] = useState('');
   const [singleImage, setSingleImage] = useState('');
   const [code, setCode] = useState('');
-  const [code2, setCode2] = useState('');
-  const [code3, setCode3] = useState('');
+
 
   const navigate = useNavigate();
 
@@ -36,10 +34,7 @@ function Product() {
           title: title,
           postsText: postText.replace(/\n/g, '<br />'),
           postsText2: postText2.replace(/\n/g, '<br />'),
-          postsText3: postText3.replace(/\n/g, '<br />'),
           code: code,
-          code2: code2,
-          code3: code3,
           imgUrl: imageUrl,
           createdAt: serverTimestamp(),
         });
@@ -67,6 +62,7 @@ function Product() {
               onChange={(e) => setTitle(e.target.value)}
               class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
       </div>
+
           <div class="sm:col-span-2">
             <label class="mb-2 inline-block text-sm text-g  ray-800 sm:text-base">値段</label>
             <input  type="text"
@@ -74,6 +70,14 @@ function Product() {
               onChange={(e) => setPostText(e.target.value)}
               class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
       </div>
+          <div class="sm:col-span-2">
+            <label class="mb-2 inline-block text-sm text-g  ray-800 sm:text-base">以前の値段</label>
+            <input  type="text"
+              placeholder="前の値段を記入"
+              onChange={(e) => setCode(e.target.value)}
+              class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+      </div>
+
 
       <div class="sm:col-span-2">
         <label  class="mb-2 inline-block text-sm text-gray-800 sm:text-base">画像</label>
@@ -84,11 +88,11 @@ function Product() {
 
 
   <div class="sm:col-span-2">
-  <label class="mb-2 inline-block text-sm text-gray-800 sm:text-base">値段</label>
+  <label class="mb-2 inline-block text-sm text-gray-800 sm:text-base">内容</label>
   <div class="h-64 rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring ">
     <textarea
       placeholder="内容を記入"
-      onChange={(e) => setPostText(e.target.value)}
+      onChange={(e) => setPostText2(e.target.value)}
       class="w-full h-full resize-none outline-none"
     ></textarea>
   </div>

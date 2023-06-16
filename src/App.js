@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import { useState } from "react";
 import Logout from "./components/Logout";
 import Product from "./components/Product";
+import Cart from "./components/Cart";
 
 function App() {
   const [isAuth, setIsAuth ] = useState(localStorage.getItem("isAuth"));
@@ -22,6 +23,7 @@ function App() {
         <Route path='/artist' element={<Artist />}/>
         <Route path='/news' element={<News />}/>
         <Route path='/product' element={<Product />}/>
+        <Route path='/cart' element={<Cart />}/>
         <Route path='/login' element={<Login  setIsAuth={setIsAuth} />}/>
         <Route path='/logout' element={<Logout  setIsAuth={setIsAuth} />}/>
       </Routes>

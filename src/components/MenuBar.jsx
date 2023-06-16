@@ -27,6 +27,8 @@ const MenuBar = () => {
     <Link to="/artist" class="text-2xl font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">Artist</Link>
 
     <Link to="/news" class="text-2xl font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">News</Link>
+
+
     <Link to="/product" class="text-2xl font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">Product</Link>
   </nav>
 
@@ -43,10 +45,10 @@ const MenuBar = () => {
       <span class="hidden text-xl font-semibold text-white sm:block">Logout</span>
     </Link>
 
-    <a href="#" class="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24">
+    <Link to="/cart" class="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24">
 
       <span class="hidden text-xl font-semibold text-white sm:block">Cart</span>
-    </a>
+    </Link>
   </div>
 </div>
 </header>
