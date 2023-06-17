@@ -20,17 +20,14 @@ const MenuBar = () => {
 
 
   <nav class="hidden gap-12 lg:flex 2xl:ml-16">
-    <Link to="/" class="text-2xl font-semibold text-white hover:text-indigo-300 transition duration-100">Home</Link>
+    <Link to="/" class="text-3xl font-semibold text-white hover:text-indigo-300 transition duration-100">Home</Link>
 
-    <Link to="/shop" class="text-2xl font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">shop</Link>
+    <Link to="/shop" class="text-3xl font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">shop</Link>
 
-    <Link to="/artist" class="text-2xl font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">Artist</Link>
+    <Link to="/artist" class="text-3xl font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">Artist</Link>
 
-    <Link to="/news" class="text-2xl font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">News</Link>
+    <Link to="/news" class="text-3xl font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">News</Link>
 
-
-    <Link to="/product" class=" font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">Product</Link>
-    <Link to="/event" class=" font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">Event</Link>
   </nav>
 
 

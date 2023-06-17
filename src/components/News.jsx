@@ -49,7 +49,7 @@ const News = () => {
           </h2>
 
           <p class="mb-8 text-gray-500 font-bold text-xl">
-                {/* <div dangerouslySetInnerHTML={{ __html: newsPostText }} /> */}
+                <div dangerouslySetInnerHTML={{ __html: post.newsPostText }} />
           </p>
 
           <div class="mt-auto flex items-end justify-between">
@@ -67,17 +67,7 @@ const News = () => {
           </div>
         </div>
       </div>
-       ))}
-
-      
-      
-
-      
-      
-
-      
-      
-      
+       ))}  
     </div>
   </div>
 </div>

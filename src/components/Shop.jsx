@@ -1,4 +1,4 @@
-import { collection, deleteDoc, doc, getDocs, orderBy, query } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDocs, orderBy, query, serverTimestamp } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { db } from '../firebase';
 import dayjs from 'dayjs';
@@ -21,6 +21,25 @@ const Shop = ({
     };
     getPosts();
   }, []);
+
+  console.log(postList)
+  const addToCart = async (post) => {
+    try {
+      const cartItem = {
+        title: post.title,
+        price: post.price,
+        postsText2: post.postsText2,
+        prevPrice: post.prevPrice,
+        imgUrl: post.imgUrl,
+        createdAt: serverTimestamp(),
+      };
+
+      await addDoc(collection(db, 'cart'), cartItem);
+      alert('カートに入れました');;
+    } catch (error) {
+      console.error('Error adding item to cart:', error);
+    }
+  };
 
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, 'posts', id));
@@ -68,7 +87,7 @@ const Shop = ({
             <div class="flex flex-col items-end">
               <span class="font-bold text-gray-600 lg:text-lg">{post.price}</span>
               <span class="text-sm text-red-500 line-through">{post.prevPrice}</span>
-          <button>カートに入れる</button>
+          <button onClick={() => addToCart(post)}>カートに入れる</button>
             </div>
           </div>
         </div>

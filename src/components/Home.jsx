@@ -1,18 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore';
 import { db } from '../firebase';
+import { Link } from 'react-router-dom';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ja'; // 必要に応じてロケールを指定してください
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
 
 const Home = () => {
   const [postList, setPostList] = useState([]);
+  const [newsPostList, newsSetPostList] = useState([]);
 
   useEffect(() => {
     const getPosts = async () => {
+      const data2 = await getDocs(query(collection(db, 'posts2'), orderBy('createdAt', 'desc')));
+      newsSetPostList(data2.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       const data = await getDocs(query(collection(db, "posts"),orderBy("createdAt", "desc"),limit(4)));
       setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
     }
     getPosts();
    },[]);
   
+   const newsSortedLists = newsPostList.sort((a, b) => b.createdAt - a.createdAt);
    const sortedLists = postList.sort((a, b) => b.createdAt - a.createdAt);
 
   return (
@@ -155,56 +168,45 @@ const Home = () => {
     <h2 class="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl">Collections</h2>
 
     <div class="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
-   
-      <div>
-        <a href="#" class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-          <img src="https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?auto=format&q=75&fit=crop&crop=top&w=600&h=700" loading="lazy" alt="Photo by Austin Wade" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-
-          <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
-            <span class="text-gray-500">Men</span>
-            <span class="text-lg font-bold text-gray-800 lg:text-xl">Business Causual</span>
-          </div>
+    {newsSortedLists.map((post) => (
+      <div class="flex flex-col overflow-hidden rounded-lg border bg-white">
+        <a href="#" class="group relative block h-48 overflow-hidden bg-gray-100 md:h-64">
+          <img src={post.newsImgUrl} loading="lazy" alt="Photo by Minh Pham" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
         </a>
-      </div>
-   
 
-   
-      <div>
-        <a href="#" class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-          <img src="https://images.unsplash.com/photo-1603344797033-f0f4f587ab60?auto=format&q=75&fit=crop&crop=top&w=600&h=700" loading="lazy" alt="Photo by engin akyurt" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+        <div class="flex flex-1 flex-col p-4 sm:p-6">
+          <h2 class="mb-2 text-lg font-semibold text-gray-800">
+            <a href="#" class="transition duration-100 hover:text-indigo-500 active:text-indigo-600">{post.newsTitle}</a>
+          </h2>
 
-          <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
-            <span class="text-gray-500">Women</span>
-            <span class="text-lg font-bold text-gray-800 lg:text-xl">Summer Season</span>
+          <p class="mb-8 text-gray-500 font-bold text-xl">
+                <div dangerouslySetInnerHTML={{ __html: post.newsPostText }} />
+          </p>
+
+          <div class="mt-auto flex items-end justify-between">
+            <div class="flex items-center gap-2">
+              <div class="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-gray-100">
+              </div>
+
+              <div>
+                <span class="block text-indigo-500">Mike Lane</span>
+                <span class="block text-sm text-gray-400"> {dayjs.unix(Number(post.createdAt)).tz('Asia/Tokyo').format('MM/DD HH:mm')}</span>
+              </div>
+            </div>
+
+            <span class="rounded border px-2 py-1 text-sm text-gray-500">Article</span>
           </div>
-        </a>
+        </div>
       </div>
+       ))} 
+
+
+    <div class="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">  
+    </div>
+
+      
    
 
-   
-      <div>
-        <a href="#" class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-          <img src="https://images.unsplash.com/photo-1552668693-d0738e00eca8?auto=format&q=75&fit=crop&crop=top&w=600&h=700" loading="lazy" alt="Photo by Austin Wade" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-
-          <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
-            <span class="text-gray-500">Men</span>
-            <span class="text-lg font-bold text-gray-800 lg:text-xl">Streetwear</span>
-          </div>
-        </a>
-      </div>
-   
-
-   
-      <div>
-        <a href="#" class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
-          <img src="https://images.unsplash.com/photo-1560269999-cef6ebd23ad3?auto=format&q=75&fit=crop&w=600&h=700" loading="lazy" alt="Photo by Austin Wade" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-
-          <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
-            <span class="text-gray-500">Women</span>
-            <span class="text-lg font-bold text-gray-800 lg:text-xl">Sale</span>
-          </div>
-        </a>
-      </div>
    
     </div>
   </div>
@@ -284,18 +286,12 @@ const Home = () => {
           <div>
             <a href="#" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Overview</a>
           </div>
+          <Link to="/product" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">Product</Link>
+          <Link to="/event" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">Event</Link>
+          
 
-          <div>
-            <a href="#" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Solutions</a>
-          </div>
-
-          <div>
-            <a href="#" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Pricing</a>
-          </div>
-
-          <div>
-            <a href="#" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Customers</a>
-          </div>
+          
+          
         </nav>
       </div>
 
@@ -309,17 +305,11 @@ const Home = () => {
             <a href="#" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">About</a>
           </div>
 
-          <div>
-            <a href="#" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Investor Relations</a>
-          </div>
+          
 
-          <div>
-            <a href="#" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Jobs</a>
-          </div>
+          
 
-          <div>
-            <a href="#" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Press</a>
-          </div>
+         
 
           <div>
             <a href="#" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Blog</a>
@@ -334,19 +324,14 @@ const Home = () => {
 
         <nav class="flex flex-col gap-4">
           <div>
-            <a href="#" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Contact</a>
+            <Link to="/contact" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Contact</Link>
           </div>
 
-          <div>
-            <a href="#" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Documentation</a>
-          </div>
+          
 
+          
           <div>
-            <a href="#" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Chat</a>
-          </div>
-
-          <div>
-            <a href="#" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">FAQ</a>
+            <Link to="/faq" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">FAQ</Link>
           </div>
         </nav>
       </div>
@@ -361,13 +346,7 @@ const Home = () => {
             <a href="#" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Terms of Service</a>
           </div>
 
-          <div>
-            <a href="#" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Privacy Policy</a>
-          </div>
-
-          <div>
-            <a href="#" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Cookie settings</a>
-          </div>
+         
         </nav>
       </div>
 
