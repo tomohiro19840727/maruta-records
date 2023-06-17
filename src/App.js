@@ -12,6 +12,7 @@ import Cart from "./components/Cart";
 import Event from "./components/Event";
 import Contact from "./components/Contact";
 import Faq from "./components/Faq";
+import MemberLogin from "./components/MemberLogin";
 
 function App() {
   const [title, setTitle] = useState('');
@@ -51,6 +52,7 @@ function App() {
         <Route path='/cart' element={<Cart />}/>
         <Route path='/event' element={<Event />}/>
         <Route path='/contact' element={<Contact />}/>
+        <Route path='/memberlogin' element={<MemberLogin />}/>
         <Route path='/faq' element={<Faq />}/>
         <Route path='/login' element={<Login  setIsAuth={setIsAuth} />}/>
         <Route path='/logout' element={<Logout  setIsAuth={setIsAuth} />}/>

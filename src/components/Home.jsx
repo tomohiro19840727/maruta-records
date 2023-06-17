@@ -120,12 +120,12 @@ const Home = () => {
           <div class="flex items-start justify-between gap-2 px-2">
             <div class="flex flex-col">
               <a href="#" class="text-lg font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-xl">{post.title}</a>
-              <span class="text-gray-500">{post.postsText2}</span>
+              <span class="text-gray-500 font-bold mt-5">{post.postsText2}</span>
             </div>
   
             <div class="flex flex-col items-end">
-              <span class="font-bold text-gray-600 lg:text-lg">{post.postsText}</span>
-              <span class="text-sm text-red-500 line-through">{post.code}</span>
+              <span class="font-bold text-gray-600 lg:text-lg">{post.price}</span>
+              <span class="text-sm text-red-500 line-through mt-3.5">{post.prevPrice}</span>
             </div>
           </div>
         </div>
@@ -343,7 +343,7 @@ const Home = () => {
 
         <nav class="flex flex-col gap-4">
           <div>
-            <a href="#" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Terms of Service</a>
+            <Link to="/login" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Administrator login</Link>
           </div>
 
          
