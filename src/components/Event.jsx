@@ -1,16 +1,14 @@
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db, storage } from '../firebase';
 
-function Product({
-title,setTitle, price, setPrice,postText2,setPostText2,singleImage,setSingleImage,prevPrice, setPrevPrice}) {
-
-  // const [title, setTitle] = useState('');
-  // const [price, setPrice] = useState('');
-  // const [postText2, setPostText2] = useState('');
-  // const [singleImage, setSingleImage] = useState('');
-  // const [prevPrice, setPrevPrice] = useState('');
+function Event() {
+  const [newsTitle, newsSetTitle] = useState('');
+  const [newsPostText, newsSetPostText] = useState('');
+  const [newsSingleImage, newsSetSingleImage] = useState('');
+  
 
 
   const navigate = useNavigate();
@@ -21,28 +19,26 @@ title,setTitle, price, setPrice,postText2,setPostText2,singleImage,setSingleImag
 
     if (e.target.files && e.target.files.length > 0) {
       pickedFile = e.target.files[0];
-      setSingleImage(pickedFile);
+      newsSetSingleImage(pickedFile);
     }
   };
 
   const createPost = async (e) => {
     e.preventDefault();
-    const imageRef = ref(storage, `images/${singleImage.name}`);
-    uploadBytes(imageRef, singleImage).then((res) => {
+    const imageRef = ref(storage, `images2/${newsSingleImage.name}`);
+    uploadBytes(imageRef, newsSingleImage).then((res) => {
       alert('投稿に成功しました');
-      getDownloadURL(imageRef).then((imageUrl) => {
-        addDoc(collection(db, 'posts'), {
-          title: title,
-          price: price.replace(/\n/g, '<br />'),
-          postsText2: postText2.replace(/\n/g, '<br />'),
-          prevPrice: prevPrice,
-          imgUrl: imageUrl,
+      getDownloadURL(imageRef).then((newsImageUrl) => {
+        addDoc(collection(db, 'posts2'), {
+          newsTitle: newsTitle,
+          newsPostText: newsPostText.replace(/\n/g, '<br />'),
+          newsImgUrl: newsImageUrl,
           createdAt: serverTimestamp(),
         });
       });
     });
 
-    navigate('/shop');
+    navigate('/news');
   };
 
   return (
@@ -52,33 +48,18 @@ title,setTitle, price, setPrice,postText2,setPostText2,singleImage,setSingleImag
       <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
         
         <div class="mb-10 md:mb-16">
-          <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-5xl">商品投稿</h2>
+          <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-5xl">Event 投稿</h2>
         </div>
         
         <form onSubmit={createPost} class="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2">
           <div class="sm:col-span-2">
             <label class="mb-2 inline-block text-sm text-g  ray-800 sm:text-base">タイトル</label>
             <input  type="text"
-              placeholder="商品名を記入"
-              onChange={(e) => setTitle(e.target.value)}
+              placeholder="タイトルを記入"
+              onChange={(e) => newsSetTitle(e.target.value)}
               class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
       </div>
-
-          <div class="sm:col-span-2">
-            <label class="mb-2 inline-block text-sm text-g  ray-800 sm:text-base">値段</label>
-            <input  type="text"
-              placeholder="値段を記入"
-              onChange={(e) => setPrice(e.target.value)}
-              class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
-      </div>
-          <div class="sm:col-span-2">
-            <label class="mb-2 inline-block text-sm text-g  ray-800 sm:text-base">以前の値段</label>
-            <input  type="text"
-              placeholder="前の値段を記入"
-              onChange={(e) => setPrevPrice(e.target.value)}
-              class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
-      </div>
-
+         
 
       <div class="sm:col-span-2">
         <label  class="mb-2 inline-block text-sm text-gray-800 sm:text-base">画像</label>
@@ -86,14 +67,13 @@ title,setTitle, price, setPrice,postText2,setPostText2,singleImage,setSingleImag
                 accept="png, .jpeg, .jpg, .HEIC"
                 onChange={handleImage} class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
       </div>
-
-
-  <div class="sm:col-span-2">
+      
+      <div class="sm:col-span-2">
   <label class="mb-2 inline-block text-sm text-gray-800 sm:text-base">内容</label>
   <div class="h-64 rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring ">
     <textarea
       placeholder="内容を記入"
-      onChange={(e) => setPostText2(e.target.value)}
+      onChange={(e) => newsSetPostText(e.target.value)}
       class="w-full h-full resize-none outline-none"
     ></textarea>
   </div>
@@ -109,4 +89,4 @@ title,setTitle, price, setPrice,postText2,setPostText2,singleImage,setSingleImag
            </>
       );}
                     
-  export default Product;
+  export default Event;

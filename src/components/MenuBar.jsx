@@ -29,7 +29,8 @@ const MenuBar = () => {
     <Link to="/news" class="text-2xl font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">News</Link>
 
 
-    <Link to="/product" class="text-2xl font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">Product</Link>
+    <Link to="/product" class=" font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">Product</Link>
+    <Link to="/event" class=" font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">Event</Link>
   </nav>
 
 
@@ -49,6 +50,14 @@ const MenuBar = () => {
 
       <span class="hidden text-xl font-semibold text-white sm:block">Cart</span>
     </Link>
+
+    <button type="button" class="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-gray-100 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+          </svg>
+
+          <span class="hidden text-xs font-semibold text-gray-500 sm:block">Menu</span>
+        </button>
   </div>
 </div>
 </header>

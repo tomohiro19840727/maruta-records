@@ -9,8 +9,14 @@ import { useState } from "react";
 import Logout from "./components/Logout";
 import Product from "./components/Product";
 import Cart from "./components/Cart";
+import Event from "./components/Event";
 
 function App() {
+  const [title, setTitle] = useState('');
+  const [price, setPrice] = useState('');
+  const [postText2, setPostText2] = useState('');
+  const [singleImage, setSingleImage] = useState('');
+  const [prevPrice, setPrevPrice] = useState('');
   const [isAuth, setIsAuth ] = useState(localStorage.getItem("isAuth"));
 
   return (
@@ -19,11 +25,29 @@ function App() {
       <MenuBar  isAuth={isAuth} />
       <Routes>
         <Route path='/' element={<Home />}/>
-        <Route path='/shop' element={<Shop />}/>
+
+        <Route path='/shop' element={<Shop
+          title={title} setTitle={setTitle}
+          price={price} setPrice={setPrice}
+          prevPrice={prevPrice} setPrevPrice={setPrevPrice}
+          postText2={postText2} setPostText2={setPostText2}
+          singleImage={singleImage} setSingleImage={setSingleImage}
+        />}/>
+
         <Route path='/artist' element={<Artist />}/>
         <Route path='/news' element={<News />}/>
-        <Route path='/product' element={<Product />}/>
+
+        <Route path='/product' element={
+        <Product
+          title={title} setTitle={setTitle}
+          price={price} setPrice={setPrice}
+          prevPrice={prevPrice} setPrevPrice={setPrevPrice}
+          postText2={postText2} setPostText2={setPostText2}
+          singleImage={singleImage} setSingleImage={setSingleImage}
+        />}/>
+
         <Route path='/cart' element={<Cart />}/>
+        <Route path='/event' element={<Event />}/>
         <Route path='/login' element={<Login  setIsAuth={setIsAuth} />}/>
         <Route path='/logout' element={<Logout  setIsAuth={setIsAuth} />}/>
       </Routes>
