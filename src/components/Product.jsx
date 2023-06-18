@@ -27,15 +27,18 @@ title,setTitle, price, setPrice,postText2,setPostText2,singleImage,setSingleImag
 
   const createPost = async (e) => {
     e.preventDefault();
+    const convertedPrice = Number(price);
+    const convertedprevPrice = Number(prevPrice);
+
     const imageRef = ref(storage, `images/${singleImage.name}`);
     uploadBytes(imageRef, singleImage).then((res) => {
       alert('投稿に成功しました');
       getDownloadURL(imageRef).then((imageUrl) => {
         addDoc(collection(db, 'posts'), {
           title: title,
-          price: price.replace(/\n/g, '<br />'),
+          price: convertedPrice,
           postsText2: postText2.replace(/\n/g, '<br />'),
-          prevPrice: prevPrice,
+          prevPrice: convertedprevPrice,
           imgUrl: imageUrl,
           createdAt: serverTimestamp(),
         });

@@ -21,6 +21,11 @@ const Cart = () => {
     window.location.href = '/cart';
   };
 
+  const calculateTotal = () => {
+    const total = cartList.reduce((acc, item) => acc + item.price, 0);
+    return total; 
+  };
+
 
   return (
     <div class="bg-white py-6 sm:py-8 lg:py-12">
@@ -98,7 +103,7 @@ const Cart = () => {
               <span class="text-lg font-bold">Total</span>
   
               <span class="flex flex-col items-end">
-                <span class="text-lg font-bold">$134.98 USD</span>
+                <span class="text-lg font-bold">{calculateTotal()}円</span>
                 <span class="text-sm text-gray-500">including VAT</span>
               </span>
             </div>

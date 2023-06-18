@@ -43,7 +43,7 @@ const Shop = ({
 
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, 'posts', id));
-    window.location.href = '/setblog';
+    window.location.href = '/shop';
   };
 
   const sortedLists = postList.sort((a, b) => b.createdAt - a.createdAt);
@@ -85,9 +85,10 @@ const Shop = ({
             </div>
   
             <div class="flex flex-col items-end">
-              <span class="font-bold text-gray-600 lg:text-lg">{post.price}</span>
-              <span class="text-sm text-red-500 line-through">{post.prevPrice}</span>
+              <span class="font-bold text-gray-600 lg:text-lg">{post.price}円</span>
+              <span class="text-sm text-red-500 line-through">{post.prevPrice}円</span>
           <button onClick={() => addToCart(post)}>カートに入れる</button>
+          <button onClick={() => handleDelete(post.id)}>削除</button>
             </div>
           </div>
         </div>
