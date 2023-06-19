@@ -13,6 +13,7 @@ import Event from "./components/Event";
 import Contact from "./components/Contact";
 import Faq from "./components/Faq";
 import MemberLogin from "./components/MemberLogin";
+import ShopDetail from "./components/ShopDetail";
 
 function App() {
   const [title, setTitle] = useState('');
@@ -37,6 +38,7 @@ function App() {
           singleImage={singleImage} setSingleImage={setSingleImage}
         />}/>
 
+        <Route path='/shopdetail' element={<ShopDetail />}/>
         <Route path='/artist' element={<Artist />}/>
         <Route path='/news' element={<News />}/>
 

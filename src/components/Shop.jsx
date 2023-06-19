@@ -5,6 +5,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ja'; // 必要に応じてロケールを指定してください
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import { Link } from 'react-router-dom';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -68,7 +69,11 @@ const Shop = ({
       {sortedLists.map((post) => (
         <div>
           <a href="#" class="group relative mb-2 block h-96 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:mb-3">
+            <>
+            <Link to="/shopdetail">
             <img src={post.imgUrl} loading="lazy" alt="Photo by Austin Wade" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+            </Link>
+            </>
   
             <div class="absolute left-0 bottom-2 flex gap-2">
               <span class="rounded-r-lg bg-red-500 px-3 py-1.5 text-sm font-semibold uppercase tracking-wider text-white">-50%</span>
