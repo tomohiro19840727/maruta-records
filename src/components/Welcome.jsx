@@ -1,7 +1,25 @@
 import React, { useEffect, useRef } from 'react'
+// import { Swiper, SwiperSlide } from 'swiper/react';
+// import 'swiper/swiper.min.css';
+// import { Navigation, Pagination } from 'swiper';
+// import 'swiper/css/navigation'; // スタイルをインポート
+// import 'swiper/css/pagination'; // スタイルをインポート
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
+
 import "./Welcome.css"
 
 const Welcome = () => {
+  const images =["./img/IMG_6796.JPG","./img/IMG_6801.JPG"]
+
     const aboutRef1 = useRef(null);
    const aboutRef2 = useRef(null);
   
@@ -35,6 +53,22 @@ const Welcome = () => {
     };
   }, []);
 
+ 
+  // const swiperParams = {
+  //   slidesPerView: 1,
+  //   spaceBetween: 10,
+  //   loop: true,
+  //   autoplay: {
+  //     delay: 3000,
+  //     disableOnInteraction: false,
+  //   },
+  //   pagination: {
+  //     el: '.swiper-pagination',
+  //     clickable: true,
+  //   },
+  // };
+
+
 
   return (
     <div class="bg-white pb-6 sm:pb-8 lg:pb-12">  
@@ -48,7 +82,31 @@ const Welcome = () => {
 
       <div class="mb-12 flex w-full md:mb-16 lg:w-2/3">
         <div class="relative top-12 left-12 z-10 -ml-12 overflow-hidden rounded-lg bg-gray-100 shadow-lg md:top-16 md:left-16 lg:ml-0">
-          <img src="./img/26579281_s.jpg" loading="lazy" alt="Photo by Kaung Htet" class="h-full w-full object-cover object-center" />
+        <Swiper  modules={[Navigation, Pagination]}
+            navigation
+            pagination={{ clickable: true }}>
+
+    <SwiperSlide>
+    <img src="./img/IMG_6801.JPG" alt="1" />
+  </SwiperSlide>
+  <SwiperSlide>
+    <img src="./img/IMG_6798.JPG" alt="2" />
+  </SwiperSlide>
+  <SwiperSlide>
+    <img src="./img/IMG_6799.JPG" alt="3" />
+  </SwiperSlide>
+  <SwiperSlide>
+    <img src="./img/IMG_6796.JPG" alt="4" />
+  </SwiperSlide>
+    </Swiper>
+          {/* <img src="./img/26579281_s.jpg" loading="lazy" alt="Photo by Kaung Htet" class="h-full w-full object-cover object-center" /> */}
+          {/* <Swiper>
+              {images.map((image, index) => (
+                <SwiperSlide key={index}>
+                  <img src={image} loading="lazy" alt={`Slide ${index}`} className="h-full w-full object-cover object-center" />
+                </SwiperSlide>
+              ))}
+            </Swiper> */}
         </div>
 
         <div class="overflow-hidden rounded-lg bg-gray-100 shadow-lg">
@@ -91,6 +149,24 @@ const Welcome = () => {
       </div>
     </div>
   </section>
+
+  {/* <Swiper  modules={[Navigation, Pagination]}
+            navigation
+            pagination={{ clickable: true }}>
+
+    <SwiperSlide>
+    <img src="https://placehold.jp/3d4070/ffffff/700x450.png?text=1" alt="1" />
+  </SwiperSlide>
+  <SwiperSlide>
+    <img src="../img/IMG_6797.JPG" alt="2" />
+  </SwiperSlide>
+  <SwiperSlide>
+    <img src="https://placehold.jp/3d4070/ffffff/700x450.png?text=3" alt="3" />
+  </SwiperSlide>
+  <SwiperSlide>
+    <img src="https://placehold.jp/3d4070/ffffff/700x450.png?text=4" alt="4" />
+  </SwiperSlide>
+    </Swiper> */}
 </div>
   )
 }
