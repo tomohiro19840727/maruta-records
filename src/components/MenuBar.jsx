@@ -5,6 +5,11 @@ import { db } from "../firebase";
 
 const MenuBar = () => {
   const [cartCount, setCartCount] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   useEffect(() => {
     // Firestoreのコレクション参照を作成
@@ -35,14 +40,26 @@ const MenuBar = () => {
 
 
 
-  <nav class="hidden gap-12 lg:flex 2xl:ml-16">
-    <Link to="/" class="text-3xl font-semibold text-white hover:text-indigo-300 transition duration-100">Home</Link>
+  <nav
+              className={`gap-12 lg:flex 2xl:ml-16 ${
+                isMenuOpen ? "" : "hidden"
+              }`}
+            >
+    <Link to="/"  className={`${
+                  isMenuOpen ? "text-sm" : "text-3xl"
+                } font-semibold text-white hover:text-indigo-300 transition duration-100`}>Home</Link>
 
-    <Link to="/shop" class="text-3xl font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">shop</Link>
+    <Link to="/shop" className={`${
+                  isMenuOpen ? "text-sm" : "text-3xl"
+                } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>shop</Link>
 
-    <Link to="/artist" class="text-3xl font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">Artist</Link>
+    <Link to="/artist"   className={`${
+                  isMenuOpen ? "text-sm" : "text-3xl"
+                } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>Artist</Link>
 
-    <Link to="/news" class="text-3xl font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700">News</Link>
+    <Link to="/news" className={`${
+                  isMenuOpen ? "text-sm" : "text-3xl"
+                } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>News</Link>
 
   </nav>
 
@@ -60,14 +77,6 @@ const MenuBar = () => {
     </Link>
 
 
-{/* <Link to="/cart" className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24 relative">
-  <span className="hidden text-xl font-semibold text-white sm:block">Cart</span>
-  {cartCount > 0 && (
-    <div className="absolute -top-0 -right-1 bg-red-500 rounded-full w-8 h-8 flex items-center justify-center text-white text-1xl font-semibold">
-      {cartCount}
-    </div>
-  )}
-</Link> */}
 
 {cartCount > 0 ? (
   <Link to="/cart" className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24 relative">
@@ -84,7 +93,7 @@ const MenuBar = () => {
 
 
 
-    <button type="button" class="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-gray-100 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:hidden">
+    <button type="button"  onClick={toggleMenu} class="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-gray-100 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:hidden">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
           </svg>
