@@ -1,7 +1,23 @@
-import React from "react";
+import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
+import { db } from "../firebase";
 
 const MenuBar = () => {
+  const [cartCount, setCartCount] = useState("");
+
+  useEffect(() => {
+    // Firestoreのコレクション参照を作成
+    const cartCollectionRef = collection(db, 'cart');
+
+    const unsubscribe = onSnapshot(cartCollectionRef, (snapshot) => {
+      const count = snapshot.size; // ドキュメントの数を取得
+      setCartCount(count);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   return (
     <>
     
@@ -43,10 +59,30 @@ const MenuBar = () => {
       <span class="hidden text-xl font-semibold text-white sm:block">Logout</span>
     </Link>
 
-    <Link to="/cart" class="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24">
 
-      <span class="hidden text-xl font-semibold text-white sm:block">Cart</span>
-    </Link>
+{/* <Link to="/cart" className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24 relative">
+  <span className="hidden text-xl font-semibold text-white sm:block">Cart</span>
+  {cartCount > 0 && (
+    <div className="absolute -top-0 -right-1 bg-red-500 rounded-full w-8 h-8 flex items-center justify-center text-white text-1xl font-semibold">
+      {cartCount}
+    </div>
+  )}
+</Link> */}
+
+{cartCount > 0 ? (
+  <Link to="/cart" className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24 relative">
+    <span className="hidden text-xl font-semibold text-white sm:block">Cart</span>
+    <div className="absolute -top-0 -right-1 bg-red-500 rounded-full w-8 h-8 flex items-center justify-center text-white text-1xl font-semibold">
+      {cartCount}
+    </div>
+  </Link>
+) : (
+  <Link to="/empty" className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24 relative">
+    <span className="hidden text-xl font-semibold text-white sm:block">Cart</span>
+  </Link>
+)}
+
+
 
     <button type="button" class="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-gray-100 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24 lg:hidden">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" viewBox="0 0 20 20" fill="currentColor">

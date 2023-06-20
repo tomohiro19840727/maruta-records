@@ -14,6 +14,7 @@ import Contact from "./components/Contact";
 import Faq from "./components/Faq";
 import MemberLogin from "./components/MemberLogin";
 import ShopDetail from "./components/ShopDetail";
+import Empty from "./components/Empty";
 
 function App() {
   const [title, setTitle] = useState('');
@@ -22,6 +23,7 @@ function App() {
   const [singleImage, setSingleImage] = useState('');
   const [prevPrice, setPrevPrice] = useState('');
   const [isAuth, setIsAuth ] = useState(localStorage.getItem("isAuth"));
+  
 
   const [selectedTitle, selectedSetTitle] = useState('');
   const [selectedPrice, selectedSetPrice] = useState('');
@@ -33,7 +35,9 @@ function App() {
   return (
 
     <Router>
-      <MenuBar  isAuth={isAuth} />
+      <MenuBar  isAuth={isAuth}
+  
+      />
       <Routes>
         <Route path='/' element={<Home 
         selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
@@ -53,6 +57,7 @@ function App() {
           prevPrice={prevPrice} setPrevPrice={setPrevPrice}
           postText2={postText2} setPostText2={setPostText2}
           singleImage={singleImage} setSingleImage={setSingleImage}
+
 
           selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
 
@@ -88,6 +93,7 @@ function App() {
           singleImage={singleImage} setSingleImage={setSingleImage}
         />}/>
 
+        <Route path='/empty' element={<Empty />}/>
         <Route path='/cart' element={<Cart />}/>
         <Route path='/event' element={<Event />}/>
         <Route path='/contact' element={<Contact />}/>

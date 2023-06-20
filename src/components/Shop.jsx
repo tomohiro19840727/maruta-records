@@ -12,7 +12,8 @@ dayjs.extend(timezone);
 
 const Shop = ({ 
   title,setTitle, price, setPrice,postText2,setPostText2,singleImage,setSingleImage,prevPrice, setPrevPrice,
-  selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage, selectedSetSingleImage, selectedPrevPrice,  selectedSetPrevPrice
+  selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage, selectedSetSingleImage, selectedPrevPrice,  selectedSetPrevPrice,
+  
 }) => {
   const [postList, setPostList] = useState([]);
 
@@ -43,18 +44,22 @@ const Shop = ({
     }
   };
 
+
+
   const handleClick = (post) => {
     selectedSetTitle(post.title);
     selectedSetPrice(post.price);
     selectedSetPrevPrice(post.prevPrice);
     selectedSetPostText2(post.postsText2);
-    selectedSetSingleImage(post.imgUrl)
+    selectedSetSingleImage(post.imgUrl);
+    
     
   };
 
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, 'posts', id));
     window.location.href = '/shop';
+
   };
 
   const sortedLists = postList.sort((a, b) => b.createdAt - a.createdAt);
@@ -102,7 +107,8 @@ const Shop = ({
             <div class="flex flex-col items-end">
               <span class="font-bold text-gray-600 lg:text-lg">{post.price}円</span>
               <span class="text-sm text-red-500 line-through">{post.prevPrice}円</span>
-          <button onClick={() => addToCart(post)}>カートに入れる</button>
+          <button onClick={() => addToCart(post)}
+             >カートに入れる</button>
           <button onClick={() => handleDelete(post.id)}>削除</button>
             </div>
           </div>
