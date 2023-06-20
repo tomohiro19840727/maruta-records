@@ -12,7 +12,7 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 
-const Home = () => {
+const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage, selectedSetSingleImage, selectedPrevPrice,  selectedSetPrevPrice }) => {
   const [postList, setPostList] = useState([]);
   const [newsPostList, newsSetPostList] = useState([]);
 
@@ -28,6 +28,15 @@ const Home = () => {
   
    const newsSortedLists = newsPostList.sort((a, b) => b.createdAt - a.createdAt);
    const sortedLists = postList.sort((a, b) => b.createdAt - a.createdAt);
+
+   const handleClick = (post) => {
+    selectedSetTitle(post.title);
+    selectedSetPrice(post.price);
+    selectedSetPrevPrice(post.prevPrice);
+    selectedSetPostText2(post.postsText2);
+    selectedSetSingleImage(post.imgUrl)
+    
+  };
 
   return (
   <>
@@ -50,7 +59,12 @@ const Home = () => {
       {sortedLists.map((post) => (
         <div>
           <a href="#" class="group relative mb-2 block h-96 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:mb-3">
-            <img src={post.imgUrl} loading="lazy" alt="Photo by Austin Wade" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+            <Link to="/shopdetail">
+            <img 
+            src={post.imgUrl} 
+            onClick={() => handleClick(post)} 
+            loading="lazy" alt="Photo by Austin Wade" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+            </Link>
   
             <div class="absolute left-0 bottom-2 flex gap-2">
               <span class="rounded-r-lg bg-red-500 px-3 py-1.5 text-sm font-semibold uppercase tracking-wider text-white">-50%</span>

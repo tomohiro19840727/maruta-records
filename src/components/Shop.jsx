@@ -11,7 +11,8 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 const Shop = ({ 
-  title,setTitle, price, setPrice,postText2,setPostText2,singleImage,setSingleImage,prevPrice, setPrevPrice
+  title,setTitle, price, setPrice,postText2,setPostText2,singleImage,setSingleImage,prevPrice, setPrevPrice,
+  selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage, selectedSetSingleImage, selectedPrevPrice,  selectedSetPrevPrice
 }) => {
   const [postList, setPostList] = useState([]);
 
@@ -42,6 +43,15 @@ const Shop = ({
     }
   };
 
+  const handleClick = (post) => {
+    selectedSetTitle(post.title);
+    selectedSetPrice(post.price);
+    selectedSetPrevPrice(post.prevPrice);
+    selectedSetPostText2(post.postsText2);
+    selectedSetSingleImage(post.imgUrl)
+    
+  };
+
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, 'posts', id));
     window.location.href = '/shop';
@@ -70,7 +80,7 @@ const Shop = ({
         <div>
           <a href="#" class="group relative mb-2 block h-96 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:mb-3">
             <>
-            <Link to="/shopdetail">
+            <Link to="/shopdetail"  onClick={() => handleClick(post)} >
             <img src={post.imgUrl} loading="lazy" alt="Photo by Austin Wade" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
             </Link>
             </>

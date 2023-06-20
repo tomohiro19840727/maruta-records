@@ -23,12 +23,29 @@ function App() {
   const [prevPrice, setPrevPrice] = useState('');
   const [isAuth, setIsAuth ] = useState(localStorage.getItem("isAuth"));
 
+  const [selectedTitle, selectedSetTitle] = useState('');
+  const [selectedPrice, selectedSetPrice] = useState('');
+  const [selectedPostText2, selectedSetPostText2] = useState('');
+  const [selectedSingleImage, selectedSetSingleImage] = useState('');
+  const [selectedPrevPrice, selectedSetPrevPrice] = useState('');
+
+
   return (
 
     <Router>
       <MenuBar  isAuth={isAuth} />
       <Routes>
-        <Route path='/' element={<Home />}/>
+        <Route path='/' element={<Home 
+        selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
+
+        selectedPrice={selectedPrice} selectedSetPrice={selectedSetPrice}
+
+        selectedPrevPrice={selectedPrevPrice} selectedSetPrevPrice={selectedSetPrevPrice}
+
+        selectedPostText2={selectedPostText2} selectedSetPostText2={selectedSetPostText2}
+
+        selectedSingleImage={selectedSingleImage} selectedSetSingleImage={selectedSetSingleImage}
+        />}/>
 
         <Route path='/shop' element={<Shop
           title={title} setTitle={setTitle}
@@ -36,9 +53,29 @@ function App() {
           prevPrice={prevPrice} setPrevPrice={setPrevPrice}
           postText2={postText2} setPostText2={setPostText2}
           singleImage={singleImage} setSingleImage={setSingleImage}
+
+          selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
+
+          selectedPrice={selectedPrice} selectedSetPrice={selectedSetPrice}
+
+          selectedPrevPrice={selectedPrevPrice} selectedSetPrevPrice={selectedSetPrevPrice}
+
+          selectedPostText2={selectedPostText2} selectedSetPostText2={selectedSetPostText2}
+
+          selectedSingleImage={selectedSingleImage} selectedSetSingleImage={selectedSetSingleImage}
         />}/>
 
-        <Route path='/shopdetail' element={<ShopDetail />}/>
+        <Route path='/shopdetail' element={<ShopDetail
+          selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
+
+          selectedPrice={selectedPrice} selectedSetPrice={selectedSetPrice}
+
+          selectedPrevPrice={selectedPrevPrice} selectedSetPrevPrice={selectedSetPrevPrice}
+
+          selectedPostText2={selectedPostText2} selectedSetPostText2={selectedSetPostText2}
+
+          selectedSingleImage={selectedSingleImage} selectedSetSingleImage={selectedSetSingleImage}
+        />}/>
         <Route path='/artist' element={<Artist />}/>
         <Route path='/news' element={<News />}/>
 
