@@ -23,7 +23,7 @@ const Shop = ({
       setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getPosts();
-  }, []);
+  }, []); <kbd></kbd>
 
   console.log(postList)
   const addToCart = async (post) => {
