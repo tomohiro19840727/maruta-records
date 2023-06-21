@@ -12,7 +12,10 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 
-const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage, selectedSetSingleImage, selectedPrevPrice,  selectedSetPrevPrice }) => {
+const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage, selectedSetSingleImage, selectedPrevPrice,  selectedSetPrevPrice, 
+  welcomeTitle, welcomeSetTitle, welcomeSingleImage, welcomeSetSingleImage
+}) => {
+
   const [postList, setPostList] = useState([]);
   const [newsPostList, newsSetPostList] = useState([]);
 
@@ -40,7 +43,12 @@ const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, 
 
   return (
   <>
-   <Welcome />
+   <Welcome 
+   welcomeTitle={welcomeTitle}
+   welcomeSetTitle={welcomeSetTitle}
+   welcomeSingleImage={welcomeSingleImage}
+   welcomeSetSingleImage={welcomeSetSingleImage}
+   />
 
 <div class="bg-white py-6 sm:py-8 lg:py-12">
     <div class="mx-auto max-w-screen-2xl px-4 md:px-8 mb-10">
@@ -242,10 +250,8 @@ const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, 
           </div>
           <Link to="/product" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">Product</Link>
           <Link to="/event" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">Event</Link>
-          
-
-          
-          
+          <Link to="/product2" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">Product2</Link>
+          <Link to="/productdetail2" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">ProductDetail2</Link>
         </nav>
       </div>
 

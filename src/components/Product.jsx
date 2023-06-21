@@ -6,12 +6,6 @@ import { db, storage } from '../firebase';
 function Product({
 title,setTitle, price, setPrice,postText2,setPostText2,singleImage,setSingleImage,prevPrice, setPrevPrice}) {
 
-  // const [title, setTitle] = useState('');
-  // const [price, setPrice] = useState('');
-  // const [postText2, setPostText2] = useState('');
-  // const [singleImage, setSingleImage] = useState('');
-  // const [prevPrice, setPrevPrice] = useState('');
-
 
   const navigate = useNavigate();
 

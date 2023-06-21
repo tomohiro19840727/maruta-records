@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 // import { Swiper, SwiperSlide } from 'swiper/react';
 // import 'swiper/swiper.min.css';
 // import { Navigation, Pagination } from 'swiper';
@@ -16,69 +16,102 @@ import 'swiper/css/scrollbar';
 
 
 import "./Welcome.css"
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { db } from '../firebase';
+import { Link } from 'react-router-dom';
 
-const Welcome = () => {
-  const images =["./img/IMG_6796.JPG","./img/IMG_6801.JPG"]
+const Welcome = ({ welcomeTitle, welcomeSetTitle,  welcomeSingleImage, welcomeSetSingleImage}) => {
 
-    const aboutRef1 = useRef(null);
-   const aboutRef2 = useRef(null);
-  
-  
-  
-  
+  const [welcomePostList, welcomeSetPostList] = useState([]);
+
   useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.2, // テキストが50%以上表示された時に反応する
-    };
-  
-    const callback = (entries) => {
+    const targets = document.getElementsByClassName("fade");
+    const observer = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-delayed-tracking-in-expand');
+          entry.target.classList.add("active");
         } else {
-          entry.target.classList.remove('animate-delayed-tracking-in-expand');
+          entry.target.classList.remove("active");
         }
       });
-    };
-  
-    const observer = new IntersectionObserver(callback, options);
-    observer.observe(aboutRef1.current);
-    observer.observe(aboutRef2.current);
-    
-  
+    });
+
+    Array.from(targets).forEach((target) => {
+      observer.observe(target);
+    });
+
     return () => {
       observer.disconnect();
     };
   }, []);
 
+  useEffect(() => {
+    const getPosts = async () => {
+      const data = await getDocs(query(collection(db, 'posts3'), orderBy('createdAt', 'desc')));
+      welcomeSetPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+    getPosts();
+  }, []);
+
+
+  const welcomeSortedLists = welcomePostList.sort((a, b) => b.createdAt - a.createdAt);
+
+
+
+
+
+
+
+  //   const aboutRef1 = useRef(null);
+  //  const aboutRef2 = useRef(null);
+  
+  
+  
+  
+  // useEffect(() => {
+  //   const options = {
+  //     root: null,
+  //     rootMargin: '0px',
+  //     threshold: 0.2, // テキストが50%以上表示された時に反応する
+  //   };
+  
+  //   const callback = (entries) => {
+  //     entries.forEach((entry) => {
+  //       if (entry.isIntersecting) {
+  //         entry.target.classList.add('animate-delayed-tracking-in-expand');
+  //       } else {
+  //         entry.target.classList.remove('animate-delayed-tracking-in-expand');
+  //       }
+  //     });
+  //   };
+  
+  //   const observer = new IntersectionObserver(callback, options);
+  //   observer.observe(aboutRef1.current);
+  //   observer.observe(aboutRef2.current);
+    
+  
+  //   return () => {
+  //     observer.disconnect();
+  //   };
+  // }, []);
+
  
-  // const swiperParams = {
-  //   slidesPerView: 1,
-  //   spaceBetween: 10,
-  //   loop: true,
-  //   autoplay: {
-  //     delay: 3000,
-  //     disableOnInteraction: false,
-  //   },
-  //   pagination: {
-  //     el: '.swiper-pagination',
-  //     clickable: true,
-  //   },
-  // };
 
 
 
   return (
     <div class="bg-white pb-6 sm:pb-8 lg:pb-12">  
   <section class="mx-auto max-w-screen-2xl px-4 md:px-8">
-    <div class="mb-8 flex flex-wrap justify-between md:mb-16">
-      <div class="mb-6 flex w-full flex-col justify-center sm:mb-12 lg:mb-0 lg:w-1/3 lg:pt-48 lg:pb-24">
-        <h1  ref={aboutRef1} class="text-black-800 mb-4 text-4xl font-bold sm:text-5xl md:mb-8 md:text-6xl animate-tracking-in-contract-bck-top">Find your<br />style Music</h1>
+    <div class="mb-8 flex flex-wrap justify-between md:mb-16 fade">
+      <div class="mb-6 flex w-full flex-col justify-center sm:mb-12 lg:mb-0 lg:w-1/3 lg:pt-48 lg:pb-24 ">
+        <h1
+          // ref={aboutRef1}
+         class="text-black-800 mb-4 text-4xl font-bold sm:text-5xl md:mb-8 md:text-6xl ">Find your<br />style Music</h1>
 
-        <p ref={aboutRef2} class="max-w-md leading-relaxed text-gray-500 xl:text-lg animate-tracking-in-contract-bck-top">豊かな音楽の世界を極上のレコードで体験せよ。<br/>オールジャンル、希少盤も充実。あなたの音楽旅を彩る最高の選択肢wo
-        。</p>
+        <p
+        //  ref={aboutRef2} 
+        class="max-w-md leading-relaxed text-gray-500 xl:text-lg font-serif font-bold">豊かな音楽の世界を極上のレコードで体験せよ!<br/><br/>オールジャンル、希少盤も充実。<br/>音楽旅を彩る最高の選択肢をあなたに・・・
+        </p>
       </div>
 
       <div class="mb-12 flex w-full md:mb-16 lg:w-1/2 mr-20">
@@ -90,10 +123,15 @@ const Welcome = () => {
             effect="fade"
             >
 
-    <SwiperSlide>
-    <img src="./img/IMG_6801.JPG" alt="1" />
-  </SwiperSlide>
-  <SwiperSlide>
+            {welcomeSortedLists.map((post) => (
+              <SwiperSlide>
+               <Link to="/shop">
+                <img src={post.welcomeImgUrl} alt="1" />
+               </Link>             
+                <p className='m-8 text-xl font-serif font-bold'>{post.welcomeTitle}</p>
+              </SwiperSlide>
+      ))}  
+  {/* <SwiperSlide>
     <img src="./img/IMG_6798.JPG" alt="2" />
   </SwiperSlide>
   <SwiperSlide>
@@ -101,7 +139,7 @@ const Welcome = () => {
   </SwiperSlide>
   <SwiperSlide>
     <img src="./img/IMG_6796.JPG" alt="4" />
-  </SwiperSlide>
+  </SwiperSlide> */}
     </Swiper>
         </div>
 

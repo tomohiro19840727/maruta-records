@@ -5,6 +5,28 @@ import { db } from '../firebase';
 const Cart = () => {
   const [cartList, setCartList] = useState([]);
 
+
+  useEffect(() => {
+    const targets = document.getElementsByClassName("fade");
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        } else {
+          entry.target.classList.remove("active");
+        }
+      });
+    });
+
+    Array.from(targets).forEach((target) => {
+      observer.observe(target);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   useEffect(() => {
     const getPosts = async () => {
       const data = await getDocs(query(collection(db, "cart"), orderBy('createdAt', 'desc')));
@@ -12,7 +34,7 @@ const Cart = () => {
     };
     getPosts();
   }, []);
-   console.log(cartList)
+   
  
   const sortedCartLists = cartList.sort((a, b) => b.createdAt - a.createdAt);
 
@@ -28,7 +50,7 @@ const Cart = () => {
 
 
   return (
-    <div class="bg-white py-6 sm:py-8 lg:py-12">
+    <div class="bg-white py-6 sm:py-8 lg:py-12 fade">
     <div class="mx-auto max-w-screen-lg px-4 md:px-8 ">
       <div class="mb-6 sm:mb-10 lg:mb-16">
         <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Your Cart</h2>

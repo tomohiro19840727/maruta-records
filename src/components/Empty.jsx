@@ -1,9 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 const Empty = () => {
+
+  useEffect(() => {
+    const targets = document.getElementsByClassName("fade");
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        } else {
+          entry.target.classList.remove("active");
+        }
+      });
+    });
+
+    Array.from(targets).forEach((target) => {
+      observer.observe(target);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
-    <div class="bg-white py-6 sm:py-0">
+    <div class="bg-white py-6 sm:py-0 fade ">
   <div class="mx-auto max-w-screen-xl px-4 md:px-8">
     <div class="grid gap-8 sm:grid-cols-2 sm:gap-12">
       

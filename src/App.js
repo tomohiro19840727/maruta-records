@@ -15,6 +15,8 @@ import Faq from "./components/Faq";
 import MemberLogin from "./components/MemberLogin";
 import ShopDetail from "./components/ShopDetail";
 import Empty from "./components/Empty";
+import Product2 from "./components/Product2";
+import ProductDetail2 from "./components/ProductDetail2";
 
 function App() {
   const [title, setTitle] = useState('');
@@ -30,6 +32,9 @@ function App() {
   const [selectedPostText2, selectedSetPostText2] = useState('');
   const [selectedSingleImage, selectedSetSingleImage] = useState('');
   const [selectedPrevPrice, selectedSetPrevPrice] = useState('');
+
+  const [welcomeTitle, welcomeSetTitle] = useState('');
+  const [welcomeSingleImage, welcomeSetSingleImage] = useState('');
 
 
   return (
@@ -93,6 +98,15 @@ function App() {
           singleImage={singleImage} setSingleImage={setSingleImage}
         />}/>
 
+        <Route path='/product2' element={<Product2 
+         welcomeTitle={welcomeTitle}
+         welcomeSetTitle={welcomeSetTitle}
+         welcomeSingleImage={welcomeSingleImage}
+         welcomeSetSingleImage={welcomeSetSingleImage}
+        />}/>
+
+
+        <Route path='/productdetail2' element={<ProductDetail2 />}/>
         <Route path='/empty' element={<Empty />}/>
         <Route path='/cart' element={<Cart />}/>
         <Route path='/event' element={<Event />}/>
