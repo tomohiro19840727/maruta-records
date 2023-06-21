@@ -81,11 +81,14 @@ const Welcome = () => {
         。</p>
       </div>
 
-      <div class="mb-12 flex w-full md:mb-16 lg:w-2/3 ">
+      <div class="mb-12 flex w-full md:mb-16 lg:w-1/2 mr-20">
         <div class="relative top-12 left-12 z-10 -ml-12 overflow-hidden rounded-lg bg-gray-100 shadow-lg md:top-16 md:left-16 lg:ml-0">
         <Swiper  modules={[Navigation, Pagination]}
             navigation
-            pagination={{ clickable: true }}>
+            pagination={{ clickable: true }}
+            loop={true}
+            effect="fade"
+            >
 
     <SwiperSlide>
     <img src="./img/IMG_6801.JPG" alt="1" />
@@ -100,19 +103,11 @@ const Welcome = () => {
     <img src="./img/IMG_6796.JPG" alt="4" />
   </SwiperSlide>
     </Swiper>
-          {/* <img src="./img/26579281_s.jpg" loading="lazy" alt="Photo by Kaung Htet" class="h-full w-full object-cover object-center" /> */}
-          {/* <Swiper>
-              {images.map((image, index) => (
-                <SwiperSlide key={index}>
-                  <img src={image} loading="lazy" alt={`Slide ${index}`} className="h-full w-full object-cover object-center" />
-                </SwiperSlide>
-              ))}
-            </Swiper> */}
         </div>
 
-        <div class="overflow-hidden rounded-lg bg-gray-100 shadow-lg">
+        {/* <div class="overflow-hidden rounded-lg bg-gray-100 shadow-lg">
           <img src="./img/26672478_s.jpg" loading="lazy" alt="Photo by Manny Moreno" class="h-full w-full object-cover object-center" />
-        </div>
+        </div> */}
       </div>
     </div>
 
