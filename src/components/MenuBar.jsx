@@ -58,8 +58,22 @@ const MenuBar = () => {
                 } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>Artist</Link>
 
     <Link to="/news" className={`${
-                  isMenuOpen ? "text-sm" : "text-3xl"
+                  isMenuOpen ? "tenp xt-sm" : "text-3xl"
                 } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>News</Link>
+
+<div class="relative inline-block group">
+  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Artist</button>
+  <div class="absolute hidden bg-gray-100 text-gray-700 py-2 px-4 rounded shadow-md mt-2 -left-2/3 group-hover:block">
+    <ul className="flex ">
+      <Link to="/artist"   class="hover:bg-gray-200 py-1 px-2">yamazaki taketo</Link>
+      <Link class="hover:bg-gray-200 py-1 px-2">yamazaki taketo</Link>
+      <Link class="hover:bg-gray-200 py-1 px-2">yamazaki taketo</Link>
+    </ul>
+  </div>
+</div>
+
+
+
 
   </nav>
 
@@ -75,6 +89,9 @@ const MenuBar = () => {
 
       <span class="hidden text-xl font-semibold text-white sm:block">Logout</span>
     </Link>
+
+    
+
 
 
 

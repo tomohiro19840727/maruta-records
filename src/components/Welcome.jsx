@@ -30,7 +30,7 @@ const Welcome = () => {
     const options = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.7, // テキストが50%以上表示された時に反応する
+      threshold: 0.3, // テキストが50%以上表示された時に反応する
     };
   
     const callback = (entries) => {
