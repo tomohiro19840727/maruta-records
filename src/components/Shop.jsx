@@ -6,6 +6,7 @@ import 'dayjs/locale/ja'; // 必要に応じてロケールを指定してくだ
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import { Link } from 'react-router-dom';
+import "./Shop.css"
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -18,12 +19,33 @@ const Shop = ({
   const [postList, setPostList] = useState([]);
 
   useEffect(() => {
+    const targets = document.getElementsByClassName("fade");
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        } else {
+          entry.target.classList.remove("active");
+        }
+      });
+    });
+
+    Array.from(targets).forEach((target) => {
+      observer.observe(target);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
     const getPosts = async () => {
       const data = await getDocs(query(collection(db, 'posts'), orderBy('createdAt', 'desc')));
       setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getPosts();
-  }, []); <kbd></kbd>
+  }, []); 
 
   console.log(postList)
   const addToCart = async (post) => {
@@ -67,7 +89,7 @@ const Shop = ({
 
   return (
     <>
-    <div class="bg-white py-6 sm:py-8 lg:py-12">
+    <div class="bg-white py-6 sm:py-8 lg:py-12 fade">
     <div class="mx-auto max-w-screen-2xl px-4 md:px-8 mb-10">
       
       <div class="mb-10 md:mb-16">
