@@ -30,7 +30,7 @@ const Welcome = () => {
     const options = {
       root: null,
       rootMargin: '0px',
-      threshold: 0.3, // テキストが50%以上表示された時に反応する
+      threshold: 0.2, // テキストが50%以上表示された時に反応する
     };
   
     const callback = (entries) => {
@@ -77,7 +77,8 @@ const Welcome = () => {
       <div class="mb-6 flex w-full flex-col justify-center sm:mb-12 lg:mb-0 lg:w-1/3 lg:pt-48 lg:pb-24">
         <h1  ref={aboutRef1} class="text-black-800 mb-4 text-4xl font-bold sm:text-5xl md:mb-8 md:text-6xl animate-tracking-in-contract-bck-top">Find your<br />style Music</h1>
 
-        <p ref={aboutRef2} class="max-w-md leading-relaxed text-gray-500 xl:text-lg animate-tracking-in-contract-bck-top">豊かな音楽の世界を極上のレコードで体験せよ。<br/>オールジャンル、希少盤も充実。あなたの音楽旅を彩る最高の選択肢。</p>
+        <p ref={aboutRef2} class="max-w-md leading-relaxed text-gray-500 xl:text-lg animate-tracking-in-contract-bck-top">豊かな音楽の世界を極上のレコードで体験せよ。<br/>オールジャンル、希少盤も充実。あなたの音楽旅を彩る最高の選択肢wo
+        。</p>
       </div>
 
       <div class="mb-12 flex w-full md:mb-16 lg:w-2/3 ">
