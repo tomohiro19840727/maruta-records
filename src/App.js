@@ -17,6 +17,10 @@ import ShopDetail from "./components/ShopDetail";
 import Empty from "./components/Empty";
 import Product2 from "./components/Product2";
 import ProductDetail2 from "./components/ProductDetail2";
+import Artist2 from "./components/Artist2";
+import Artist3 from "./components/Artist3";
+import Artist4 from "./components/Artist4";
+import Search from "./components/Search";
 
 function App() {
   const [title, setTitle] = useState('');
@@ -86,7 +90,11 @@ function App() {
 
           selectedSingleImage={selectedSingleImage} selectedSetSingleImage={selectedSetSingleImage}
         />}/>
+        <Route path='/search' element={<Search />}/>
         <Route path='/artist' element={<Artist />}/>
+        <Route path='/artist2' element={<Artist2 />}/>
+        <Route path='/artist3' element={<Artist3 />}/>
+        <Route path='/artist4' element={<Artist4 />}/>
         <Route path='/news' element={<News />}/>
 
         <Route path='/product' element={

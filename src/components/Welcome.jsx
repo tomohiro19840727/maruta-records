@@ -131,21 +131,10 @@ const Welcome = ({ welcomeTitle, welcomeSetTitle,  welcomeSingleImage, welcomeSe
                 <p className='m-8 text-xl font-serif font-bold'>{post.welcomeTitle}</p>
               </SwiperSlide>
       ))}  
-  {/* <SwiperSlide>
-    <img src="./img/IMG_6798.JPG" alt="2" />
-  </SwiperSlide>
-  <SwiperSlide>
-    <img src="./img/IMG_6799.JPG" alt="3" />
-  </SwiperSlide>
-  <SwiperSlide>
-    <img src="./img/IMG_6796.JPG" alt="4" />
-  </SwiperSlide> */}
     </Swiper>
         </div>
 
-        {/* <div class="overflow-hidden rounded-lg bg-gray-100 shadow-lg">
-          <img src="./img/26672478_s.jpg" loading="lazy" alt="Photo by Manny Moreno" class="h-full w-full object-cover object-center" />
-        </div> */}
+        
       </div>
     </div>
 

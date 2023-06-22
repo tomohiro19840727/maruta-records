@@ -7,6 +7,7 @@ import 'dayjs/locale/ja'; // 必要に応じてロケールを指定してくだ
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import Welcome from './Welcome';
+import Search from './Search';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -174,7 +175,7 @@ const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, 
   </div>
 </div>
 
-
+<Search />
 
 <div class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8">

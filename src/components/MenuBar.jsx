@@ -53,28 +53,30 @@ const MenuBar = () => {
                   isMenuOpen ? "text-sm" : "text-3xl"
                 } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>shop</Link>
 
-    <Link to="/artist"   className={`${
+    {/* <button   className={`${
                   isMenuOpen ? "text-sm" : "text-3xl"
-                } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>Artist</Link>
+                } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>
+                  Artist
+                  </button> */}
+
+                  <div class="relative inline-block group">
+  <button className={`${
+                  isMenuOpen ? "tenp xt-sm" : "text-3xl"
+                } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>Artist</button>
+  <div class="absolute hidden bg-gray-100 text-gray-700 py-2 px-4 rounded shadow-md mt-2 -left-2/3 group-hover:block">
+    <ul className="flex ">
+      <Link to="/artist"   class="hover:bg-gray-200 py-1 px-2 m-5 font-serif font-bold text-xl">yamazaki taketo</Link>
+      <Link  to="/artist2" class="hover:bg-gray-200 py-1 px-2 m-5 font-serif font-bold text-xl">kuriki tomohiro</Link>
+      <Link  to="/artist3" class="hover:bg-gray-200 py-1 px-2 m-5 font-serif font-bold text-xl">iwaki haruka</Link>
+      <Link  to="/artist4" class="hover:bg-gray-200 py-1 px-2 m-5 font-serif font-bold text-xl">satou takuya</Link>
+    </ul>
+  </div>
+</div>
+                  
 
     <Link to="/news" className={`${
                   isMenuOpen ? "tenp xt-sm" : "text-3xl"
                 } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>News</Link>
-
-<div class="relative inline-block group">
-  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Artist</button>
-  <div class="absolute hidden bg-gray-100 text-gray-700 py-2 px-4 rounded shadow-md mt-2 -left-2/3 group-hover:block">
-    <ul className="flex ">
-      <Link to="/artist"   class="hover:bg-gray-200 py-1 px-2">yamazaki taketo</Link>
-      <Link class="hover:bg-gray-200 py-1 px-2">yamazaki taketo</Link>
-      <Link class="hover:bg-gray-200 py-1 px-2">yamazaki taketo</Link>
-    </ul>
-  </div>
-</div>
-
-
-
-
   </nav>
 
 
