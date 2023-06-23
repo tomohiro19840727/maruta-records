@@ -21,7 +21,6 @@ import Artist2 from "./components/Artist2";
 import Artist3 from "./components/Artist3";
 import Artist4 from "./components/Artist4";
 import Search from "./components/Search";
-import SearchResult from "./components/SearchResult";
 
 function App() {
   const [title, setTitle] = useState('');
@@ -31,7 +30,6 @@ function App() {
   const [prevPrice, setPrevPrice] = useState('');
   const [isAuth, setIsAuth ] = useState(localStorage.getItem("isAuth"));
 
-  const [searchResults, setSearchResults] = useState([]);
   
 
   const [selectedTitle, selectedSetTitle] = useState('');
@@ -93,12 +91,8 @@ function App() {
 
           selectedSingleImage={selectedSingleImage} selectedSetSingleImage={selectedSetSingleImage}
         />}/>
-        <Route path='/searchresult' element={<SearchResult 
-        searchResults={searchResults} 
-        setSearchResults={setSearchResults}
-        />}/>
+     
         <Route path='/search' element={<Search 
-          searchResults={searchResults} setSearchResults={setSearchResults}
         />}/>
         <Route path='/artist' element={<Artist />}/>
         <Route path='/artist2' element={<Artist2 />}/>
