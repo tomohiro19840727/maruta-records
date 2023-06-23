@@ -1,11 +1,21 @@
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { addDoc, collection, getDocs, orderBy, query, serverTimestamp } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { Link } from 'react-router-dom';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ja'; // 必要に応じてロケールを指定してください
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 
 
 
-function Search() {
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+
+
+
+function Search({selectedResultSetTitle, selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage, selectedSetSingleImage, selectedPrevPrice,  selectedSetPrevPrice  }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [selectedSearchResults, setSelectedSearchResults] = useState([]);
@@ -26,10 +36,35 @@ function Search() {
       doc.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setSelectedSearchResults(results);
-
   }
 
+  const handleClick = (doc) => {
+    selectedSetTitle(doc.title);
+    selectedSetPrice(doc.price);
+    selectedSetPrevPrice(doc.prevPrice);
+    selectedSetPostText2(doc.postsText2);
+    selectedSetSingleImage(doc.imgUrl);
+  };
 
+  const addToCart = async (doc) => {
+    try {
+      const cartItem = {
+        title: doc.title,
+        price: doc.price,
+        postsText2: doc.postsText2,
+        prevPrice: doc.prevPrice,
+        imgUrl: doc.imgUrl1,
+        createdAt: serverTimestamp(),
+      };
+
+      await addDoc(collection(db, 'cart'), cartItem);
+      alert('カートに入れました');;
+    } catch (error) {
+      console.error('Error adding item to cart:', error);
+    }
+  };
+
+  const sortedResultsLists = selectedSearchResults.sort((a, b) => b.createdAt - a.createdAt);
 
   return (
     <>
@@ -63,14 +98,14 @@ function Search() {
 
 <div class="grid gap-x-4 gap-y-8 sm:grid-cols-2 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4">
       
-  {selectedSearchResults.map((doc) => (
+  {sortedResultsLists.map((doc) => (
     <div>
     <a href="#" class="group relative mb-2 block h-96 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:mb-3">
     <>
-    <Link to="/shopdetail"  
-    // onClick={() => handleClick(post)} 
+    <Link to="/"  
+    // onClick={() => handleClick(doc)} 
     >
-    <img src={doc.imgUrl} loading="lazy" alt="Photo by Austin Wade" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+    <img src={doc.imgUrl1} loading="lazy" alt="Photo by Austin Wade" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
     </Link>
     </>
     
@@ -91,9 +126,8 @@ function Search() {
     <div class="flex flex-col items-end">
     <span class="font-bold text-gray-600 lg:text-lg">{doc.price}円</span>
     <span class="text-sm text-red-500 line-through">{doc.prevPrice}円</span>
-    {/* <button onClick={() => addToCart(post)}
+    <button onClick={() => addToCart(doc)}
     >カートに入れる</button>
-  <button onClick={() => handleDelete(post.id)}>削除</button> */}
   </div>
   </div>
   </div>

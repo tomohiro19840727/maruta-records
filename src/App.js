@@ -26,16 +26,22 @@ function App() {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const [postText2, setPostText2] = useState('');
-  const [singleImage, setSingleImage] = useState('');
+  const [singleImage1, setSingleImage1] = useState('');
+  const [singleImage2, setSingleImage2] = useState('');
+  const [singleImage3, setSingleImage3] = useState('');
   const [prevPrice, setPrevPrice] = useState('');
   const [isAuth, setIsAuth ] = useState(localStorage.getItem("isAuth"));
+
+  
 
   
 
   const [selectedTitle, selectedSetTitle] = useState('');
   const [selectedPrice, selectedSetPrice] = useState('');
   const [selectedPostText2, selectedSetPostText2] = useState('');
-  const [selectedSingleImage, selectedSetSingleImage] = useState('');
+  const [selectedSingleImage1, selectedSetSingleImage1] = useState('');
+  const [selectedSingleImage2, selectedSetSingleImage2] = useState('');
+  const [selectedSingleImage3, selectedSetSingleImage3] = useState('');
   const [selectedPrevPrice, selectedSetPrevPrice] = useState('');
 
   const [welcomeTitle, welcomeSetTitle] = useState('');
@@ -58,7 +64,11 @@ function App() {
 
         selectedPostText2={selectedPostText2} selectedSetPostText2={selectedSetPostText2}
 
-        selectedSingleImage={selectedSingleImage} selectedSetSingleImage={selectedSetSingleImage}
+        selectedSingleImage1={selectedSingleImage1} selectedSetSingleImage1={selectedSetSingleImage1}
+
+        selectedSingleImage2={selectedSingleImage2}
+        selectedSetSingleImage2={selectedSetSingleImage2}
+          selectedSingleImage3={selectedSingleImage3} selectedSetSingleImage3={selectedSetSingleImage3}
         />}/>
 
         <Route path='/shop' element={<Shop
@@ -66,8 +76,9 @@ function App() {
           price={price} setPrice={setPrice}
           prevPrice={prevPrice} setPrevPrice={setPrevPrice}
           postText2={postText2} setPostText2={setPostText2}
-          singleImage={singleImage} setSingleImage={setSingleImage}
-
+          singleImage1={singleImage1} setSingleImage1={setSingleImage1}
+          singleImage2={singleImage2} setSingleImage2={setSingleImage2}
+          singleImage3={singleImage3} setSingleImage3={setSingleImage3}
 
           selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
 
@@ -77,7 +88,9 @@ function App() {
 
           selectedPostText2={selectedPostText2} selectedSetPostText2={selectedSetPostText2}
 
-          selectedSingleImage={selectedSingleImage} selectedSetSingleImage={selectedSetSingleImage}
+          selectedSingleImage1={selectedSingleImage1} selectedSetSingleImage1={selectedSetSingleImage1}
+          selectedSingleImage2={selectedSingleImage2} selectedSetSingleImage2={selectedSetSingleImage2}
+          selectedSingleImage3={selectedSingleImage3} selectedSetSingleImage3={selectedSetSingleImage3}
         />}/>
 
         <Route path='/shopdetail' element={<ShopDetail
@@ -89,11 +102,24 @@ function App() {
 
           selectedPostText2={selectedPostText2} selectedSetPostText2={selectedSetPostText2}
 
-          selectedSingleImage={selectedSingleImage} selectedSetSingleImage={selectedSetSingleImage}
+          selectedSingleImage1={selectedSingleImage1} selectedSetSingleImage1={selectedSetSingleImage1}
+          selectedSingleImage2={selectedSingleImage2} selectedSetSingleImage2={selectedSetSingleImage2}
+          selectedSingleImage3={selectedSingleImage3} selectedSetSingleImage3={selectedSetSingleImage3}  
         />}/>
      
-        <Route path='/search' element={<Search 
+        <Route path='/search' element={<Search
+          selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
+
+          selectedPrice={selectedPrice} selectedSetPrice={selectedSetPrice}
+
+          selectedPrevPrice={selectedPrevPrice} selectedSetPrevPrice={selectedSetPrevPrice}
+
+          selectedPostText2={selectedPostText2} selectedSetPostText2={selectedSetPostText2}
+
+          selectedSingleImage1={selectedSingleImage1} selectedSetSingleImage1={selectedSetSingleImage1}
+          
         />}/>
+
         <Route path='/artist' element={<Artist />}/>
         <Route path='/artist2' element={<Artist2 />}/>
         <Route path='/artist3' element={<Artist3 />}/>
@@ -106,7 +132,9 @@ function App() {
           price={price} setPrice={setPrice}
           prevPrice={prevPrice} setPrevPrice={setPrevPrice}
           postText2={postText2} setPostText2={setPostText2}
-          singleImage={singleImage} setSingleImage={setSingleImage}
+          singleImage1={singleImage1} setSingleImage1={setSingleImage1}
+          singleImage2={singleImage2} setSingleImage2={setSingleImage2}
+          singleImage3={singleImage3} setSingleImage3={setSingleImage3}
         />}/>
 
         <Route path='/product2' element={<Product2 

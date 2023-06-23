@@ -4,7 +4,7 @@ import React from 'react'
 import { db } from '../firebase';
 
 
-const ShopDetail = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage, selectedSetSingleImage, selectedPrevPrice,  selectedSetPrevPrice}) => {
+const ShopDetail = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage1, selectedSingleImage2,selectedSingleImage3,selectedSetSingleImage, selectedPrevPrice,  selectedSetPrevPrice }) => {
  
   const handleAddToCart = async () => {
     try {
@@ -13,7 +13,7 @@ const ShopDetail = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetP
         price: selectedPrice,
         postsText2: selectedPostText2,
         prevPrice: selectedPrevPrice,
-        imgUrl: selectedSingleImage,
+        imgUrl: selectedSingleImage1,
         createdAt: serverTimestamp(),
       };
 
@@ -34,20 +34,31 @@ const ShopDetail = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetP
       
       <div class="space-y-4">
         <div class="relative overflow-hidden rounded-lg bg-gray-100">
-          <img src={selectedSingleImage} loading="lazy" alt="Photo by Himanshu Dewangan" class="h-full w-full object-cover object-center" />
-
+          <img src={selectedSingleImage1} loading="lazy" alt="Photo by Himanshu Dewangan" class="h-full w-full object-cover object-center" />
         </div>
          
 
-        <div class="grid grid-cols-2 gap-4">
+        {/* <div class="grid grid-cols-2 gap-4">
           <div class="overflow-hidden rounded-lg bg-gray-100">
-            <img src={selectedSingleImage} loading="lazy" alt="Photo by Himanshu Dewangan" class="h-full w-full object-cover object-center" />
+            <img src={selectedSingleImage2} loading="lazy" alt="Photo by Himanshu Dewangan" class="h-full w-full object-cover object-center" />
           </div>
 
           <div class="overflow-hidden rounded-lg bg-gray-100">
-            <img src={selectedSingleImage} loading="lazy" alt="Photo by Himanshu Dewangan" class="h-full w-full object-cover object-center" />
+            <img src={selectedSingleImage3} loading="lazy" alt="Photo by Himanshu Dewangan" class="h-full w-full object-cover object-center" />
           </div>
-        </div>
+        </div> */}
+
+  {selectedSingleImage2 && (
+<div class="grid grid-cols-2 gap-4">
+    <div class="overflow-hidden rounded-lg bg-gray-100">
+      <img src={selectedSingleImage2} loading="lazy" alt="Photo by Himanshu Dewangan" class="h-full w-full object-cover object-center" />
+    </div>
+  
+    <div class="overflow-hidden rounded-lg bg-gray-100">
+      <img src={selectedSingleImage3} loading="lazy" alt="Photo by Himanshu Dewangan" class="h-full w-full object-cover object-center" />
+    </div>
+</div>
+  )}
       </div>
       
 

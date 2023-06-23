@@ -14,7 +14,8 @@ dayjs.extend(timezone);
 
 
 const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage, selectedSetSingleImage, selectedPrevPrice,  selectedSetPrevPrice, 
-  welcomeTitle, welcomeSetTitle, welcomeSingleImage, welcomeSetSingleImage
+  welcomeTitle, welcomeSetTitle, welcomeSingleImage, welcomeSetSingleImage,
+  selectedSetSingleImage1, selectedSetSingleImage2, selectedSetSingleImage3,
 }) => {
 
   const [postList, setPostList] = useState([]);
@@ -38,7 +39,9 @@ const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, 
     selectedSetPrice(post.price);
     selectedSetPrevPrice(post.prevPrice);
     selectedSetPostText2(post.postsText2);
-    selectedSetSingleImage(post.imgUrl)
+    selectedSetSingleImage1(post.imgUrl1)
+    selectedSetSingleImage2(post.imgUrl2)
+    selectedSetSingleImage3(post.imgUrl3)
     
   };
 
@@ -70,7 +73,7 @@ const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, 
           <a href="#" class="group relative mb-2 block h-96 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:mb-3">
             <Link to="/shopdetail">
             <img 
-            src={post.imgUrl} 
+            src={post.imgUrl1} 
             onClick={() => handleClick(post)} 
             loading="lazy" alt="Photo by Austin Wade" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
             </Link>
@@ -228,9 +231,7 @@ const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, 
         <div class="mb-4 font-bold uppercase tracking-widest text-gray-800">Products</div>
 
         <nav class="flex flex-col gap-4">
-          <div>
-            <a href="#" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Overview</a>
-          </div>
+          
           <Link to="/product" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">Product</Link>
           <Link to="/event" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">Event</Link>
           <Link to="/product2" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">Product2</Link>

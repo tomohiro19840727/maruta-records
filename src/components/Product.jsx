@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { db, storage } from '../firebase';
 
 function Product({
-title,setTitle, price, setPrice,postText2,setPostText2,singleImage,setSingleImage,prevPrice, setPrevPrice}) {
+title,setTitle, price, setPrice,postText2,setPostText2, singleImage1,setSingleImage1,singleImage2,setSingleImage2, singleImage3,setSingleImage3,prevPrice, setPrevPrice}) {
 
 
   const navigate = useNavigate();
@@ -15,7 +15,25 @@ title,setTitle, price, setPrice,postText2,setPostText2,singleImage,setSingleImag
 
     if (e.target.files && e.target.files.length > 0) {
       pickedFile = e.target.files[0];
-      setSingleImage(pickedFile);
+      setSingleImage1(pickedFile);
+    }
+  };
+  const handleImage2 = (e) => {
+    e.preventDefault();
+    let pickedFile;
+
+    if (e.target.files && e.target.files.length > 0) {
+      pickedFile = e.target.files[0];
+      setSingleImage2(pickedFile);
+    }
+  };
+  const handleImage3 = (e) => {
+    e.preventDefault();
+    let pickedFile;
+
+    if (e.target.files && e.target.files.length > 0) {
+      pickedFile = e.target.files[0];
+      setSingleImage3(pickedFile);
     }
   };
 
@@ -24,20 +42,49 @@ title,setTitle, price, setPrice,postText2,setPostText2,singleImage,setSingleImag
     const convertedPrice = Number(price);
     const convertedprevPrice = Number(prevPrice);
 
-    const imageRef = ref(storage, `images/${singleImage.name}`);
-    uploadBytes(imageRef, singleImage).then((res) => {
+    // const imageRef = ref(storage, `images/${singleImage.name}`);
+    const imageRef1 = ref(storage, `images/${singleImage1.name}`);
+    const imageRef2 = ref(storage, `images/${singleImage2.name}`);
+    const imageRef3 = ref(storage, `images/${singleImage3.name}`);
+
+    Promise.all([
+      uploadBytes(imageRef1, singleImage1),
+      uploadBytes(imageRef2, singleImage2),
+      uploadBytes(imageRef3, singleImage3)
+    ]).then((res) => {
       alert('投稿に成功しました');
-      getDownloadURL(imageRef).then((imageUrl) => {
+    
+      Promise.all([
+        getDownloadURL(imageRef1),
+        getDownloadURL(imageRef2),
+        getDownloadURL(imageRef3)
+      ]).then(([imageUrl1, imageUrl2, imageUrl3]) => {
         addDoc(collection(db, 'posts'), {
           title: title,
           price: convertedPrice,
           postsText2: postText2.replace(/\n/g, '<br />'),
           prevPrice: convertedprevPrice,
-          imgUrl: imageUrl,
+          imgUrl1: imageUrl1,
+          imgUrl2: imageUrl2,
+          imgUrl3: imageUrl3,
           createdAt: serverTimestamp(),
         });
       });
     });
+
+    // uploadBytes(imageRef, singleImage).then((res) => {
+    //   alert('投稿に成功しました');
+    //   getDownloadURL(imageRef).then((imageUrl) => {
+    //     addDoc(collection(db, 'posts'), {
+    //       title: title,
+    //       price: convertedPrice,
+    //       postsText2: postText2.replace(/\n/g, '<br />'),
+    //       prevPrice: convertedprevPrice,
+    //       imgUrl: imageUrl,
+    //       createdAt: serverTimestamp(),
+    //     });
+    //   });
+    // });
 
     navigate('/shop');
   };
@@ -82,6 +129,19 @@ title,setTitle, price, setPrice,postText2,setPostText2,singleImage,setSingleImag
         <input  type="file"
                 accept="png, .jpeg, .jpg, .HEIC"
                 onChange={handleImage} class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+      </div>
+      <div class="sm:col-span-2">
+        <label  class="mb-2 inline-block text-sm text-gray-800 sm:text-base">画像</label>
+        <input  type="file"
+                accept="png, .jpeg, .jpg, .HEIC"
+                onChange={handleImage2} class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+      </div>
+
+      <div class="sm:col-span-2">
+        <label  class="mb-2 inline-block text-sm text-gray-800 sm:text-base">画像</label>
+        <input  type="file"
+                accept="png, .jpeg, .jpg, .HEIC"
+                onChange={handleImage3} class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
       </div>
 
 
