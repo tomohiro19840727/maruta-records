@@ -1,4 +1,4 @@
-import { collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, orderBy, query } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { db } from '../firebase';
 import dayjs from 'dayjs';
@@ -41,6 +41,12 @@ const News = () => {
     getPosts();
   }, []);
 
+  const handleDelete = async (id) => {
+    await deleteDoc(doc(db, 'posts2', id));
+    window.location.href = '/news';
+
+  };
+
 
   const newsSortedLists = newsPostList.sort((a, b) => b.createdAt - a.createdAt);
 
@@ -49,10 +55,11 @@ const News = () => {
     <div class="bg-white py-6 sm:py-8 lg:py-12 fade">
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
     
-    <div class="mb-10 md:mb-16">
-      <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-5xl">News</h2>
+    <div class="mb-10 md:mb-20">
+      <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-5xl">"Groove Odyssey: Journey Through Vinyl Sounds"</h2>
 
-      <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-2xl">This is a section of some simple filler text, also known as placeholder text. It shares some characteristics of a real written text but is random or otherwise generated.</p>
+      <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-2xl">
+「グルーヴ・オデッセイ：ヴァイナル・サウンドの旅」</p>
     </div>
     
 
@@ -84,7 +91,7 @@ const News = () => {
               </div>
             </div>
 
-            <span class="rounded border px-2 py-1 text-sm text-gray-500">Article</span>
+            <button onClick={() => handleDelete(post.id)} class="rounded border px-2 py-1 text-sm text-gray-500">削除</button>
           </div>
         </div>
       </div>

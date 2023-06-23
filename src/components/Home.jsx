@@ -132,7 +132,9 @@ const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, 
 
 <div class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-    <h2 class="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl">Collections</h2>
+    <h2 class=" mt-10 text-center text-2xl font-bold text-gray-800 md:mb-5 lg:text-4xl">"Groove Odyssey: Journey Through Vinyl Sounds"</h2>
+    <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-2xl md:mb-20">
+「グルーヴ・オデッセイ：ヴァイナル・サウンドの旅」</p>
 
     <div class="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 xl:grid-cols-4">
     {newsSortedLists.map((post) => (
@@ -156,12 +158,10 @@ const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, 
               </div>
 
               <div>
-                <span class="block text-indigo-500">Mike Lane</span>
-                <span class="block text-sm text-gray-400"> {dayjs.unix(Number(post.createdAt)).tz('Asia/Tokyo').format('MM/DD HH:mm')}</span>
+                <span class="block text-xl text-gray-600"> {dayjs.unix(Number(post.createdAt)).tz('Asia/Tokyo').format('MM/DD HH:mm')}</span>
               </div>
             </div>
 
-            <span class="rounded border px-2 py-1 text-sm text-gray-500">Article</span>
           </div>
         </div>
       </div>
