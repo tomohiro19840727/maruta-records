@@ -60,7 +60,7 @@ const Shop = ({
       };
 
       await addDoc(collection(db, 'cart'), cartItem);
-      alert('カートに入れました');;
+      alert('カートに入れました');
     } catch (error) {
       console.error('Error adding item to cart:', error);
     }
