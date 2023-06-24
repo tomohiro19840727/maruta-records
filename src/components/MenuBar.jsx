@@ -84,12 +84,12 @@ const MenuBar = () => {
   <div class="flex divide-x border-r sm:border-l">
     <Link to="/memberlogin" class="hidden h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:flex sm:h-20 sm:w-20 md:h-24 md:w-24">
 
-      <span class="hidden text-xl font-semibold text-white sm:block">Login</span>
+      <span class="hidden text-xl font-semibold text-white sm:block">SignIn</span>
     </Link>
 
     <Link to="/logout" class="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24">
 
-      <span class="hidden text-xl font-semibold text-white sm:block">Logout</span>
+      <span class="hidden text-xl font-semibold text-white sm:block">SignUp</span>
     </Link>
 
     
