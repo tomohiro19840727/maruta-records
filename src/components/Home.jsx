@@ -23,7 +23,7 @@ const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, 
 
   useEffect(() => {
     const getPosts = async () => {
-      const data2 = await getDocs(query(collection(db, 'posts2'), orderBy('createdAt', 'desc')));
+      const data2 = await getDocs(query(collection(db, 'posts2'), orderBy('createdAt', 'desc'),limit(4)));
       newsSetPostList(data2.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       const data = await getDocs(query(collection(db, "posts"),orderBy("createdAt", "desc"),limit(4)));
       setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));

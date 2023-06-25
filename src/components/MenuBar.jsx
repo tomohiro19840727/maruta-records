@@ -32,7 +32,7 @@ const MenuBar = () => {
 
   <a href="/" class="text-white inline-flex items-center gap-2.5 text-2xl font-bold md:text-3xl" aria-label="logo">
   <div className="">
-      <img src="./logo192.png" alt="Logo" className="h-10 m-5" />
+      <img src="./MARUTALOGO3.jpg" alt="Logo" className="h-10 m-5" />
     </div>
 
     MARUTA-Records
