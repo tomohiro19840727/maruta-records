@@ -21,6 +21,8 @@ import Artist2 from "./components/Artist2";
 import Artist3 from "./components/Artist3";
 import Artist4 from "./components/Artist4";
 import Search from "./components/Search";
+import Use from "./components/Use";
+import Privacy from "./components/Privacy";
 
 function App() {
   const [title, setTitle] = useState('');
@@ -152,6 +154,8 @@ function App() {
         <Route path='/contact' element={<Contact />}/>
         <Route path='/memberlogin' element={<MemberLogin />}/>
         <Route path='/faq' element={<Faq />}/>
+        <Route path='/use' element={<Use />}/>
+        <Route path='/privacy' element={<Privacy />}/>
         <Route path='/login' element={<Login  setIsAuth={setIsAuth} />}/>
         <Route path='/logout' element={<Logout  setIsAuth={setIsAuth} />}/>
       </Routes>

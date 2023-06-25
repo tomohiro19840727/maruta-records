@@ -289,6 +289,12 @@ const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, 
           <div>
             <Link to="/login" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Administrator login</Link>
           </div>
+          <div>
+            <Link to="/use" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">ご利用規約</Link>
+          </div>
+          <div>
+            <Link to="/privacy" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">プライバシーポリシー</Link>
+          </div>
 
          
         </nav>
