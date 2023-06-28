@@ -34,6 +34,8 @@ function App() {
   const [prevPrice, setPrevPrice] = useState('');
   const [isAuth, setIsAuth ] = useState(localStorage.getItem("isAuth"));
 
+  const [audioFile, setAudioFile] = useState(null);
+
   
 
   
@@ -93,6 +95,8 @@ function App() {
           selectedSingleImage1={selectedSingleImage1} selectedSetSingleImage1={selectedSetSingleImage1}
           selectedSingleImage2={selectedSingleImage2} selectedSetSingleImage2={selectedSetSingleImage2}
           selectedSingleImage3={selectedSingleImage3} selectedSetSingleImage3={selectedSetSingleImage3}
+
+          audioFile={audioFile} setAudioFile={setAudioFile}  
         />}/>
 
         <Route path='/shopdetail' element={<ShopDetail
@@ -137,6 +141,8 @@ function App() {
           singleImage1={singleImage1} setSingleImage1={setSingleImage1}
           singleImage2={singleImage2} setSingleImage2={setSingleImage2}
           singleImage3={singleImage3} setSingleImage3={setSingleImage3}
+          audioFile={audioFile} setAudioFile={setAudioFile}          
+
         />}/>
 
         <Route path='/product2' element={<Product2 

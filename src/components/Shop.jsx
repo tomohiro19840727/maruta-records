@@ -1,5 +1,6 @@
 import { addDoc, collection, deleteDoc, doc, getDocs, orderBy, query, serverTimestamp } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
+import useSound from 'use-sound';
 import { db } from '../firebase';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja'; // 必要に応じてロケールを指定してください
@@ -12,11 +13,12 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 const Shop = ({ 
-  title,setTitle, price, setPrice,postText2,setPostText2,singleImage,setSingleImage,prevPrice, setPrevPrice,
+  title,setTitle, price, setPrice,postText2,setPostText2,singleImage,setSingleImage,prevPrice, setPrevPrice,  audioFile, setAudioFile,  
   selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage, selectedSetSingleImage1, selectedSetSingleImage2, selectedSetSingleImage3,selectedPrevPrice,  selectedSetPrevPrice,
   
 }) => {
   const [postList, setPostList] = useState([]);
+  const [playSound, { stop }] = useSound('', { volume: 1 }); 
 
   useEffect(() => {
     const targets = document.getElementsByClassName("fade");
@@ -76,8 +78,11 @@ const Shop = ({
     selectedSetSingleImage1(post.imgUrl1);
     selectedSetSingleImage2(post.imgUrl2);
     selectedSetSingleImage3(post.imgUrl3);
-    
-    
+  };
+
+  const handlePlaySound = (audioUrl) => {
+    stop(); // 再生中の音を停止する
+    playSound({ soundUrl: audioUrl }); // 音源ファイルを再生する
   };
 
   const handleDelete = async (id) => {
@@ -106,7 +111,7 @@ const Shop = ({
       <div class="grid gap-x-4 gap-y-8 sm:grid-cols-2 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4">
         
       {sortedLists.map((post) => (
-        <div>
+        <div key={post.id}>
           <a href="#" class="group relative mb-2 block h-96 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:mb-3">
             <>
             <Link to="/shopdetail"  onClick={() => handleClick(post)} >
@@ -116,7 +121,7 @@ const Shop = ({
   
             <div class="absolute left-0 bottom-2 flex gap-2">
               <span class="rounded-r-lg bg-red-500 px-3 py-1.5 text-sm font-semibold uppercase tracking-wider text-white">-50%</span>
-              <span class="rounded-lg bg-white px-3 py-1.5 text-sm font-bold uppercase tracking-wider text-gray-800">New</span>
+              <button onClick={() => handlePlaySound(post.audioUrl)} class="rounded-lg bg-white px-3 py-1.5 text-sm font-bold uppercase tracking-wider text-gray-800">サンプル再生</button>
             </div>
           </a>
   
