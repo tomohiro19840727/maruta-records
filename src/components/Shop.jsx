@@ -1,6 +1,5 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, orderBy, query, serverTimestamp } from 'firebase/firestore';
-import React, { useEffect, useState } from 'react'
-import useSound from 'use-sound';
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, orderBy, query, serverTimestamp } from 'firebase/firestore';
+import React, { useEffect, useRef, useState } from 'react'
 import { db } from '../firebase';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ja'; // 必要に応じてロケールを指定してください
@@ -8,6 +7,7 @@ import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import { Link } from 'react-router-dom';
 import "./Shop.css"
+import ReactPlayer from 'react-player';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -18,7 +18,18 @@ const Shop = ({
   
 }) => {
   const [postList, setPostList] = useState([]);
-  const [playSound, { stop }] = useSound('', { volume: 1 }); 
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentAudio, setCurrentAudio] = useState(null);
+  const playerRef = useRef(null);
+
+  const handlePlay = (audioUrl) => {
+    setCurrentAudio(audioUrl); 
+    setIsPlaying(true);
+  };
+
+  const handlePause = () => {
+    setIsPlaying(false); 
+  };
 
   useEffect(() => {
     const targets = document.getElementsByClassName("fade");
@@ -42,10 +53,24 @@ const Shop = ({
   }, []);
 
   useEffect(() => {
+    // const getPosts = async () => {
+    //   const data = await getDocs(query(collection(db, 'posts'), orderBy('createdAt', 'desc')));
+    //   setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    // };
     const getPosts = async () => {
       const data = await getDocs(query(collection(db, 'posts'), orderBy('createdAt', 'desc')));
-      setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      const posts = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+    
+      for (const post of posts) {
+        const docRef = doc(db, 'posts', post.id);
+        const docSnap = await getDoc(docRef);
+        const audioUrl = docSnap.get('audioUrl');
+        post.audioUrl = audioUrl;
+      }
+    
+      setPostList(posts);
     };
+    
     getPosts();
   }, []); 
 
@@ -80,10 +105,7 @@ const Shop = ({
     selectedSetSingleImage3(post.imgUrl3);
   };
 
-  const handlePlaySound = (audioUrl) => {
-    stop(); // 再生中の音を停止する
-    playSound({ soundUrl: audioUrl }); // 音源ファイルを再生する
-  };
+  
 
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, 'posts', id));
@@ -96,6 +118,7 @@ const Shop = ({
 
   return (
     <>
+    
     <div class="bg-white py-6 sm:py-8 lg:py-12 fade">
     <div class="mx-auto max-w-screen-2xl px-4 md:px-8 mb-10">
       
@@ -112,18 +135,35 @@ const Shop = ({
         
       {sortedLists.map((post) => (
         <div key={post.id}>
+          
           <a href="#" class="group relative mb-2 block h-96 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:mb-3">
             <>
+            
             <Link to="/shopdetail"  onClick={() => handleClick(post)} >
             <img src={post.imgUrl1} loading="lazy" alt="Photo by Austin Wade" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
             </Link>
             </>
-  
+            {post.audioUrl && ( //
+            <>
             <div class="absolute left-0 bottom-2 flex gap-2">
-              <span class="rounded-r-lg bg-red-500 px-3 py-1.5 text-sm font-semibold uppercase tracking-wider text-white">-50%</span>
-              <button onClick={() => handlePlaySound(post.audioUrl)} class="rounded-lg bg-white px-3 py-1.5 text-sm font-bold uppercase tracking-wider text-gray-800">サンプル再生</button>
+              {/* <button onClick={() => handlePlay(post.audioUrl)} class="rounded-lg bg-white px-3 py-1.5 ml-2 text-sm font-bold uppercase tracking-wider text-gray-800">サンプル再生</button>
+              <button  onClick={() => handlePause(post.audioUrl)} class="rounded-r-lg bg-red-500 px-3 py-1.5 text-sm font-semibold uppercase tracking-wider text-white">停止</button> */}
+               <button onClick={(e) => { e.stopPropagation(); handlePlay(post.audioUrl); }} class="rounded-lg bg-white px-3 ml-3 py-1.5 text-sm font-bold uppercase tracking-wider text-gray-800">サンプル再生</button>
+               <button onClick={(e) => { e.stopPropagation(); handlePause(post.audioUrl); }} class="rounded-r-lg bg-red-500 px-3 py-1.5 text-sm font-semibold uppercase tracking-wider text-white">停止</button>
             </div>
+            <div>
+            <ReactPlayer
+             ref={playerRef}
+             url={post.audioUrl}
+             playing={currentAudio === post.audioUrl && isPlaying}
+             />
+            </div>
+             </>
+            )}
           </a>
+
+         
+         
   
           <div class="flex items-start justify-between gap-2 px-2">
             <div class="flex flex-col">
@@ -141,7 +181,7 @@ const Shop = ({
           <button onClick={() => handleDelete(post.id)}>削除</button>
             </div>
           </div>
-        </div>
+        </div>        
          ))}
       </div>
     </div>
