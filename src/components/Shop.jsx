@@ -14,7 +14,7 @@ dayjs.extend(timezone);
 
 const Shop = ({ 
   title,setTitle, price, setPrice,postText2,setPostText2,singleImage,setSingleImage,prevPrice, setPrevPrice,  audioFile, setAudioFile,  
-  selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage, selectedSetSingleImage1, selectedSetSingleImage2, selectedSetSingleImage3,selectedPrevPrice,  selectedSetPrevPrice,
+  selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage, selectedSetSingleImage1, selectedSetSingleImage2, selectedSetSingleImage3,selectedPrevPrice,  selectedSetPrevPrice, selectedSetaudioUrl
   
 }) => {
   const [postList, setPostList] = useState([]);
@@ -103,6 +103,7 @@ const Shop = ({
     selectedSetSingleImage1(post.imgUrl1);
     selectedSetSingleImage2(post.imgUrl2);
     selectedSetSingleImage3(post.imgUrl3);
+    selectedSetaudioUrl(post.audioUrl);
   };
 
   

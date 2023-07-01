@@ -47,6 +47,7 @@ function App() {
   const [selectedSingleImage2, selectedSetSingleImage2] = useState('');
   const [selectedSingleImage3, selectedSetSingleImage3] = useState('');
   const [selectedPrevPrice, selectedSetPrevPrice] = useState('');
+  const [selectedAudioUrl, selectedSetaudioUrl ] = useState("")
 
   const [welcomeTitle, welcomeSetTitle] = useState('');
   const [welcomeSingleImage, welcomeSetSingleImage] = useState('');
@@ -96,7 +97,8 @@ function App() {
           selectedSingleImage2={selectedSingleImage2} selectedSetSingleImage2={selectedSetSingleImage2}
           selectedSingleImage3={selectedSingleImage3} selectedSetSingleImage3={selectedSetSingleImage3}
 
-          audioFile={audioFile} setAudioFile={setAudioFile}  
+          audioFile={audioFile} setAudioFile={setAudioFile}
+          selectedAudioUrl={selectedAudioUrl} selectedSetaudioUrl={selectedSetaudioUrl}  
         />}/>
 
         <Route path='/shopdetail' element={<ShopDetail
@@ -111,6 +113,7 @@ function App() {
           selectedSingleImage1={selectedSingleImage1} selectedSetSingleImage1={selectedSetSingleImage1}
           selectedSingleImage2={selectedSingleImage2} selectedSetSingleImage2={selectedSetSingleImage2}
           selectedSingleImage3={selectedSingleImage3} selectedSetSingleImage3={selectedSetSingleImage3}  
+          selectedAudioUrl={selectedAudioUrl} selectedSetaudioUrl={selectedSetaudioUrl} 
         />}/>
      
         <Route path='/search' element={<Search

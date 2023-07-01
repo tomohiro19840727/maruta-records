@@ -73,7 +73,7 @@ function Search({selectedResultSetTitle, selectedSetTitle, selectedPrice, select
 <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
   <div class="flex flex-col items-center rounded-lg bg-gray-100 p-4 sm:p-8 lg:flex-row lg:justify-between">
     <div class="mb-4 sm:mb-8 lg:mb-0">
-      <h2 class="text-center text-xl font-bold text-indigo-500 sm:text-2xl lg:text-left lg:text-3xl">Looking up record titles </h2>
+      <h2 class="text-center text-xl font-bold text-indigo-500 sm:text-2xl lg:text-left lg:text-3xl">Looking up Record Titles </h2>
     </div>
 
     <div class="flex flex-col items-center lg:items-end">

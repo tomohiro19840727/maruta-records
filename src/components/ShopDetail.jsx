@@ -1,10 +1,23 @@
 
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { db } from '../firebase';
+import ReactPlayer from 'react-player';
 
 
-const ShopDetail = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage1, selectedSingleImage2,selectedSingleImage3,selectedSetSingleImage, selectedPrevPrice,  selectedSetPrevPrice }) => {
+const ShopDetail = ({selectedTitle, selectedPrice,  selectedPostText2, selectedSingleImage1, selectedSingleImage2,selectedSingleImage3, selectedPrevPrice, 
+  selectedAudioUrl}) => {
+
+    const [isPlaying, setIsPlaying] = useState(false);
+    const playerRef = useRef(null);
+
+    const handlePlay = (audioUrl) => {
+      setIsPlaying(true);
+    };
+  
+    const handlePause = () => {
+      setIsPlaying(false); 
+    };
  
   const handleAddToCart = async () => {
     try {
@@ -31,11 +44,26 @@ const ShopDetail = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetP
   <div class="mx-auto max-w-screen-lg px-4 md:px-8">
  
     <div class="grid gap-8 md:grid-cols-2">
-      
+           
       <div class="space-y-4">
         <div class="relative overflow-hidden rounded-lg bg-gray-100">
           <img src={selectedSingleImage1} loading="lazy" alt="Photo by Himanshu Dewangan" class="h-full w-full object-cover object-center" />
         </div>
+      
+        {/* <>
+            <div class="absolute left-0 bottom-2 flex gap-2 ">
+               <button onClick={(e) => { e.stopPropagation(); handlePlay(); }} class="rounded-lg bg-white px-3 ml-3 py-1.5 text-sm font-bold uppercase tracking-wider text-gray-800">サンプル再生</button>
+               <button onClick={(e) => { e.stopPropagation(); handlePause(); }} class="rounded-r-lg bg-red-500 px-3 py-1.5 text-sm font-semibold uppercase tracking-wider text-white">停止</button>
+            </div>
+            <div>
+            <ReactPlayer
+             ref={playerRef}
+             url={selectedAudioUrl}
+             playing={isPlaying}
+             />
+            </div>
+             </> */}
+        
          
 
         {/* <div class="grid grid-cols-2 gap-4">
@@ -96,9 +124,9 @@ const ShopDetail = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetP
         <div class="flex gap-2.5">
           <button onClick={() => handleAddToCart()} class="inline-block flex-1 rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-base">Add to cart</button>
         </div>
-      
 
-      
+
+
         <div class="mt-10 md:mt-16 lg:mt-20">
           <div class="mb-3 text-lg font-semibold text-gray-800">Description</div>
 
