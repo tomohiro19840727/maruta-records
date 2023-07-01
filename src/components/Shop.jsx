@@ -168,7 +168,7 @@ const Shop = ({
   
           <div class="flex items-start justify-between gap-2 px-2">
             <div class="flex flex-col">
-              <a href="#" class="text-lg font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-xl">{post.title}</a>
+              <div class="text-lg font-bold text-gray-800  lg:text-xl">{post.title}</div>
               <span class="text-gray-500">
               <div dangerouslySetInnerHTML={{ __html: post.postsText2 }} />
                 </span>
@@ -178,7 +178,9 @@ const Shop = ({
               <span class="font-bold text-gray-600 lg:text-lg">{post.price}円</span>
               <span class="text-sm text-red-500 line-through">{post.prevPrice}円</span>
           <button onClick={() => addToCart(post)}
-             >カートに入れる</button>
+             class="inline-block flex-1 rounded-lg bg-indigo-500 px-5 py-2 text-center text-xxs font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-xs”
+             style=”font-size: 2px;"
+             >Add Cart</button>
           <button onClick={() => handleDelete(post.id)}>削除</button>
             </div>
           </div>
