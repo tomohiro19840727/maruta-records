@@ -61,6 +61,7 @@ function App() {
       />
       <Routes>
         <Route path='/' element={<Home 
+        isAuth={isAuth}
         selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
 
         selectedPrice={selectedPrice} selectedSetPrice={selectedSetPrice}
@@ -77,6 +78,7 @@ function App() {
         />}/>
 
         <Route path='/shop' element={<Shop
+          isAuth={isAuth}
           title={title} setTitle={setTitle}
           price={price} setPrice={setPrice}
           prevPrice={prevPrice} setPrevPrice={setPrevPrice}
@@ -133,7 +135,9 @@ function App() {
         <Route path='/artist2' element={<Artist2 />}/>
         <Route path='/artist3' element={<Artist3 />}/>
         <Route path='/artist4' element={<Artist4 />}/>
-        <Route path='/news' element={<News />}/>
+        <Route path='/news' element={<News 
+         isAuth={isAuth}
+        />}/>
 
         <Route path='/product' element={
         <Product

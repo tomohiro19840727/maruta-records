@@ -5,7 +5,6 @@ import { db } from '../firebase';
 const Cart = () => {
   const [cartList, setCartList] = useState([]);
 
-
   useEffect(() => {
     const targets = document.getElementsByClassName("fade");
     const observer = new IntersectionObserver((entries, observer) => {

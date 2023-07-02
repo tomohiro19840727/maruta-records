@@ -9,7 +9,7 @@ import timezone from 'dayjs/plugin/timezone';
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-const News = () => {
+const News = ({ isAuth }) => {
   const [newsPostList, newsSetPostList] = useState([]);
 
   useEffect(() => {
@@ -90,8 +90,13 @@ const News = () => {
                 <span class="block text-sm text-gray-400"> {dayjs.unix(Number(post.createdAt)).tz('Asia/Tokyo').format('MM/DD HH:mm')}</span>
               </div>
             </div>
-
-            <button onClick={() => handleDelete(post.id)} class="rounded border px-2 py-1 text-sm text-gray-500">削除</button>
+            
+          {!isAuth ?
+           <>
+           </>
+           :
+           <button onClick={() => handleDelete(post.id)} class="rounded border px-2 py-1 text-sm text-gray-500">削除</button>
+        }
           </div>
         </div>
       </div>

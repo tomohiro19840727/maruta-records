@@ -13,7 +13,7 @@ const Sale = () => {
           <p class="mb-8 max-w-md text-gray-400">"熱き夏の風が吹き抜ける中、MARUTA-Recordsの夏のセールが開催されます。<br/>感動と興奮が詰まった音楽の旅が、あなたを待っています!</p>
   
           <div class="mt-auto">
-            <Link to="./shop" class="inline-block rounded-lg bg-white px-8 py-3 text-center text-sm font-semibold text-gray-800 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:text-base">Go shop</Link>
+            <Link to="./shop" class="inline-block rounded-lg bg-white px-8 py-3 text-center text-sm font-semibold text-gray-800 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:text-2xl">Go shop</Link>
           </div>
         </div>
   

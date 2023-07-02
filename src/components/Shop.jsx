@@ -12,9 +12,7 @@ import ReactPlayer from 'react-player';
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-const Shop = ({ 
-  title,setTitle, price, setPrice,postText2,setPostText2,singleImage,setSingleImage,prevPrice, setPrevPrice,  audioFile, setAudioFile,  
-  selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage, selectedSetSingleImage1, selectedSetSingleImage2, selectedSetSingleImage3,selectedPrevPrice,  selectedSetPrevPrice, selectedSetaudioUrl
+const Shop = ({ isAuth,selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage, selectedSetSingleImage1, selectedSetSingleImage2, selectedSetSingleImage3,selectedPrevPrice,  selectedSetPrevPrice, selectedSetaudioUrl
   
 }) => {
   const [postList, setPostList] = useState([]);
@@ -51,6 +49,7 @@ const Shop = ({
       observer.disconnect();
     };
   }, []);
+
 
   useEffect(() => {
     // const getPosts = async () => {
@@ -131,9 +130,8 @@ const Shop = ({
         </p>
       </div>
       
-  
-      <div class="grid gap-x-4 gap-y-8 sm:grid-cols-2 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4">
-        
+
+      <div class="grid gap-x-4 gap-y-8 sm:grid-cols-2 md:gap-x-6 lg:grid-cols-3 xl:grid-cols-4">       
       {sortedLists.map((post) => (
         <div key={post.id}>
           
@@ -163,9 +161,7 @@ const Shop = ({
             )}
           </a>
 
-         
-         
-  
+
           <div class="flex items-start justify-between gap-2 px-2">
             <div class="flex flex-col">
               <div class="text-lg font-bold text-gray-800  lg:text-xl">{post.title}</div>
@@ -181,7 +177,13 @@ const Shop = ({
              class="inline-block flex-1 rounded-lg bg-indigo-500 px-5 py-2 text-center text-xxs font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-xs”
              style=”font-size: 2px;"
              >Add Cart</button>
-          <button onClick={() => handleDelete(post.id)}>削除</button>
+            
+             {!isAuth ?
+             <>
+             </>
+             :
+            <button onClick={() => handleDelete(post.id)}>削除</button>
+             }
             </div>
           </div>
         </div>        
@@ -194,5 +196,6 @@ const Shop = ({
     </>
   )
 }
+
 
 export default Shop
