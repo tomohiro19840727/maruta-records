@@ -23,6 +23,11 @@ import Artist4 from "./components/Artist4";
 import Search from "./components/Search";
 import Use from "./components/Use";
 import Privacy from "./components/Privacy";
+import { useMediaQuery } from 'react-responsive';
+import MobileMenuBar from "./components/MobileMenuBar";
+import MobileHome from "./components/MobileHome";
+import MobileShop from "./components/MobileShop";
+import MobileNews from "./components/MobileNews";
 
 function App() {
   const [title, setTitle] = useState('');
@@ -52,32 +57,64 @@ function App() {
   const [welcomeTitle, welcomeSetTitle] = useState('');
   const [welcomeSingleImage, welcomeSetSingleImage] = useState('');
 
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   return (
 
     <Router>
-      <MenuBar  isAuth={isAuth}
-  
-      />
+      <div>
+        {isMobile ? ( 
+        <MobileMenuBar />
+       )  : 
+       (
+        <MenuBar  isAuth={isAuth} /> )}
+      
+
+      </div>
       <Routes>
-        <Route path='/' element={<Home 
+        <Route path='/' element={
+        <div>
+          {isMobile ? ( 
+            <MobileHome 
+            isAuth={isAuth} isMobile={isMobile}
+            selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
+            
+            selectedPrice={selectedPrice} selectedSetPrice={selectedSetPrice}
+            
+            selectedPrevPrice={selectedPrevPrice} selectedSetPrevPrice={selectedSetPrevPrice}
+            
+            selectedPostText2={selectedPostText2} selectedSetPostText2={selectedSetPostText2}
+            
+            selectedSingleImage1={selectedSingleImage1} selectedSetSingleImage1={selectedSetSingleImage1}
+            
+            selectedSingleImage2={selectedSingleImage2}
+            selectedSetSingleImage2={selectedSetSingleImage2}
+            selectedSingleImage3={selectedSingleImage3} selectedSetSingleImage3={selectedSetSingleImage3}
+            /> ) : (
+          <Home 
         isAuth={isAuth}
         selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
-
+        
         selectedPrice={selectedPrice} selectedSetPrice={selectedSetPrice}
-
+        
         selectedPrevPrice={selectedPrevPrice} selectedSetPrevPrice={selectedSetPrevPrice}
-
+        
         selectedPostText2={selectedPostText2} selectedSetPostText2={selectedSetPostText2}
-
+        
         selectedSingleImage1={selectedSingleImage1} selectedSetSingleImage1={selectedSetSingleImage1}
-
+        
         selectedSingleImage2={selectedSingleImage2}
         selectedSetSingleImage2={selectedSetSingleImage2}
-          selectedSingleImage3={selectedSingleImage3} selectedSetSingleImage3={selectedSetSingleImage3}
-        />}/>
+        selectedSingleImage3={selectedSingleImage3} selectedSetSingleImage3={selectedSetSingleImage3}
+        />)}
+        </div>
+        }
+        />
 
-        <Route path='/shop' element={<Shop
+        <Route path='/shop' element={
+          <div>
+        {isMobile ? ( 
+        <MobileShop
           isAuth={isAuth}
           title={title} setTitle={setTitle}
           price={price} setPrice={setPrice}
@@ -86,22 +123,50 @@ function App() {
           singleImage1={singleImage1} setSingleImage1={setSingleImage1}
           singleImage2={singleImage2} setSingleImage2={setSingleImage2}
           singleImage3={singleImage3} setSingleImage3={setSingleImage3}
-
+          
           selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
-
+          
           selectedPrice={selectedPrice} selectedSetPrice={selectedSetPrice}
-
+          
           selectedPrevPrice={selectedPrevPrice} selectedSetPrevPrice={selectedSetPrevPrice}
-
+          
           selectedPostText2={selectedPostText2} selectedSetPostText2={selectedSetPostText2}
-
+          
           selectedSingleImage1={selectedSingleImage1} selectedSetSingleImage1={selectedSetSingleImage1}
           selectedSingleImage2={selectedSingleImage2} selectedSetSingleImage2={selectedSetSingleImage2}
           selectedSingleImage3={selectedSingleImage3} selectedSetSingleImage3={selectedSetSingleImage3}
-
+          
           audioFile={audioFile} setAudioFile={setAudioFile}
           selectedAudioUrl={selectedAudioUrl} selectedSetaudioUrl={selectedSetaudioUrl}  
-        />}/>
+          />) : (<Shop
+            isAuth={isAuth}
+            title={title} setTitle={setTitle}
+            price={price} setPrice={setPrice}
+            prevPrice={prevPrice} setPrevPrice={setPrevPrice}
+            postText2={postText2} setPostText2={setPostText2}
+            singleImage1={singleImage1} setSingleImage1={setSingleImage1}
+            singleImage2={singleImage2} setSingleImage2={setSingleImage2}
+            singleImage3={singleImage3} setSingleImage3={setSingleImage3}
+            
+            selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
+            
+            selectedPrice={selectedPrice} selectedSetPrice={selectedSetPrice}
+            
+            selectedPrevPrice={selectedPrevPrice} selectedSetPrevPrice={selectedSetPrevPrice}
+            
+            selectedPostText2={selectedPostText2} selectedSetPostText2={selectedSetPostText2}
+            
+            selectedSingleImage1={selectedSingleImage1} selectedSetSingleImage1={selectedSetSingleImage1}
+            selectedSingleImage2={selectedSingleImage2} selectedSetSingleImage2={selectedSetSingleImage2}
+            selectedSingleImage3={selectedSingleImage3} selectedSetSingleImage3={selectedSetSingleImage3}
+            
+            audioFile={audioFile} setAudioFile={setAudioFile}
+            selectedAudioUrl={selectedAudioUrl} selectedSetaudioUrl={selectedSetaudioUrl}  
+            />) }
+          </div>
+          }
+          
+          />
 
         <Route path='/shopdetail' element={<ShopDetail
           selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
@@ -135,9 +200,17 @@ function App() {
         <Route path='/artist2' element={<Artist2 />}/>
         <Route path='/artist3' element={<Artist3 />}/>
         <Route path='/artist4' element={<Artist4 />}/>
-        <Route path='/news' element={<News 
+        <Route path='/news' element={
+        <div>
+           {isMobile ? ( 
+        <MobileNews 
          isAuth={isAuth}
-        />}/>
+         /> ) : (<News 
+          isAuth={isAuth}
+          />)
+           }
+         </div>
+        }/>
 
         <Route path='/product' element={
         <Product

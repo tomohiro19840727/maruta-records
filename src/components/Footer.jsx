@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 
 const Footer = ({ isAuth }) => {
 
-  console.log(isAuth)
   return (
     <div class="bg-white pt-4 sm:pt-10 lg:pt-12">
     <footer class="mx-auto max-w-screen-2xl px-4 md:px-8">
@@ -109,6 +108,13 @@ const Footer = ({ isAuth }) => {
             <div>
               <Link to="/faq" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">FAQ</Link>
             </div>
+             
+            {!isAuth ? 
+            <></> :
+            <div>
+              <Link to="/logout" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Logout</Link>
+            </div>
+             }
           </nav>
         </div>
   
