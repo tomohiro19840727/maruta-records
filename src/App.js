@@ -65,10 +65,10 @@ function App() {
     <Router>
       <div>
         {isMobile ? ( 
-        <MobileMenuBar />
+        <MobileMenuBar  isAuth={isAuth} userId={userId} />
        )  : 
        (
-        <MenuBar  isAuth={isAuth} /> )}
+        <MenuBar  isAuth={isAuth} userId={userId} /> )}
       
 
       </div>
@@ -116,7 +116,7 @@ function App() {
           <div>
         {isMobile ? ( 
         <MobileShop
-          isAuth={isAuth}
+          isAuth={isAuth}  userId={userId}
           title={title} setTitle={setTitle}
           price={price} setPrice={setPrice}
           prevPrice={prevPrice} setPrevPrice={setPrevPrice}
@@ -140,7 +140,7 @@ function App() {
           audioFile={audioFile} setAudioFile={setAudioFile}
           selectedAudioUrl={selectedAudioUrl} selectedSetaudioUrl={selectedSetaudioUrl}  
           />) : (<Shop
-            isAuth={isAuth}
+            isAuth={isAuth} userId={userId}
             title={title} setTitle={setTitle}
             price={price} setPrice={setPrice}
             prevPrice={prevPrice} setPrevPrice={setPrevPrice}
@@ -236,7 +236,9 @@ function App() {
 
         <Route path='/productdetail2' element={<ProductDetail2 />}/>
         <Route path='/empty' element={<Empty />}/>
-        <Route path='/cart' element={<Cart />}/>
+        <Route path='/cart' element={<Cart 
+        userId={userId} 
+        />}/>
         <Route path='/event' element={<Event />}/>
         <Route path='/contact' element={<Contact />}/>
         <Route path='/memberlogin' element={<MemberLogin />}/>

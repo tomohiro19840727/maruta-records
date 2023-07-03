@@ -1,9 +1,9 @@
-import { collection, getDocs, onSnapshot } from "firebase/firestore";
+import { collection, getDocs, onSnapshot, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { db } from "../firebase";
 
-const MenuBar = () => {
+const MenuBar = ({ userId }) => {
   const [cartCount, setCartCount] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -15,13 +15,16 @@ const MenuBar = () => {
     // Firestoreのコレクション参照を作成
     const cartCollectionRef = collection(db, 'cart');
 
-    const unsubscribe = onSnapshot(cartCollectionRef, (snapshot) => {
+    const q = query(cartCollectionRef, where('userId', '==', userId));
+
+
+    const unsubscribe = onSnapshot(q, (snapshot) => {
       const count = snapshot.size; // ドキュメントの数を取得
       setCartCount(count);
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [userId]);
 
   return (
     <>

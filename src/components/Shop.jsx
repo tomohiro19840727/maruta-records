@@ -13,7 +13,7 @@
   dayjs.extend(timezone);
 
   const Shop = ({ isAuth,selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage, selectedSetSingleImage1, selectedSetSingleImage2, selectedSetSingleImage3,selectedPrevPrice,  selectedSetPrevPrice, selectedSetaudioUrl
-    
+  ,userId    
   }) => {
     const [postList, setPostList] = useState([]);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -73,7 +73,8 @@
       getPosts();
     }, []); 
 
-    console.log(postList)
+   
+
     const addToCart = async (post) => {
       try {
         const cartItem = {
@@ -83,6 +84,7 @@
           prevPrice: post.prevPrice,
           imgUrl: post.imgUrl1,
           createdAt: serverTimestamp(),
+          userId: userId
         };
 
         await addDoc(collection(db, 'cart'), cartItem);

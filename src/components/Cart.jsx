@@ -1,8 +1,8 @@
-import {  collection, deleteDoc, doc, getDocs, orderBy, query } from 'firebase/firestore';
+import {  collection, deleteDoc, doc, getDocs, orderBy, query, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { db } from '../firebase';
 
-const Cart = () => {
+const Cart = ({ userId }) => {
   const [cartList, setCartList] = useState([]);
 
   useEffect(() => {
@@ -28,11 +28,18 @@ const Cart = () => {
 
   useEffect(() => {
     const getPosts = async () => {
-      const data = await getDocs(query(collection(db, "cart"), orderBy('createdAt', 'desc')));
-      setCartList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      // const data = await getDocs(query(collection(db, "cart"), orderBy('createdAt', 'desc')));
+      const q = query(collection(db, 'cart'), where('userId', '==', userId), orderBy('createdAt', 'desc'));
+      const data = await getDocs(q);
+   
+      if (data.docs.length === 0) {
+        window.location.href = './empty'; // データが存在しない場合はリダイレクト
+      } else {
+        setCartList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      }
     };
     getPosts();
-  }, []);
+  }, [userId]);
    
  
   const sortedCartLists = cartList.sort((a, b) => b.createdAt - a.createdAt);

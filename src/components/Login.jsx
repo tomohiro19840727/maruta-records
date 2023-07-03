@@ -9,8 +9,10 @@ function Login({ setIsAuth, setUserId }) {
    signInWithPopup(auth, provider).then((result) => {
     const userId = result.user.uid;
     localStorage.setItem("isAuth", true);
+    setUserId(userId);
     setIsAuth(true);
     navigate("/")
+    console.log(userId)
    });
   };
 
