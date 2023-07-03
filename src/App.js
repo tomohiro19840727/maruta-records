@@ -30,6 +30,7 @@ import MobileShop from "./components/MobileShop";
 import MobileNews from "./components/MobileNews";
 
 function App() {
+  const [userId, setUserId] = useState(null); 
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const [postText2, setPostText2] = useState('');
@@ -242,7 +243,7 @@ function App() {
         <Route path='/faq' element={<Faq />}/>
         <Route path='/use' element={<Use />}/>
         <Route path='/privacy' element={<Privacy />}/>
-        <Route path='/login' element={<Login  setIsAuth={setIsAuth} />}/>
+        <Route path='/login' element={<Login  setIsAuth={setIsAuth}  userId={userId} setUserId={setUserId} />}/>
         <Route path='/logout' element={<Logout  setIsAuth={setIsAuth} />}/>
       </Routes>
     </Router>
