@@ -12,7 +12,7 @@ function Login({ setIsAuth, setUserId }) {
     setUserId(userId);
     setIsAuth(true);
     navigate("/")
-    console.log(userId)
+    
    });
   };
 
