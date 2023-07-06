@@ -139,14 +139,14 @@ const Welcome = ({ welcomeTitle, welcomeSetTitle,  welcomeSingleImage, welcomeSe
     </div>
 
     <div class="flex flex-col items-center justify-between gap-8 md:flex-row">
-      <div class="flex h-12 w-64 divide-x overflow-hidden rounded-lg border">
+      {/* <div class="flex h-12 w-64 divide-x overflow-hidden rounded-lg border">
         <a href="#" class="flex w-1/3 items-center justify-center text-gray-500 transition duration-100 hover:bg-gray-100 active:bg-gray-200">Men</a>
         <a href="#" class="flex w-1/3 items-center justify-center text-gray-500 transition duration-100 hover:bg-gray-100 active:bg-gray-200">Women</a>
         <a href="#" class="flex w-1/3 items-center justify-center text-gray-500 transition duration-100 hover:bg-gray-100 active:bg-gray-200">Teens</a>
-      </div>
+      </div> */}
 
 
-      <div class="flex items-center justify-center gap-4 lg:justify-start">
+      {/* <div class="flex items-center justify-center gap-4 lg:justify-start">
         <span class="text-sm font-semibold uppercase tracking-widest text-gray-400 sm:text-base">Social</span>
         <span class="h-px w-12 bg-gray-200"></span>
 
@@ -169,7 +169,7 @@ const Welcome = ({ welcomeTitle, welcomeSetTitle,  welcomeSingleImage, welcomeSe
             </svg>
           </a>
         </div>
-      </div>
+      </div> */}
     </div>
   </section>
 

@@ -46,7 +46,19 @@ function Search({selectedResultSetTitle, selectedSetTitle, selectedPrice, select
     selectedSetSingleImage(doc.imgUrl);
   };
 
+  const handleAddToCart = (post) => {
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      // userId が存在する場合の処理
+      addToCart(post);
+    } else {
+      // userId が存在しない場合の処理
+      window.location.href = '/empty';
+    }
+   }
+
   const addToCart = async (doc) => {
+    const userId = localStorage.getItem('userId');
     try {
       const cartItem = {
         title: doc.title,
@@ -55,6 +67,7 @@ function Search({selectedResultSetTitle, selectedSetTitle, selectedPrice, select
         prevPrice: doc.prevPrice,
         imgUrl: doc.imgUrl1,
         createdAt: serverTimestamp(),
+        userId: userId
       };
 
       await addDoc(collection(db, 'cart'), cartItem);
@@ -110,8 +123,8 @@ function Search({selectedResultSetTitle, selectedSetTitle, selectedPrice, select
     </>
     
     <div class="absolute left-0 bottom-2 flex gap-2">
-    <span class="rounded-r-lg bg-red-500 px-3 py-1.5 text-sm font-semibold uppercase tracking-wider text-white">-50%</span>
-    <span class="rounded-lg bg-white px-3 py-1.5 text-sm font-bold uppercase tracking-wider text-gray-800">New</span>
+    {/* <span class="rounded-r-lg bg-red-500 px-3 py-1.5 text-sm font-semibold uppercase tracking-wider text-white">-50%</span>
+    <span class="rounded-lg bg-white px-3 py-1.5 text-sm font-bold uppercase tracking-wider text-gray-800">New</span> */}
     </div>
     </a>
     
@@ -126,8 +139,9 @@ function Search({selectedResultSetTitle, selectedSetTitle, selectedPrice, select
     <div class="flex flex-col items-end">
     <span class="font-bold text-gray-600 lg:text-lg">{doc.price}円</span>
     <span class="text-sm text-red-500 line-through">{doc.prevPrice}円</span>
-    <button onClick={() => addToCart(doc)}
-    >カートに入れる</button>
+    <button  className='inline-block flex-1 rounded-lg bg-indigo-500 px-5 py-2 text-center text-xxs font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-xs”
+              style=”font-size: 2px;'   onClick={() => handleAddToCart(doc)}
+    >Add Cart</button>
   </div>
   </div>
   </div>

@@ -107,7 +107,7 @@ const MobileHome = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetP
     
     <Search />
 
-    <Sale />
+    {/* <Sale /> */}
 
 
 

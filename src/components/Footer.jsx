@@ -51,7 +51,7 @@ const Footer = ({ isAuth }) => {
   
           <nav class="flex flex-col gap-4">
           <div>
-              <Link to="/login" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">管理者用 login</Link>
+              <Link to="/login" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Guardian Gateway</Link>
             </div>
 
 

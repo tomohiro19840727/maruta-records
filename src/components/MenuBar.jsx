@@ -1,11 +1,25 @@
 import { collection, getDocs, onSnapshot, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 
-const MenuBar = ({ userId }) => {
+const MenuBar = ( ) => {
   const [cartCount, setCartCount] = useState("");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const userId = localStorage.getItem('userId');
+
+  const [userEmail, setUserEmail] = useState("");
+  
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUserEmail(user.email);
+      }
+    });
+    
+    return () => unsubscribe();
+  }, []);
+  
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -25,7 +39,7 @@ const MenuBar = ({ userId }) => {
     });
 
     return () => unsubscribe();
-  }, [userId]);
+  }, []);
 
   return (
     <>
@@ -57,11 +71,7 @@ const MenuBar = ({ userId }) => {
                   isMenuOpen ? "text-sm" : "text-3xl"
                 } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>shop</Link>
 
-    {/* <button   className={`${
-                  isMenuOpen ? "text-sm" : "text-3xl"
-                } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>
-                  Artist
-                  </button> */}
+   
 
                   <div class="relative inline-block group">
   <button className={`${
@@ -86,21 +96,33 @@ const MenuBar = ({ userId }) => {
 
 
   <div class="flex divide-x border-r sm:border-l">
-    {/* <Link to="/memberlogin" class="hidden h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:flex sm:h-20 sm:w-20 md:h-24 md:w-24">
+  <>
+    {!userId && (
+      <Link to="/memberlogin" className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24">
+        <span className="hidden text-xl font-semibold text-white sm:block">Login</span>
+      </Link>
+    )}
+    {!userId && (
+      <Link to="/signup" className="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24">
+        <span className="hidden text-xl font-semibold text-white sm:block">SignUp</span>
+      </Link>
+    )}
+  </>
+    {userId && (
+    <>
+    {userEmail && (
+      <h2 className="flex items-center text-xl text-white m-5">Welcome, Mr./Ms. 
+      <p className="text-red-200 ml-2">
+      {userEmail}
+      </p>
+      </h2>
+      )}
 
-      <span class="hidden text-xl font-semibold text-white sm:block">SignIn</span>
-    </Link> */}
 
-    <Link to="/memberlogin" class="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24">
+      </>
+    )}
+     
 
-      <span class="hidden text-xl font-semibold text-white sm:block">ログイン</span>
-    </Link>
-    <Link to="/signup" class="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24">
-
-      <span class="hidden text-xl font-semibold text-white sm:block">会員登録</span>
-    </Link>
-
-    
 
 
 
@@ -117,6 +139,8 @@ const MenuBar = ({ userId }) => {
     <span className="hidden text-xl font-semibold text-white sm:block">Cart</span>
   </Link>
 )}
+
+
 
 
 

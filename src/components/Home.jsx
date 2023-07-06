@@ -105,7 +105,7 @@ const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, 
     
     <Search />
 
-    <Sale />
+    {/* <Sale /> */}
 
 
 
