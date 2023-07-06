@@ -20,7 +20,7 @@ const MemberLogin = ({ setUserId, setIsAuthenticated,}) => {
         setIsAuthenticated(true);
         console.log(userId);
         setUserId(userId)
-        window.location.href = '/';
+        // window.location.href = '/';
       })
       .catch((error) => {
         // ログインエラー時の処理

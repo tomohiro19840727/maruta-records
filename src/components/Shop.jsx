@@ -76,6 +76,7 @@
    
 
     const addToCart = async (post) => {
+      const userId = localStorage.getItem('userId');
       try {
         const cartItem = {
           title: post.title,

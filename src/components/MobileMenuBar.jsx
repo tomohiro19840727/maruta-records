@@ -11,17 +11,6 @@ const MobileMenuBar = ({ userId }) => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // useEffect(() => {
-  //   // Firestoreのコレクション参照を作成
-  //   const cartCollectionRef = collection(db, 'cart');
-
-  //   const unsubscribe = onSnapshot(cartCollectionRef, (snapshot) => {
-  //     const count = snapshot.size; // ドキュメントの数を取得
-  //     setCartCount(count);
-  //   });
-
-  //   return () => unsubscribe();
-  // }, []);
 
 
   useEffect(() => {
