@@ -19,7 +19,19 @@ const ShopDetail = ({selectedTitle, selectedPrice,  selectedPostText2, selectedS
       setIsPlaying(false); 
     };
  
+    const handleAddCart = (post) => {
+      const userId = localStorage.getItem('userId');
+      if (userId) {
+        // userId が存在する場合の処理
+        handleAddToCart(post);
+      } else {
+        // userId が存在しない場合の処理
+        window.location.href = '/empty';
+      }
+     }
+
   const handleAddToCart = async () => {
+    const userId = localStorage.getItem('userId');
     try {
       const cartItem = {
         title: selectedTitle,
@@ -28,6 +40,7 @@ const ShopDetail = ({selectedTitle, selectedPrice,  selectedPostText2, selectedS
         prevPrice: selectedPrevPrice,
         imgUrl: selectedSingleImage1,
         createdAt: serverTimestamp(),
+        userId: userId
       };
 
       await addDoc(collection(db, 'cart'), cartItem);
@@ -122,7 +135,7 @@ const ShopDetail = ({selectedTitle, selectedPrice,  selectedPostText2, selectedS
 
       
         <div class="flex gap-2.5">
-          <button onClick={() => handleAddToCart()} class="inline-block flex-1 rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-base">Add to cart</button>
+          <button onClick={() => handleAddCart()} class="inline-block flex-1 rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-base">Add to cart</button>
         </div>
 
 

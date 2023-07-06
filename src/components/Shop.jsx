@@ -73,7 +73,16 @@
       getPosts();
     }, []); 
 
-   
+   const handleAddToCart = (post) => {
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      // userId が存在する場合の処理
+      addToCart(post);
+    } else {
+      // userId が存在しない場合の処理
+      window.location.href = '/empty';
+    }
+   }
 
     const addToCart = async (post) => {
       const userId = localStorage.getItem('userId');
@@ -176,7 +185,7 @@
               <div class="flex flex-col items-end">
                 <span class="font-bold text-gray-600 lg:text-lg">{post.price}円</span>
                 <span class="text-sm text-red-500 line-through">{post.prevPrice}円</span>
-            <button onClick={() => addToCart(post)}
+            <button onClick={() => handleAddToCart(post)}
               class="inline-block flex-1 rounded-lg bg-indigo-500 px-5 py-2 text-center text-xxs font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 sm:flex-none md:text-xs”
               style=”font-size: 2px;"
               >Add Cart</button>

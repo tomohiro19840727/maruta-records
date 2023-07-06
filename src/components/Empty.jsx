@@ -40,9 +40,17 @@ const Empty = () => {
         <h1 class="mb-2 text-center text-2xl font-bold text-gray-800 sm:text-left md:text-5xl"> Your cart is empty</h1>
 
         <p class="mb-8 text-center text-gray-500 sm:text-left md:text-3xl">Please register as a member.</p>
+      <div className='flex'>
+        <Link to="/memberlogin" class="inline-block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base mr-20">ログイン</Link>
+        <Link to="/signup" class="inline-block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base">会員登録</Link>
+        
 
-        <Link to="/" class="inline-block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base">Go home</Link>
       </div>
+
+
+      </div>
+
+      
       
     </div>
   </div>
