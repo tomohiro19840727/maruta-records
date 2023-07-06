@@ -28,6 +28,7 @@ import MobileMenuBar from "./components/MobileMenuBar";
 import MobileHome from "./components/MobileHome";
 import MobileShop from "./components/MobileShop";
 import MobileNews from "./components/MobileNews";
+import Signup from "./components/Signup";
 
 function App() {
   const [userId, setUserId] = useState(null); 
@@ -242,6 +243,7 @@ function App() {
         <Route path='/event' element={<Event />}/>
         <Route path='/contact' element={<Contact />}/>
         <Route path='/memberlogin' element={<MemberLogin />}/>
+        <Route path='/signup' element={<Signup />}/>
         <Route path='/faq' element={<Faq />}/>
         <Route path='/use' element={<Use />}/>
         <Route path='/privacy' element={<Privacy />}/>

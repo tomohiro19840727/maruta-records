@@ -102,7 +102,7 @@ const Footer = ({ isAuth }) => {
               <Link to="/contact" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Contact</Link>
             </div>
   
-            
+            <Link to="/signup" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">signup</Link>  
   
             
             <div>
@@ -113,6 +113,7 @@ const Footer = ({ isAuth }) => {
             <></> :
             <div>
               <Link to="/logout" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Logout</Link>
+          
             </div>
              }
           </nav>

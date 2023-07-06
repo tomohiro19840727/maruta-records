@@ -1,36 +1,39 @@
 import React, { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 
-const MemberLogin = () => {
+const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = (e) => {
+  const handleSignUp = (e) => {
     e.preventDefault();
 
-    signInWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // ログイン成功時の処理
+        // 会員登録成功時の処理
         const user = userCredential.user;
-        alert('ログインに成功しました');
+        alert('会員登録に成功しました');
         window.location.href = '/';
+        // 他の処理を追加
       })
       .catch((error) => {
-        // ログインエラー時の処理
+        // 会員登録エラー時の処理
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert('ログインに失敗しました');
+        alert('会員登録に失敗しました');
         // エラーメッセージを表示するなどの処理
       });
+      
   };
+
 
   return (
     <div className="bg-white py-6 sm:py-8 lg:py-12">
       <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
         <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">Login</h2>
 
-        <form onSubmit={handleLogin} className="mx-auto max-w-lg rounded-lg border">
+        <form className="mx-auto max-w-lg rounded-lg border">
           <div className="flex flex-col gap-4 p-4 md:p-8">
             <div>
               <label htmlFor="email" className="mb-2 inline-block text-sm text-gray-800 sm:text-base">
@@ -59,16 +62,16 @@ const MemberLogin = () => {
             </div>
 
             <button
-              type="submit"
+              onClick={handleSignUp}
               className="block rounded-lg bg-gray-800 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-gray-300 transition duration-100 hover:bg-gray-700 focus-visible:ring active:bg-gray-600 md:text-base"
-            >
-              Login
-            </button>
-          </div>
-        </form>
+              >
+              Sign Up
+              </button>
       </div>
-    </div>
-  );
+    </form>
+  </div>
+</div>
+);
 };
 
-export default MemberLogin;
+export default Signup;
