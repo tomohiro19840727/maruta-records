@@ -29,6 +29,7 @@ import MobileHome from "./components/MobileHome";
 import MobileShop from "./components/MobileShop";
 import MobileNews from "./components/MobileNews";
 import Signup from "./components/Signup";
+import MemberLogout from "./components/MemberLogout";
 
 function App() {
   const [userId, setUserId] = useState(null); 
@@ -40,6 +41,7 @@ function App() {
   const [singleImage3, setSingleImage3] = useState('');
   const [prevPrice, setPrevPrice] = useState('');
   const [isAuth, setIsAuth ] = useState(localStorage.getItem("isAuth"));
+  const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem("isAuthenticated"));
 
   const [audioFile, setAudioFile] = useState(null);
 
@@ -242,7 +244,13 @@ function App() {
         />}/>
         <Route path='/event' element={<Event />}/>
         <Route path='/contact' element={<Contact />}/>
-        <Route path='/memberlogin' element={<MemberLogin />}/>
+        <Route path='/memberlogout' element={<MemberLogout 
+         isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}
+        />}/>
+        <Route path='/memberlogin' element={<MemberLogin 
+        userId={userId} setUserId={setUserId}
+         isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}
+        />}/>
         <Route path='/signup' element={<Signup />}/>
         <Route path='/faq' element={<Faq />}/>
         <Route path='/use' element={<Use />}/>

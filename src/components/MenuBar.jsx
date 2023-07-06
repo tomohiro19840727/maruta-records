@@ -13,6 +13,7 @@ const MenuBar = ({ userId }) => {
 
   useEffect(() => {
     // Firestoreのコレクション参照を作成
+    const userId = localStorage.getItem('userId');
     const cartCollectionRef = collection(db, 'cart');
 
     const q = query(cartCollectionRef, where('userId', '==', userId));
@@ -92,7 +93,11 @@ const MenuBar = ({ userId }) => {
 
     <Link to="/memberlogin" class="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24">
 
-      <span class="hidden text-xl font-semibold text-white sm:block">SignUp</span>
+      <span class="hidden text-xl font-semibold text-white sm:block">ログイン</span>
+    </Link>
+    <Link to="/signup" class="flex h-12 w-12 flex-col items-center justify-center gap-1.5 transition duration-100 hover:bg-blue-400 active:bg-gray-200 sm:h-20 sm:w-20 md:h-24 md:w-24">
+
+      <span class="hidden text-xl font-semibold text-white sm:block">会員登録</span>
     </Link>
 
     

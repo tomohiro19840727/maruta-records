@@ -1,7 +1,7 @@
 import { signInWithPopup } from 'firebase/auth';
 import React from 'react'
 import { auth, provider } from '../firebase';
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 function Login({ setIsAuth, setUserId }) {
   const navigate = useNavigate();
@@ -24,8 +24,15 @@ function Login({ setIsAuth, setUserId }) {
     <div className='text-5xl flex justify-center m-24 '>
    
       <br />
-      <button onClick={loginInWithGoogle} className='hover:text-blue-400 px-10 py-4  font-semibold  text-white transition duration-300 rounded-lg hover:from-purple-600 hover:to-pink-600 ease bg-gradient-to-br from-purple-500 to-pink-500 md:w-auto'>Googleでログイン</button>
+      <button onClick={loginInWithGoogle} className='hover:text-blue-400 px-10 py-4  font-semibold  text-white transition duration-300 rounded-lg hover:from-purple-600 hover:to-pink-600 ease bg-gradient-to-br from-purple-500 to-pink-500 md:w-auto'>管理者用 Googleでログイン</button>
     </div>
+    <p className='m-10 font-bold text-2xl'>* 申し訳ありません<br /> お客様につきましてはこのページではログインできません, <br />つきましては以下の「ログイン」か「会員登録」をお願い致します</p>
+   <div className='m-10'>
+    <Link to="/memberlogin" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600 mr-10 text-4xl">ログイン</Link> 
+
+    <Link to="/signup" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600 text-4xl">会員登録</Link>  
+   </div>
+
     </div>
       </>
   )

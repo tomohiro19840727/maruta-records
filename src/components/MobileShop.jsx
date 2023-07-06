@@ -14,7 +14,7 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 const MobileShop = ({ isAuth,selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage, selectedSetSingleImage1, selectedSetSingleImage2, selectedSetSingleImage3,selectedPrevPrice,  selectedSetPrevPrice, selectedSetaudioUrl
-  
+,userId  
 }) => {
   const [postList, setPostList] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -84,6 +84,7 @@ const MobileShop = ({ isAuth,selectedTitle,selectedSetTitle, selectedPrice, sele
         prevPrice: post.prevPrice,
         imgUrl: post.imgUrl1,
         createdAt: serverTimestamp(),
+        userId: userId
       };
 
       await addDoc(collection(db, 'cart'), cartItem);

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 
-const MemberLogin = () => {
+const MemberLogin = ({ setUserId, setIsAuthenticated,}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -14,6 +14,12 @@ const MemberLogin = () => {
         // ログイン成功時の処理
         const user = userCredential.user;
         alert('ログインに成功しました');
+        localStorage.setItem("isAuthenticated", true);
+        const userId = userCredential.user.uid;
+        localStorage.setItem('userId', userId);
+        setIsAuthenticated(true);
+        console.log(userId);
+        setUserId(userId)
         window.location.href = '/';
       })
       .catch((error) => {
@@ -39,6 +45,7 @@ const MemberLogin = () => {
               <input
                 type="email"
                 name="email"
+                placeholder='あなたのメールアドレスを入力してください'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
@@ -52,6 +59,7 @@ const MemberLogin = () => {
               <input
                 type="password"
                 name="password"
+                placeholder='このサイトで設定したパスワードを入力してください'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"

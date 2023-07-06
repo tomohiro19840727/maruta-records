@@ -27,6 +27,7 @@ const Cart = ({ userId }) => {
   }, []);
 
   useEffect(() => {
+    const userId = localStorage.getItem('userId');
     const getPosts = async () => {
       // const data = await getDocs(query(collection(db, "cart"), orderBy('createdAt', 'desc')));
       const q = query(collection(db, 'cart'), where('userId', '==', userId), orderBy('createdAt', 'desc'));

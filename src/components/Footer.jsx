@@ -51,7 +51,7 @@ const Footer = ({ isAuth }) => {
   
           <nav class="flex flex-col gap-4">
           <div>
-              <Link to="/login" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Administrator login</Link>
+              <Link to="/login" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">管理者用 login</Link>
             </div>
 
 
@@ -65,6 +65,7 @@ const Footer = ({ isAuth }) => {
             <Link to="/event" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">Event</Link>
             <Link to="/product2" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">Product2</Link>
             <Link to="/productdetail2" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">ProductDetail2</Link>
+            <Link to="/logout" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">管理者用 logout</Link> 
             </div>
             }
           </nav>
@@ -102,7 +103,10 @@ const Footer = ({ isAuth }) => {
               <Link to="/contact" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Contact</Link>
             </div>
   
-            <Link to="/signup" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">signup</Link>  
+
+            <Link to="/memberlogout" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">M.logout</Link>  
+  
+            
   
             
             <div>

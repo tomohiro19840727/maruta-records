@@ -26,6 +26,7 @@ const MobileMenuBar = ({ userId }) => {
 
   useEffect(() => {
     // Firestoreのコレクション参照を作成
+    const userId = localStorage.getItem('userId');
     const cartCollectionRef = collection(db, 'cart');
 
     const q = query(cartCollectionRef, where('userId', '==', userId));
