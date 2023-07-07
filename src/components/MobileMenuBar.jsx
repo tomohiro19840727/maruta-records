@@ -71,10 +71,10 @@ const MobileMenuBar = ({ userId }) => {
         </button>
         <div className={`absolute ${isMenuOpen ? "block" : "hidden"} bg-black text-white rounded shadow-md top-20 right-10 group-hover:block`}>
   <div className="flex">
-    <Link to="/" className="hover:bg-gray-500 m-3 font-serif font-bold text-lg">Home</Link>
-    <Link to="/shop" className="hover:bg-gray-500 m-3 font-serif font-bold text-lg">Shop</Link>
-    <Link to="/artist" className="hover:bg-gray-500 m-3 font-serif font-bold text-lg">Artist</Link>
-    <Link to="/news"   className="hover:bg-gray-500 m-3 font-serif font-bold text-lg">News</Link>
+    <a href="/" className="hover:bg-gray-500 m-3 font-serif font-bold text-lg">Home</a>
+    <a href="/shop" className="hover:bg-gray-500 m-3 font-serif font-bold text-lg">Shop</a>
+    <a href="/artist" className="hover:bg-gray-500 m-3 font-serif font-bold text-lg">Artist</a>
+    <a href="/news"   className="hover:bg-gray-500 m-3 font-serif font-bold text-lg">News</a>
   </div>
 </div>
 

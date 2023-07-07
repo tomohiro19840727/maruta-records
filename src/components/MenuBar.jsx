@@ -71,15 +71,15 @@ const MenuBar = ( ) => {
                 isMenuOpen ? "" : "hidden"
               }`}
             >
-    <Link to="/"  className={`${
+    <a href="/"  className={`${
                   isMenuOpen ? "text-sm" : "text-3xl"
-                } font-semibold text-white hover:text-indigo-300 transition duration-100`}>Home</Link>
+                } font-semibold text-white hover:text-indigo-300 transition duration-100`}>Home</a>
 
 
 
-    <Link to="/shop" className={`${
+    <a href="/shop" className={`${
                   isMenuOpen ? "text-sm" : "text-3xl"
-                } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>shop</Link>
+                } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>shop</a>
 
    
 
@@ -98,9 +98,9 @@ const MenuBar = ( ) => {
 </div>
                   
 
-    <Link to="/news" className={`${
+    <a href="/news" className={`${
                   isMenuOpen ? "tenp xt-sm" : "text-3xl"
-                } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>News</Link>
+                } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>News</a>
   </nav>
 
 
