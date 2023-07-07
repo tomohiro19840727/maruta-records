@@ -26,7 +26,7 @@ const MenuBar = ( ) => {
   };
 
   useEffect(() => {
-    // Firestoreのコレクション参照を作成
+    // Firestoreのコレクション参照を作
     const userId = localStorage.getItem('userId');
     const cartCollectionRef = collection(db, 'cart');
 
