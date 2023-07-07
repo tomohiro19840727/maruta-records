@@ -1,4 +1,4 @@
-import { signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import React from 'react'
 import { auth, provider } from '../firebase';
 import { Link, useNavigate } from "react-router-dom"
@@ -6,6 +6,11 @@ import { Link, useNavigate } from "react-router-dom"
 function Login({ setIsAuth, setUserId }) {
   const navigate = useNavigate();
   const loginInWithGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    // 特定のドメインのみを許可する場合
+    provider.setCustomParameters({
+      email : "taketoyamazaki@gmail.com"
+    });
    signInWithPopup(auth, provider).then((result) => {
     const userId = result.user.uid;
     localStorage.setItem("isAuth", true);
