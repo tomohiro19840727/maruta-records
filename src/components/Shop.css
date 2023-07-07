@@ -6,3 +6,11 @@
 	opacity: 1;
 	transform: translateY(0px);
 }
+.fadeadd {
+	opacity: 0;
+	transform: translateY(30px);
+	transition: opacity 1.5s, transform 1s;
+}.fadeadd.active {
+	opacity: 1;
+	transform: translateY(0px);
+}

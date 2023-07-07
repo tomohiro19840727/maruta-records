@@ -29,6 +29,8 @@
       setIsPlaying(false); 
     };
 
+
+
     useEffect(() => {
       const targets = document.getElementsByClassName("fade");
       const observer = new IntersectionObserver((entries, observer) => {
@@ -49,6 +51,8 @@
         observer.disconnect();
       };
     }, []);
+
+
 
 
     useEffect(() => {
@@ -130,7 +134,6 @@
 
     return (
       <>
-      
       <div class="bg-white py-6 sm:py-8 lg:py-12 fade">
       <div class="mx-auto max-w-screen-2xl px-4 md:px-8 mb-10">
         
@@ -203,8 +206,7 @@
         </div>
       </div>
     </div>
-  <div>
-      </div>
+    
       </>
     )
   }

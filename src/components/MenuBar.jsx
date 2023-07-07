@@ -9,6 +9,14 @@ const MenuBar = ( ) => {
   const userId = localStorage.getItem('userId');
 
   const [userEmail, setUserEmail] = useState("");
+  const [showContent, setShowContent] = useState(false);
+
+  useEffect (() => {
+    const timer = setTimeout(() => {
+      setShowContent(true);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
   
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -66,6 +74,8 @@ const MenuBar = ( ) => {
     <Link to="/"  className={`${
                   isMenuOpen ? "text-sm" : "text-3xl"
                 } font-semibold text-white hover:text-indigo-300 transition duration-100`}>Home</Link>
+
+
 
     <Link to="/shop" className={`${
                   isMenuOpen ? "text-sm" : "text-3xl"

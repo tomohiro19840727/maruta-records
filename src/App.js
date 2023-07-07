@@ -5,7 +5,7 @@ import Shop from "./components/Shop";
 import Artist from "./components/Artist";
 import News from "./components/News";
 import Login from "./components/Login";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logout from "./components/Logout";
 import Product from "./components/Product";
 import Cart from "./components/Cart";
@@ -63,21 +63,57 @@ function App() {
 
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
-  return (
+  const [showContent, setShowContent] = useState(false);
 
-    <Router>
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowContent(true);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const targets = document.getElementsByClassName("fade");
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        } else {
+          entry.target.classList.remove("active");
+        }
+      });
+    });
+
+    Array.from(targets).forEach((target) => {
+      observer.observe(target);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  
+
+  return (
+  <>
+    {!showContent ? (
+      <div className="h-screen flex items-center justify-center flex-col">
+        <img src="/MARUTALOGO3.jpg" alt="Logo" className="fade h-40 w-40" />
+        <h1 className="text-xl fade">MARUTA-Records</h1>
+      </div>
+    ) : (
+      <Router>
       <div>
         {isMobile ? ( 
-        <MobileMenuBar  isAuth={isAuth} userId={userId} />
-       )  : 
-       (
-        <MenuBar  isAuth={isAuth} userId={userId} /> )}
-      
-
+          <MobileMenuBar  isAuth={isAuth} userId={userId} />
+          )  : 
+          (
+            <MenuBar  isAuth={isAuth} userId={userId} /> )}
       </div>
       <Routes>
         <Route path='/' element={
-        <div>
+          <div>
           {isMobile ? ( 
             <MobileHome 
             isAuth={isAuth} isMobile={isMobile}
@@ -95,22 +131,22 @@ function App() {
             selectedSetSingleImage2={selectedSetSingleImage2}
             selectedSingleImage3={selectedSingleImage3} selectedSetSingleImage3={selectedSetSingleImage3}
             /> ) : (
-          <Home 
-        isAuth={isAuth}
-        selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
-        
-        selectedPrice={selectedPrice} selectedSetPrice={selectedSetPrice}
-        
-        selectedPrevPrice={selectedPrevPrice} selectedSetPrevPrice={selectedSetPrevPrice}
-        
-        selectedPostText2={selectedPostText2} selectedSetPostText2={selectedSetPostText2}
-        
-        selectedSingleImage1={selectedSingleImage1} selectedSetSingleImage1={selectedSetSingleImage1}
-        
-        selectedSingleImage2={selectedSingleImage2}
-        selectedSetSingleImage2={selectedSetSingleImage2}
-        selectedSingleImage3={selectedSingleImage3} selectedSetSingleImage3={selectedSetSingleImage3}
-        />)}
+              <Home 
+              isAuth={isAuth}
+              selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
+              
+              selectedPrice={selectedPrice} selectedSetPrice={selectedSetPrice}
+              
+              selectedPrevPrice={selectedPrevPrice} selectedSetPrevPrice={selectedSetPrevPrice}
+              
+              selectedPostText2={selectedPostText2} selectedSetPostText2={selectedSetPostText2}
+              
+              selectedSingleImage1={selectedSingleImage1} selectedSetSingleImage1={selectedSetSingleImage1}
+              
+              selectedSingleImage2={selectedSingleImage2}
+              selectedSetSingleImage2={selectedSetSingleImage2}
+              selectedSingleImage3={selectedSingleImage3} selectedSetSingleImage3={selectedSetSingleImage3}
+              />)}
         </div>
         }
         />
@@ -118,7 +154,7 @@ function App() {
         <Route path='/shop' element={
           <div>
         {isMobile ? ( 
-        <MobileShop
+          <MobileShop
           isAuth={isAuth}  userId={userId}
           title={title} setTitle={setTitle}
           price={price} setPrice={setPrice}
@@ -174,50 +210,50 @@ function App() {
 
         <Route path='/shopdetail' element={<ShopDetail
           selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
-
+          
           selectedPrice={selectedPrice} selectedSetPrice={selectedSetPrice}
-
+          
           selectedPrevPrice={selectedPrevPrice} selectedSetPrevPrice={selectedSetPrevPrice}
-
+          
           selectedPostText2={selectedPostText2} selectedSetPostText2={selectedSetPostText2}
-
+          
           selectedSingleImage1={selectedSingleImage1} selectedSetSingleImage1={selectedSetSingleImage1}
           selectedSingleImage2={selectedSingleImage2} selectedSetSingleImage2={selectedSetSingleImage2}
           selectedSingleImage3={selectedSingleImage3} selectedSetSingleImage3={selectedSetSingleImage3}  
           selectedAudioUrl={selectedAudioUrl} selectedSetaudioUrl={selectedSetaudioUrl} 
-        />}/>
+          />}/>
      
         <Route path='/search' element={<Search
           selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
-
+          
           selectedPrice={selectedPrice} selectedSetPrice={selectedSetPrice}
-
+          
           selectedPrevPrice={selectedPrevPrice} selectedSetPrevPrice={selectedSetPrevPrice}
-
+          
           selectedPostText2={selectedPostText2} selectedSetPostText2={selectedSetPostText2}
-
+          
           selectedSingleImage1={selectedSingleImage1} selectedSetSingleImage1={selectedSetSingleImage1}
           
-        />}/>
+          />}/>
 
         <Route path='/artist' element={<Artist />}/>
         <Route path='/artist2' element={<Artist2 />}/>
         <Route path='/artist3' element={<Artist3 />}/>
         <Route path='/artist4' element={<Artist4 />}/>
         <Route path='/news' element={
-        <div>
+          <div>
            {isMobile ? ( 
-        <MobileNews 
-         isAuth={isAuth}
-         /> ) : (<News 
-          isAuth={isAuth}
-          />)
-           }
+             <MobileNews 
+             isAuth={isAuth}
+             /> ) : (<News 
+              isAuth={isAuth}
+              />)
+            }
          </div>
         }/>
 
         <Route path='/product' element={
-        <Product
+          <Product
           title={title} setTitle={setTitle}
           price={price} setPrice={setPrice}
           prevPrice={prevPrice} setPrevPrice={setPrevPrice}
@@ -226,15 +262,15 @@ function App() {
           singleImage2={singleImage2} setSingleImage2={setSingleImage2}
           singleImage3={singleImage3} setSingleImage3={setSingleImage3}
           audioFile={audioFile} setAudioFile={setAudioFile}          
-
-        />}/>
+          
+          />}/>
 
         <Route path='/product2' element={<Product2 
          welcomeTitle={welcomeTitle}
          welcomeSetTitle={welcomeSetTitle}
          welcomeSingleImage={welcomeSingleImage}
          welcomeSetSingleImage={welcomeSetSingleImage}
-        />}/>
+         />}/>
 
 
         <Route path='/productdetail2' element={<ProductDetail2 />}/>
@@ -246,10 +282,10 @@ function App() {
         <Route path='/contact' element={<Contact />}/>
         <Route path='/memberlogout' element={<MemberLogout 
          isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}
-        />}/>
+         />}/>
         <Route path='/memberlogin' element={<MemberLogin 
         userId={userId} setUserId={setUserId}
-         isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}
+        isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}
         />}/>
         <Route path='/signup' element={<Signup />}/>
         <Route path='/faq' element={<Faq />}/>
@@ -259,6 +295,8 @@ function App() {
         <Route path='/logout' element={<Logout  setIsAuth={setIsAuth} />}/>
       </Routes>
     </Router>
+    )}
+    </>
   );
 }
 
