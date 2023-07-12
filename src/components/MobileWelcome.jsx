@@ -90,7 +90,7 @@ const MobileWelcome = ({ welcomeTitle, welcomeSetTitle,  welcomeSingleImage, wel
             {welcomeSortedLists.map((post) => (
               <SwiperSlide>
                <Link to="/shop">
-                <img src={post.welcomeImgUrl} alt="1" />
+                <img src={post.welcomeImgUrl} alt="1" className='h-96 w-full object-cover object-center'/>
                </Link>             
                 <p className='m-8 text-xl font-serif font-bold'>{post.welcomeTitle}</p>
               </SwiperSlide>

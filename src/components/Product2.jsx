@@ -75,3 +75,4 @@ function Product2({ welcomeTitle, welcomeSetTitle, welcomePostText, welcomeSetPo
       );}
                     
   export default Product2;
+
