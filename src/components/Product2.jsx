@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db, storage } from '../firebase';
 
-function Product2({ welcomeTitle, welcomeSetTitle, welcomePostText, welcomeSetPostText, welcomeSingleImage, welcomeSetSingleImage}) {
+function Product2({ welcomeTitle, welcomeSetTitle, welcomePostText,  welcomeSingleImage, welcomeSetSingleImage}) {
   
 
   const navigate = useNavigate();
