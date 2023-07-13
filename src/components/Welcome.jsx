@@ -20,7 +20,14 @@ import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { db } from '../firebase';
 import { Link } from 'react-router-dom';
 
-const Welcome = ({ welcomeTitle, welcomeSetTitle,  welcomeSingleImage, welcomeSetSingleImage}) => {
+const Welcome = ({ welcomeTitle, welcomeSetTitle,  welcomeSingleImage, welcomeSetSingleImage, selectedSetTitle,
+  selectedSetPrice,
+  selectedSetPrevPrice,
+  selectedSetPostText2,
+  selectedSetSingleImage1,
+  selectedSetSingleImage2,
+  selectedSetSingleImage3,
+}) => {
 
   const [welcomePostList, welcomeSetPostList] = useState([]);
 
@@ -52,6 +59,16 @@ const Welcome = ({ welcomeTitle, welcomeSetTitle,  welcomeSingleImage, welcomeSe
     };
     getPosts();
   }, []);
+
+  const handleClick = (post) => {
+    selectedSetTitle(post.welcomeTitle);
+    selectedSetPrice(post.price);
+    selectedSetPrevPrice(post.prevPrice);
+    selectedSetPostText2(post.welcomePostText2);
+    selectedSetSingleImage1(post.imgUrl1);
+    selectedSetSingleImage2(post.imgUrl2);
+    selectedSetSingleImage3(post.imgUrl3);
+  };
 
 
   const welcomeSortedLists = welcomePostList.sort((a, b) => b.createdAt - a.createdAt);
@@ -126,12 +143,14 @@ const Welcome = ({ welcomeTitle, welcomeSetTitle,  welcomeSingleImage, welcomeSe
             >
 
             {welcomeSortedLists.map((post) => (
+              <div key={post.id}>
               <SwiperSlide>
-               <Link to="/shop" >
-                <img src={post.welcomeImgUrl} alt="1" className=' h-96 w-full object-cover object-center'/>
+               <Link to="/shopdetail" >
+                <img src={post.imgUrl1} onClick={() => handleClick(post)} alt="1" className=' h-96 w-full object-cover object-center'/>
                </Link>             
                 <p className='m-16 text-xl font-serif font-bold'>{post.welcomeTitle}</p>
               </SwiperSlide>
+              </div>
       ))}  
     </Swiper>
         </div>

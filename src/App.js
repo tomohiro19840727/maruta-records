@@ -60,7 +60,12 @@ function App() {
   const [selectedAudioUrl, selectedSetaudioUrl ] = useState("")
 
   const [welcomeTitle, welcomeSetTitle] = useState('');
-  const [welcomeSingleImage, welcomeSetSingleImage] = useState('');
+  const [welcomePrice, welcomeSetPrice] = useState('');
+  const [welcomePrevPrice, welcomeSetPrevPrice] = useState('');
+  const [welcomePostText2, welcomeSetPostText2] = useState('');
+  const [welcomeSingleImage1, welcomeSetSingleImage1] = useState('');
+  const [welcomeSingleImage2, welcomeSetSingleImage2] = useState('');
+  const [welcomeSingleImage3, welcomeSetSingleImage3] = useState('');
 
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
@@ -269,8 +274,15 @@ function App() {
         <Route path='/product2' element={<Product2 
          welcomeTitle={welcomeTitle}
          welcomeSetTitle={welcomeSetTitle}
-         welcomeSingleImage={welcomeSingleImage}
-         welcomeSetSingleImage={welcomeSetSingleImage}
+         welcomePrice={welcomePrice} welcomeSetPrice={welcomeSetPrice}
+         welcomePrevPrice={welcomePrevPrice} welcomeSetPrevPrice={welcomeSetPrevPrice}
+         welcomePostText2={welcomePostText2} welcomeSetPostText2={welcomeSetPostText2}
+         welcomeSingleImage1={welcomeSingleImage1}
+         welcomeSetSingleImage1={welcomeSetSingleImage1}
+         welcomeSingleImage2={welcomeSingleImage2}
+         welcomeSetSingleImage2={welcomeSetSingleImage2}
+         welcomeSingleImage3={welcomeSingleImage3}
+         welcomeSetSingleImage3={welcomeSetSingleImage3}
          />}/>
 
 

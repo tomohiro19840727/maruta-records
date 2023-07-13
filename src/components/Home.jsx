@@ -15,9 +15,8 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 
-const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage, selectedSetSingleImage, selectedPrevPrice,  selectedSetPrevPrice, isAuth,
+const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, selectedPostText2, selectedSetPostText2,selectedSingleImage1, selectedSetSingleImage1,selectedSingleImage2, selectedSetSingleImage2, selectedSingleImage3, selectedSetSingleImage3,selectedPrevPrice,  selectedSetPrevPrice, isAuth,
   welcomeTitle, welcomeSetTitle, welcomeSingleImage, welcomeSetSingleImage,
-  selectedSetSingleImage1, selectedSetSingleImage2, selectedSetSingleImage3,
 }) => {
   const [postList, setPostList] = useState([]);
   const [newsPostList, newsSetPostList] = useState([]);
@@ -53,6 +52,17 @@ const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, 
    welcomeSetTitle={welcomeSetTitle}
    welcomeSingleImage={welcomeSingleImage}
    welcomeSetSingleImage={welcomeSetSingleImage}
+   selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
+          
+          selectedPrice={selectedPrice} selectedSetPrice={selectedSetPrice}
+          
+          selectedPrevPrice={selectedPrevPrice} selectedSetPrevPrice={selectedSetPrevPrice}
+          
+          selectedPostText2={selectedPostText2} selectedSetPostText2={selectedSetPostText2}
+          
+          selectedSingleImage1={selectedSingleImage1} selectedSetSingleImage1={selectedSetSingleImage1}
+          selectedSingleImage2={selectedSingleImage2} selectedSetSingleImage2={selectedSetSingleImage2}
+          selectedSingleImage3={selectedSingleImage3} selectedSetSingleImage3={selectedSetSingleImage3}
    />
 
 <div class="bg-white py-6 sm:py-8 lg:py-12">

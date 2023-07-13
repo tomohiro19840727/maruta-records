@@ -144,7 +144,7 @@ const ShopDetail = ({selectedTitle, selectedPrice,  selectedPostText2, selectedS
           <div class="mb-3 text-lg font-semibold text-gray-800">Description</div>
 
           <p class="text-gray-500">
-            {selectedPostText2}
+          <div dangerouslySetInnerHTML={{ __html: selectedPostText2 }} />
           </p>
         </div>
       
