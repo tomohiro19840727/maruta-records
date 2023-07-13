@@ -30,6 +30,7 @@ import MobileShop from "./components/MobileShop";
 import MobileNews from "./components/MobileNews";
 import Signup from "./components/Signup";
 import MemberLogout from "./components/MemberLogout";
+import ProductDetail3 from "./components/ProductDetail3";
 
 function App() {
   const [userId, setUserId] = useState(null); 
@@ -274,6 +275,7 @@ function App() {
 
 
         <Route path='/productdetail2' element={<ProductDetail2 />}/>
+        <Route path='/productdetail3' element={<ProductDetail3 />}/>
         <Route path='/empty' element={<Empty />}/>
         <Route path='/cart' element={<Cart 
         userId={userId} 

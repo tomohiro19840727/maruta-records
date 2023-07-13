@@ -9,7 +9,7 @@ function Login({ setIsAuth, setUserId }) {
     const provider = new GoogleAuthProvider();
     // 特定のドメインのみを許可する場合
     provider.setCustomParameters({
-      login_hint : "taketoyamazaki@gmail.com"
+      login_hint : "tomohirofarm@gmail.com"
     });
    signInWithPopup(auth, provider).then((result) => {
     const userId = result.user.uid;

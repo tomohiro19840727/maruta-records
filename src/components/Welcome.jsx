@@ -127,7 +127,7 @@ const Welcome = ({ welcomeTitle, welcomeSetTitle,  welcomeSingleImage, welcomeSe
 
             {welcomeSortedLists.map((post) => (
               <SwiperSlide>
-               <Link to="/shop">
+               <Link to="/shop" >
                 <img src={post.welcomeImgUrl} alt="1" className=' h-96 w-full object-cover object-center'/>
                </Link>             
                 <p className='m-16 text-xl font-serif font-bold'>{post.welcomeTitle}</p>
