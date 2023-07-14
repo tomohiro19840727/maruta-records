@@ -1,13 +1,26 @@
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db, storage } from '../firebase';
 
-function Product2({ welcomeTitle, welcomePostText2,welcomeSetTitle, welcomePostText,welcomePrice, welcomeSetPrevPrice, welcomeSetPostText2,welcomeSetPrice,welcomePrevPrice,  welcomeSingleImage1, welcomeSingleImage2, welcomeSingleImage3, welcomeSetSingleImage1, welcomeSetSingleImage2, welcomeSetSingleImage3}) {
+function Product2({ title, postText2,setTitle, postsText,price, setPrevPrice, setPostText2,setPrice,prevPrice,  singleImage1, singleImage2, singleImage3, setSingleImage1, setSingleImage2, setSingleImage3, audioFile, setAudioFile}) {
   
 
   const navigate = useNavigate();
+
+  const [isCheckedShop, setIsCheckedShop] = useState(false);
+  const [isCheckedEvent, setIsCheckedEvent] = useState(false);
+
+  const handleCheckShop = () => {
+    setIsCheckedShop(true);
+    setIsCheckedEvent(false);
+  };
+
+  const handleCheckEvent = () => {
+    setIsCheckedShop(false);
+    setIsCheckedEvent(true);
+  };
 
   // 
   const handleImage = (e) => {
@@ -16,7 +29,7 @@ function Product2({ welcomeTitle, welcomePostText2,welcomeSetTitle, welcomePostT
 
     if (e.target.files && e.target.files.length > 0) {
       pickedFile = e.target.files[0];
-      welcomeSetSingleImage1(pickedFile);
+      setSingleImage1(pickedFile);
     }
   };
   const handleImage2 = (e) => {
@@ -25,7 +38,7 @@ function Product2({ welcomeTitle, welcomePostText2,welcomeSetTitle, welcomePostT
 
     if (e.target.files && e.target.files.length > 0) {
       pickedFile = e.target.files[0];
-      welcomeSetSingleImage2(pickedFile);
+      setSingleImage2(pickedFile);
     }
   };
   const handleImage3 = (e) => {
@@ -34,28 +47,35 @@ function Product2({ welcomeTitle, welcomePostText2,welcomeSetTitle, welcomePostT
 
     if (e.target.files && e.target.files.length > 0) {
       pickedFile = e.target.files[0];
-      welcomeSetSingleImage3(pickedFile);
+      setSingleImage3(pickedFile);
     }
   };
 
-  // 
+  const handleAudio = (e) => {
+    e.preventDefault();
+    let pickedFile;
+
+    if (e.target.files && e.target.files.length > 0) {
+      pickedFile = e.target.files[0];
+      setAudioFile(pickedFile);
+    }
+  };
   
   const createPost = async (e) => {
     e.preventDefault();
-    const convertedPrice = Number(welcomePrice);
-    const convertedprevPrice = Number(welcomePrevPrice);
+    const convertedPrice = Number(price);
+    const convertedprevPrice = Number(prevPrice);
 
     // const imageRef = ref(storage, `images/${singleImage.name}`);
-    const imageRef1 = ref(storage, `images/${welcomeSingleImage1.name}`);
-    const imageRef2 = ref(storage, `images/${welcomeSingleImage2.name}`);
-    const imageRef3 = ref(storage, `images/${welcomeSingleImage3.name}`);
+    const imageRef1 = ref(storage, `images/${singleImage1.name}`);
+    const imageRef2 = ref(storage, `images/${singleImage2.name}`);
+    const imageRef3 = ref(storage, `images/${singleImage3.name}`);
 
     Promise.all([
-      uploadBytes(imageRef1, welcomeSingleImage1),
-      uploadBytes(imageRef2, welcomeSingleImage2),
-      uploadBytes(imageRef3, welcomeSingleImage3)
+      uploadBytes(imageRef1, singleImage1),
+      uploadBytes(imageRef2, singleImage2),
+      uploadBytes(imageRef3, singleImage3)
     ]).then((res) => {
-      alert('投稿に成功しました');
     
       Promise.all([
         getDownloadURL(imageRef1),
@@ -63,27 +83,48 @@ function Product2({ welcomeTitle, welcomePostText2,welcomeSetTitle, welcomePostT
         getDownloadURL(imageRef3)
       ]).then(([imageUrl1, imageUrl2, imageUrl3]) => {
         const post = { 
-          welcomeTitle: welcomeTitle,
+          title: title,
           price: convertedPrice,
-          welcomePostText2: welcomePostText2.replace(/\n/g, '<br />'),
+          postsText2: postText2.replace(/\n/g, '<br />'),
           prevPrice: convertedprevPrice,
           imgUrl1: imageUrl1,
           imgUrl2: imageUrl2,
           imgUrl3: imageUrl3,
           createdAt: serverTimestamp(), 
+          audioUrl: "",
          };
-        addDoc(collection(db, 'posts3'), post ).then((docRef) => {
-          // const postId = docRef.id;
-          // if (audioFile) {
-          //   uploadAudio(postId, audioFile); // 音源ファイルのアップロードとURL保存処理を呼び出す
-          // }
+
+         let collectionName = 'posts'; // デフォルトのコレクション名
+
+         if (isCheckedShop) {
+           collectionName = 'posts'; // isCheckedShopがtrueの場合は'posts'コレクション
+         } else if (isCheckedEvent) {
+           collectionName = 'posts2'; // isCheckedEventがtrueの場合は'posts2'コレクション
+         }
+        addDoc(collection(db, collectionName ), post ).then((docRef) => {
+          const postId = docRef.id;
+          if (audioFile) {
+            uploadAudio(postId, audioFile); // 音源ファイルのアップロードとURL保存処理を呼び出す
+          }
 
           alert('投稿に成功しました');
-          navigate('/shop');
+          navigate('/');
          });
         });
       });
     };
+
+    const uploadAudio = (postId, audioFile) => {
+      const audioRef = ref(storage, `audio/${postId}/${audioFile.name}`);
+  
+      uploadBytes(audioRef, audioFile).then(() => {
+        getDownloadURL(audioRef).then((audioUrl) => {
+          const postRef = doc(db, 'posts', postId);
+          updateDoc(postRef, { audioUrl: audioUrl });
+        });
+      });
+    };
+
 
   return (
 //    
@@ -101,22 +142,32 @@ function Product2({ welcomeTitle, welcomePostText2,welcomeSetTitle, welcomePostT
       <label class="mb-2 inline-block text-sm text-g  ray-800 sm:text-base">タイトル</label>
       <input  type="text"
         placeholder="商品名を記入"
-        onChange={(e) => welcomeSetTitle(e.target.value)}
+        onChange={(e) => setTitle(e.target.value)}
         class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
 </div>
+
+        <label>
+          <input type="checkbox" checked={isCheckedShop} onChange={handleCheckShop} />
+          Shop
+        </label>
+
+        <label>
+          <input type="checkbox" checked={isCheckedEvent} onChange={handleCheckEvent} />
+          Event
+        </label>
 
     <div class="sm:col-span-2">
       <label class="mb-2 inline-block text-sm text-g  ray-800 sm:text-base">値段</label>
       <input  type="text"
         placeholder="値段を記入"
-        onChange={(e) => welcomeSetPrice(e.target.value)}
+        onChange={(e) => setPrice(e.target.value)}
         class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
 </div>
     <div class="sm:col-span-2">
       <label class="mb-2 inline-block text-sm text-g  ray-800 sm:text-base">以前の値段</label>
       <input  type="text"
         placeholder="前の値段を記入"
-        onChange={(e) => welcomeSetPrevPrice(e.target.value)}
+        onChange={(e) => setPrevPrice(e.target.value)}
         class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
 </div>
 
@@ -141,7 +192,7 @@ function Product2({ welcomeTitle, welcomePostText2,welcomeSetTitle, welcomePostT
           onChange={handleImage3} class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
 </div>
 
-{/* <div class="sm:col-span-2">
+<div class="sm:col-span-2">
 <label class="mb-2 inline-block text-sm text-gray-800 sm:text-base">音源</label>
 <input
   type="file"
@@ -149,7 +200,7 @@ function Product2({ welcomeTitle, welcomePostText2,welcomeSetTitle, welcomePostT
   onChange={handleAudio}
   class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"
 />
-</div> */}
+</div>
 
 
 
@@ -158,7 +209,7 @@ function Product2({ welcomeTitle, welcomePostText2,welcomeSetTitle, welcomePostT
 <div class="h-64 rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring ">
 <textarea
 placeholder="内容を記入"
-onChange={(e) => welcomeSetPostText2(e.target.value)}
+onChange={(e) => setPostText2(e.target.value)}
 class="w-full h-full resize-none outline-none"
 ></textarea>
 </div>

@@ -61,10 +61,10 @@ const Footer = ({ isAuth }) => {
             :
             <div className='flex flex-col gap-4'>
 
-            <Link to="/product" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">Product</Link>
-            <Link to="/event" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">Event</Link>
-            <Link to="/product2" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">Product2</Link>
-            <Link to="/productdetail2" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">ProductDetail2</Link>
+            <Link to="/product" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">ShopProduct</Link>
+            {/* <Link to="/event" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">Event</Link> */}
+            <Link to="/product2" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">WelcomeProduct</Link>
+            {/* <Link to="/productdetail2" class=" font-semibold text-black transition duration-100 hover:text-indigo-300 active:text-indigo-700">ProductDetail2</Link> */}
             <Link to="/logout" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">管理者用 logout</Link> 
             </div>
             }
@@ -113,13 +113,13 @@ const Footer = ({ isAuth }) => {
               <Link to="/faq" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">FAQ</Link>
             </div>
              
-            {!isAuth ? 
+            {/* {!isAuth ? 
             <></> :
             <div>
               <Link to="/logout" class="text-gray-500 transition duration-100 hover:text-indigo-500 active:text-indigo-600">Logout</Link>
           
             </div>
-             }
+             } */}
           </nav>
         </div>
   

@@ -5,11 +5,16 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ja'; // 必要に応じてロケールを指定してください
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import { Link } from 'react-router-dom';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-const News = ({ isAuth }) => {
+const News = ({ isAuth ,
+  selectedSetTitle,
+  selectedSetPostText2,
+  selectedSetSingleImage1,
+}) => {
   const [newsPostList, newsSetPostList] = useState([]);
 
   useEffect(() => {
@@ -41,6 +46,12 @@ const News = ({ isAuth }) => {
     getPosts();
   }, []);
 
+  const handleClick = (post) => {
+    selectedSetTitle(post.title);
+    selectedSetPostText2(post.postsText2);
+    selectedSetSingleImage1(post.imgUrl1);
+  };
+
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, 'posts2', id));
     window.location.href = '/news';
@@ -67,17 +78,17 @@ const News = ({ isAuth }) => {
       
     {newsSortedLists.map((post) => (
       <div class="flex flex-col overflow-hidden rounded-lg border bg-white">
-        <a href="#" class="group relative block h-48 overflow-hidden bg-gray-100 md:h-64">
-          <img src={post.newsImgUrl} loading="lazy" alt="Photo by Minh Pham" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-        </a>
+        <Link to="/eventdetail" onClick={() => handleClick(post)}  class="group relative block h-48 overflow-hidden bg-gray-100 md:h-64">
+          <img src={post.imgUrl1} loading="lazy" alt="Photo by Minh Pham" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+        </Link>
 
         <div class="flex flex-1 flex-col p-4 sm:p-6">
           <h2 class="mb-2 text-lg font-semibold text-gray-800">
-            <a href="#" class="transition duration-100 hover:text-indigo-500 active:text-indigo-600">{post.newsTitle}</a>
+            <a href="#" class="transition duration-100 hover:text-indigo-500 active:text-indigo-600">{post.title}</a>
           </h2>
 
           <p class="mb-8 text-gray-500 font-bold text-xl">
-                <div dangerouslySetInnerHTML={{ __html: post.newsPostText }} />
+                <div dangerouslySetInnerHTML={{ __html: post.postsText2 }} />
           </p>
 
           <div class="mt-auto flex items-end justify-between">

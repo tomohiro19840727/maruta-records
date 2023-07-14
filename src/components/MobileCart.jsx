@@ -2,7 +2,7 @@ import {  collection, deleteDoc, doc, getDocs, orderBy, query, where } from 'fir
 import React, { useEffect, useState } from 'react'
 import { db } from '../firebase';
 
-const Cart = ({ userId }) => {
+const MobileCart = ({ userId }) => {
   const [cartList, setCartList] = useState([]);
 
   useEffect(() => {
@@ -57,18 +57,18 @@ const Cart = ({ userId }) => {
 
 
   return (
-    <div class="bg-white py-6 sm:py-8 lg:py-12 fade">
-    <div class="mx-auto max-w-screen-lg px-4 md:px-8 ">
-      <div class="mb-6 sm:mb-10 lg:mb-16">
+    <div class="bg-white py-6  fade">
+    <div class="mx-auto max-w-screen-lg px-8 ">
+      <div class="mb-10">
         <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Your Cart</h2>
       </div>
   
-      <div class="mb-6 flex flex-col gap-4 sm:mb-8 md:gap-6">
+      <div class="mb-6 flex flex-col gap-4">
       {sortedCartLists.map((item) => (
-        <div class="flex flex-wrap gap-x-4 overflow-hidden rounded-lg border sm:gap-y-4 lg:gap-6 bg-gray-200">
-          <a href="#" class="group relative block overflow-hidden bg-gray-100 h-56 w-80">
+        <div class="flex flex-wrap gap-x-4 overflow-hidden rounded-lg border  bg-gray-200 mb-12">
+          <div class="group relative block overflow-hidden bg-gray-100 h-70 w-100">
             <img src={item.imgUrl} loading="lazy" alt="Photo by Thái An" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-          </a>
+          </div>
   
           <div class="flex flex-1 flex-col justify-between py-4 ">
             <div>
@@ -76,20 +76,25 @@ const Cart = ({ userId }) => {
             </div>
   
             <div>
-            <button onClick={() => handleDelete(item.id)}class="select-none text-xl font-semibold text-indigo-500 transition duration-100 hover:text-red-600 active:text-indigo-700">Delete</button>
+          
              
   
             
             </div>
           </div>
+          
   
-          <div class="flex w-full justify-between border-t p-4 sm:w-auto sm:border-none sm:pl-0 lg:p-6 lg:pl-0 ">
-            <div class="ml-4 pt-3 md:ml-8 md:pt-2 lg:ml-16">
-              <span class="block font-bold text-gray-800 md:text-xl mb-10">{item.price}円</span>
-              <span class="mb-1 block font-bold text-red-500 line-through text-lg">{item.prevPrice}円</span>
+          <div class="flex w-full justify-between border-t p-4">
+        
+          <button onClick={() => handleDelete(item.id)}class="select-none text-lg font-semibold text-indigo-500 transition duration-100 hover:text-red-600 active:text-indigo-700 mt-20">Delete</button>
+            <div class="ml-4 pt-3">
+              <span class="block font-bold text-gray-800 text-2xl mb-10">{item.price}円</span>
+              <span class="mb-3 ml-5 block font-bold text-red-500 line-through text-lg">{item.prevPrice}円</span>
+             
             </div>
           </div>
         </div>
+        
       ))}
      </div>
       
@@ -123,4 +128,4 @@ const Cart = ({ userId }) => {
   )
 }
 
-export default Cart
+export default MobileCart

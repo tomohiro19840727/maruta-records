@@ -15,10 +15,19 @@ import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 import { Link } from 'react-router-dom';
 
-const MobileWelcome = ({ welcomeTitle, welcomeSetTitle,  welcomeSingleImage, welcomeSetSingleImage}) => {
+const MobileWelcome = ({ welcomeTitle, welcomeSetTitle,  welcomeSingleImage, welcomeSetSingleImage,
+  selectedSetTitle,
+  selectedSetPrice,
+  selectedSetPrevPrice,
+  selectedSetPostText2,
+  selectedSetSingleImage1,
+  selectedSetSingleImage2,
+  selectedSetSingleImage3,
+}) => {
   const userId = localStorage.getItem('userId');
   const [userEmail, setUserEmail] = useState("");
   const [welcomePostList, welcomeSetPostList] = useState([]);
+  const [welcomePostList2, welcomeSetPostList2] = useState([]);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -53,14 +62,34 @@ const MobileWelcome = ({ welcomeTitle, welcomeSetTitle,  welcomeSingleImage, wel
 
   useEffect(() => {
     const getPosts = async () => {
-      const data = await getDocs(query(collection(db, 'posts3'), orderBy('createdAt', 'desc')));
+      const data = await getDocs(query(collection(db, 'posts'), orderBy('createdAt', 'desc')));
       welcomeSetPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+    getPosts();
+  }, []);
+
+  useEffect(() => {
+    const getPosts = async () => {
+      const data = await getDocs(query(collection(db, 'posts2'), orderBy('createdAt', 'desc')));
+      welcomeSetPostList2(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getPosts();
   }, []);
 
 
   const welcomeSortedLists = welcomePostList.sort((a, b) => b.createdAt - a.createdAt);
+  const welcomeSortedLists2 = welcomePostList2.sort((a, b) => b.createdAt - a.createdAt);
+
+  const handleClick = (post) => {
+    selectedSetTitle(post.title);
+    selectedSetPrice(post.price);
+    selectedSetPrevPrice(post.prevPrice);
+    selectedSetPostText2(post.postsText2);
+    selectedSetSingleImage1(post.imgUrl1);
+    selectedSetSingleImage2(post.imgUrl2);
+    selectedSetSingleImage3(post.imgUrl3);
+  };
+
 
 
   return (
@@ -87,12 +116,12 @@ const MobileWelcome = ({ welcomeTitle, welcomeSetTitle,  welcomeSingleImage, wel
             effect="fade"
             >
 
-            {welcomeSortedLists.map((post) => (
+        {[...welcomeSortedLists.slice(0, 3), ...welcomeSortedLists2.slice(0, 1)].map((post) => (
               <SwiperSlide>
-               <Link to="/shop">
-                <img src={post.welcomeImgUrl} alt="1" className='h-96 w-full object-cover object-center'/>
+               <Link to={post.price === 0 ? '/eventdetail' : '/shopdetail'}>
+                <img src={post.imgUrl1} onClick={() => handleClick(post)} alt="1" className='h-96 w-full object-cover object-center'/>
                </Link>             
-                <p className='m-8 text-xl font-serif font-bold'>{post.welcomeTitle}</p>
+                <p className='m-8 text-xl font-serif font-bold'>{post.title}</p>
               </SwiperSlide>
       ))}  
     </Swiper>

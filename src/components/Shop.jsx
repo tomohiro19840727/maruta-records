@@ -56,10 +56,6 @@
 
 
     useEffect(() => {
-      // const getPosts = async () => {
-      //   const data = await getDocs(query(collection(db, 'posts'), orderBy('createdAt', 'desc')));
-      //   setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-      // };
       const getPosts = async () => {
         const data = await getDocs(query(collection(db, 'posts'), orderBy('createdAt', 'desc')));
         const posts = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
@@ -157,11 +153,9 @@
               <img src={post.imgUrl1} loading="lazy" alt="Photo by Austin Wade" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
               </Link>
               </>
-              {post.audioUrl && ( //
+              {post.audioUrl && ( 
               <>
               <div class="absolute left-0 bottom-2 flex gap-2">
-                {/* <button onClick={() => handlePlay(post.audioUrl)} class="rounded-lg bg-white px-3 py-1.5 ml-2 text-sm font-bold uppercase tracking-wider text-gray-800">サンプル再生</button>
-                <button  onClick={() => handlePause(post.audioUrl)} class="rounded-r-lg bg-red-500 px-3 py-1.5 text-sm font-semibold uppercase tracking-wider text-white">停止</button> */}
                 <button onClick={(e) => { e.stopPropagation(); handlePlay(post.audioUrl); }} class="rounded-lg bg-white px-3 ml-3 py-1.5 text-sm font-bold uppercase tracking-wider text-gray-800">サンプル再生</button>
                 <button onClick={(e) => { e.stopPropagation(); handlePause(post.audioUrl); }} class="rounded-r-lg bg-red-500 px-3 py-1.5 text-sm font-semibold uppercase tracking-wider text-white">停止</button>
               </div>

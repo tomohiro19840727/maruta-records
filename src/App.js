@@ -30,7 +30,8 @@ import MobileShop from "./components/MobileShop";
 import MobileNews from "./components/MobileNews";
 import Signup from "./components/Signup";
 import MemberLogout from "./components/MemberLogout";
-import ProductDetail3 from "./components/ProductDetail3";
+import EventDetail from "./components/EventDetail";
+import MobileCart from "./components/MobileCart";
 
 function App() {
   const [userId, setUserId] = useState(null); 
@@ -59,13 +60,6 @@ function App() {
   const [selectedPrevPrice, selectedSetPrevPrice] = useState('');
   const [selectedAudioUrl, selectedSetaudioUrl ] = useState("")
 
-  const [welcomeTitle, welcomeSetTitle] = useState('');
-  const [welcomePrice, welcomeSetPrice] = useState('');
-  const [welcomePrevPrice, welcomeSetPrevPrice] = useState('');
-  const [welcomePostText2, welcomeSetPostText2] = useState('');
-  const [welcomeSingleImage1, welcomeSetSingleImage1] = useState('');
-  const [welcomeSingleImage2, welcomeSetSingleImage2] = useState('');
-  const [welcomeSingleImage3, welcomeSetSingleImage3] = useState('');
 
   const isMobile = useMediaQuery({ maxWidth: 768 });
 
@@ -251,8 +245,14 @@ function App() {
            {isMobile ? ( 
              <MobileNews 
              isAuth={isAuth}
+             selectedSetTitle={selectedSetTitle}
+              selectedSetPostText2={selectedSetPostText2}
+              selectedSetSingleImage1={selectedSetSingleImage1}
              /> ) : (<News 
               isAuth={isAuth}
+              selectedSetTitle={selectedSetTitle}
+              selectedSetPostText2={selectedSetPostText2}
+              selectedSetSingleImage1={selectedSetSingleImage1}
               />)
             }
          </div>
@@ -272,27 +272,44 @@ function App() {
           />}/>
 
         <Route path='/product2' element={<Product2 
-         welcomeTitle={welcomeTitle}
-         welcomeSetTitle={welcomeSetTitle}
-         welcomePrice={welcomePrice} welcomeSetPrice={welcomeSetPrice}
-         welcomePrevPrice={welcomePrevPrice} welcomeSetPrevPrice={welcomeSetPrevPrice}
-         welcomePostText2={welcomePostText2} welcomeSetPostText2={welcomeSetPostText2}
-         welcomeSingleImage1={welcomeSingleImage1}
-         welcomeSetSingleImage1={welcomeSetSingleImage1}
-         welcomeSingleImage2={welcomeSingleImage2}
-         welcomeSetSingleImage2={welcomeSetSingleImage2}
-         welcomeSingleImage3={welcomeSingleImage3}
-         welcomeSetSingleImage3={welcomeSetSingleImage3}
+           title={title} setTitle={setTitle}
+           price={price} setPrice={setPrice}
+           prevPrice={prevPrice} setPrevPrice={setPrevPrice}
+           postText2={postText2} setPostText2={setPostText2}
+           singleImage1={singleImage1} setSingleImage1={setSingleImage1}
+           singleImage2={singleImage2} setSingleImage2={setSingleImage2}
+           singleImage3={singleImage3} setSingleImage3={setSingleImage3}
+           audioFile={audioFile} setAudioFile={setAudioFile} 
          />}/>
 
 
         <Route path='/productdetail2' element={<ProductDetail2 />}/>
-        <Route path='/productdetail3' element={<ProductDetail3 />}/>
+
+
+
+
         <Route path='/empty' element={<Empty />}/>
-        <Route path='/cart' element={<Cart 
-        userId={userId} 
-        />}/>
+       
+
+        <Route path='/cart' element={
+         <div>
+         {isMobile ? ( 
+           <MobileCart  userId={userId} />
+           )  : 
+           (
+             <Cart  userId={userId} /> )}
+       </div>
+         }/>
+
         <Route path='/event' element={<Event />}/>
+        <Route path='/eventdetail' element={<EventDetail
+         selectedTitle={selectedTitle}
+         selectedPostText2={selectedPostText2}
+         selectedSingleImage1={selectedSingleImage1} 
+        />}/>
+
+
+
         <Route path='/contact' element={<Contact />}/>
         <Route path='/memberlogout' element={<MemberLogout 
          isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}
