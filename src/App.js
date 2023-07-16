@@ -32,6 +32,11 @@ import Signup from "./components/Signup";
 import MemberLogout from "./components/MemberLogout";
 import EventDetail from "./components/EventDetail";
 import MobileCart from "./components/MobileCart";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./components/CheckoutForm";
+
+const stripePromise = loadStripe("pk_test_51NNs3cEZdPzyB7DWjVWdabzCbPPH3DPHzGhVWfsGprXhWsVtdwli2KXru3HEI0PIdfJHu7nbw7j9Fd8NhUJkCZii00J7wjcxQL");
 
 function App() {
   const [userId, setUserId] = useState(null); 
@@ -66,6 +71,25 @@ function App() {
   const [showContent, setShowContent] = useState(false);
 
   const [clientSecret, setClientSecret] = useState("");
+
+  useEffect(() => {
+    // Create PaymentIntent as soon as the page loads
+    fetch("/create-payment-intent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+    })
+      .then((res) => res.json())
+      .then((data) => setClientSecret(data.clientSecret));
+  }, []);
+
+  const appearance = {
+    theme: 'stripe',
+  };
+  const options = {
+    clientSecret,
+    appearance,
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -114,6 +138,14 @@ function App() {
             <MenuBar  isAuth={isAuth} userId={userId} /> )}
       </div>
       <Routes>
+      {clientSecret && (
+        <Route path="/checkout" element={
+        <Elements options={options} stripe={stripePromise}>
+        <CheckoutForm />
+      </Elements>         
+        } />
+        )}
+
         <Route path='/' element={
           <div>
           {isMobile ? ( 
