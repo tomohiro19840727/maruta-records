@@ -36,7 +36,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./components/CheckoutForm";
 
-const stripePromise = loadStripe("pk_test_51NNs3cEZdPzyB7DWjVWdabzCbPPH3DPHzGhVWfsGprXhWsVtdwli2KXru3HEI0PIdfJHu7nbw7j9Fd8NhUJkCZii00J7wjcxQL");
+
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 function App() {
   const [userId, setUserId] = useState(null); 
