@@ -35,6 +35,7 @@ import MobileCart from "./components/MobileCart";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./components/CheckoutForm";
+import MobileCheckoutForm from "./components/MobileCheckoutForm";
 
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
@@ -141,9 +142,20 @@ function App() {
       <Routes>
       {clientSecret && (
         <Route path="/checkout" element={
-        <Elements options={options} stripe={stripePromise}>
-        <CheckoutForm />
-      </Elements>         
+          <div>
+          {isMobile ? ( 
+            
+            <Elements options={options} stripe={stripePromise}>
+            <MobileCheckoutForm />
+          </Elements>    
+            
+            ) :(
+              
+              <Elements options={options} stripe={stripePromise}>
+              <CheckoutForm />
+            </Elements>    
+            )}
+            </div>
         } />
         )}
 
