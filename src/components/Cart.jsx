@@ -2,9 +2,12 @@ import {  collection, deleteDoc, doc, getDocs, orderBy, query, where } from 'fir
 import React, { useEffect, useState } from 'react'
 import { db } from '../firebase';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const Cart = ({ userId }) => {
+
+const Cart = ({ userId, setClientSecret, clientSecret}) => {
   const [cartList, setCartList] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
 
   useEffect(() => {
     const targets = document.getElementsByClassName("fade");
@@ -51,9 +54,53 @@ const Cart = ({ userId }) => {
     window.location.href = '/cart';
   };
 
-  const calculateTotal = () => {
+  // const calculateTotal = () => {
+  //   const total = cartList.reduce((acc, item) => acc + item.price, 0);
+  //   return total + 720; 
+  // };
+
+  useEffect(() => {
     const total = cartList.reduce((acc, item) => acc + item.price, 0);
-    return total + 720; 
+    setTotalAmount(total + 720);
+  }, [cartList]); 
+
+  // const handleCheckout = async () => {
+  //   const response = await fetch('/create-payment-intent', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       amount: totalAmount,
+  //     }),
+  //   });
+  // };
+
+  // const handleCheckout = async () => {
+  //   try {
+  //     const response = await axios.post('/create-payment-intent', {
+  //       amount: totalAmount,
+  //     });
+  //     // レスポンスを処理するコードを追加する
+  //     console.log('Payment Intent created:', response.data.clientSecret);
+  //     console.log(totalAmount)
+  //     // 例: ページ遷移や他のアクションのトリガーなど
+  //   } catch (error) {
+  //     console.log('Failed to create Payment Intent:', error.message);
+  //     // エラーレスポンスの処理
+  //     // 例: エラーメッセージの表示やリトライ処理など
+  //   }
+  // };
+
+  const handleCheckout = async () => {
+    try {
+      const response = await axios.post("/create-payment-intent", {
+        amount: totalAmount, // 任意の金額を指定する
+      });
+      setClientSecret(response.data.clientSecret);
+    } catch (error) {
+      console.log("Failed to create Payment Intent:", error.message);
+    }
   };
 
 
@@ -109,14 +156,14 @@ const Cart = ({ userId }) => {
               <span class="text-lg font-bold">Total</span>
   
               <span class="flex flex-col items-end">
-                <span class="text-lg font-bold">{calculateTotal()}円</span>
+                <span class="text-lg font-bold">{totalAmount}円</span>
                 <span class="text-sm text-gray-500">消費税込み</span>
               </span>
             </div>
           </div>
         </div>
   
-        <Link to="/checkout" class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Check out</Link>
+        <Link to="/checkout"  onClick={handleCheckout} class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Check out</Link>
       </div>
       
     </div>

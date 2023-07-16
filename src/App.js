@@ -36,6 +36,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./components/CheckoutForm";
 import MobileCheckoutForm from "./components/MobileCheckoutForm";
+import Test from "./components/Test";
+import axios from "axios";
 
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
@@ -74,16 +76,28 @@ function App() {
 
   const [clientSecret, setClientSecret] = useState("");
 
-  useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
-    fetch("/create-payment-intent", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
-    })
-      .then((res) => res.json())
-      .then((data) => setClientSecret(data.clientSecret));
-  }, []);
+  // useEffect(() => {
+  //   // Create PaymentIntent as soon as the page loads
+  //   fetch("/create-payment-intent", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => setClientSecret(data.clientSecret));
+  // }, []);
+
+  // const handleCheckout = async () => {
+  //   try {
+  //     const response = await axios.post("/create-payment-intent", {
+  //       amount: 3400, // 任意の金額を指定する
+  //     });
+  //     setClientSecret(response.data.clientSecret);
+  //   } catch (error) {
+  //     console.log("Failed to create Payment Intent:", error.message);
+  //   }
+  // };
+
 
   const appearance = {
     theme: 'stripe',
@@ -344,7 +358,10 @@ function App() {
            <MobileCart  userId={userId} />
            )  : 
            (
-             <Cart  userId={userId} /> )}
+             <Cart  userId={userId} 
+             clientSecret={clientSecret} 
+             setClientSecret={setClientSecret}
+             /> )}
        </div>
          }/>
 
@@ -367,6 +384,7 @@ function App() {
         />}/>
         <Route path='/signup' element={<Signup />}/>
         <Route path='/faq' element={<Faq />}/>
+        <Route path='/test' element={<Test />}/>
         <Route path='/use' element={<Use />}/>
         <Route path='/privacy' element={<Privacy />}/>
         <Route path='/login' element={<Login  setIsAuth={setIsAuth}  userId={userId} setUserId={setUserId} />}/>

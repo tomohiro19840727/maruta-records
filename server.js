@@ -10,19 +10,30 @@ const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 app.use(express.static("public"));
 app.use(express.json());
 
-const calculateOrderAmount = (items) => {
-  // Replace this constant with a calculation of the order's amount
-  // Calculate the order total on the server to prevent
-  // people from directly manipulating the amount on the client
-  return 1400;
-};
+// const calculateOrderAmount = (items) => {
+//   // Replace this constant with a calculation of the order's amount
+//   // Calculate the order total on the server to prevent
+//   // people from directly manipulating the amount on the client
+//   return 1400;
+// };
+
+// const convertToSubunit = (amount) => {
+//   return amount * 100; // 通貨が日本円の場合、100を掛けてサブユニットに変換
+// };
 
 app.post("/create-payment-intent", async (req, res) => {
-  const { items } = req.body;
+  const { amount } = req.body;
 
+  console.log(Object.prototype.toString.call(amount)); 
+
+  if (Array.isArray(amount)) {
+    console.log("amount は配列です")
+  } else {
+    console.log("amount は配列でnaides")
+  }
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: calculateOrderAmount(items),
+    amount: amount,
     currency: "jpy",
     automatic_payment_methods: {
       enabled: true,
@@ -33,5 +44,8 @@ app.post("/create-payment-intent", async (req, res) => {
     clientSecret: paymentIntent.client_secret,
   });
 });
+
+
+
 
 app.listen(4000, () => console.log("Node server listening on port 4242!"));

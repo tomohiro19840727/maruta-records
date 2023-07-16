@@ -82,7 +82,7 @@ export default function CheckoutForm() {
     <>
     <div className="flex justify-center">
 
-    <form id="payment-form" className=" w-1/3 min-w-500px self-center bg-white shadow-md rounded-md p-8">
+    <form id="payment-form" onSubmit={handleSubmit} className=" w-1/3 min-w-500px self-center bg-white shadow-md rounded-md p-8">
         {/* <LinkAuthenticationElement
           id="link-authentication-element"
           onChange={(e) => setEmail(e.target.value)}
