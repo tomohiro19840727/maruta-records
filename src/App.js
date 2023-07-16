@@ -65,6 +65,8 @@ function App() {
 
   const [showContent, setShowContent] = useState(false);
 
+  const [clientSecret, setClientSecret] = useState("");
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowContent(true);
