@@ -18,7 +18,7 @@ app.use(express.json());
 // };
 
 // const convertToSubunit = (amount) => {
-//   return amount * 100; // 通貨が日本円の場合、100を掛けてサブユニットに変換
+//   return amount * 100; // 通貨が日本円の場合、100を掛けてサブユニッ
 // };
 
 app.post("/create-payment-intent", async (req, res) => {
