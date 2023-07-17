@@ -5,7 +5,7 @@ import {
   useStripe,
   useElements
 } from "@stripe/react-stripe-js";
-import { Link } from "react-router-dom";
+
 
 export default function CheckoutForm() {
   const stripe = useStripe();
