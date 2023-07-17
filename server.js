@@ -24,13 +24,9 @@ app.use(express.json());
 app.post("/create-payment-intent", async (req, res) => {
   const { amount } = req.body;
 
-  console.log(Object.prototype.toString.call(amount)); 
+  
 
-  if (Array.isArray(amount)) {
-    console.log("amount は配列です")
-  } else {
-    console.log("amount は配列でnaides")
-  }
+  
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
     amount: amount,
