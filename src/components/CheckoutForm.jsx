@@ -3,7 +3,8 @@ import {
   PaymentElement,
   LinkAuthenticationElement,
   useStripe,
-  useElements
+  useElements,
+  AddressElement
 } from "@stripe/react-stripe-js";
 
 
@@ -78,6 +79,10 @@ export default function CheckoutForm() {
     layout: "tabs"
   }
 
+  const adressElementOptions = {
+   mode : "shipping",
+  }
+
   return (
     <>
     <div className="flex justify-center">
@@ -88,6 +93,14 @@ export default function CheckoutForm() {
           onChange={(e) => setEmail(e.target.value)}
         /> */}
         <PaymentElement id="payment-element" className="mb-6" options={paymentElementOptions} />
+        <AddressElement  className="mb-6"
+        // onChange={(event) => {
+        //   if (event.complete) {
+        //     // Extract potentially complete address
+        //     const address = event.value.address;
+        //   }
+        // }}
+        options={adressElementOptions} />
         <button
           disabled={isLoading || !stripe || !elements}
           id="submit"
