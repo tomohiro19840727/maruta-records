@@ -80,9 +80,9 @@ export default function MobileCheckoutForm() {
 
   return (
     <>
-    <div className="">
+    <div className="flex justify-center">
 
-    <form className=" w-full self-center bg-white shadow-md rounded-md p-8">
+    <form  onSubmit={handleSubmit} className=" w-full self-center bg-white shadow-md rounded-md p-8">
         <PaymentElement id="payment-element" className="mb-6" options={paymentElementOptions} />
         <AddressElement className="mb-6"
         options={adressElementOptions} />
