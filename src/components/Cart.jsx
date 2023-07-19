@@ -91,7 +91,7 @@ const Cart = ({ userId, setClientSecret, clientSecret}) => {
   //     // 例: エラーメッセージの表示やリトライ処理など
   //   }
   // };
-  const url ="https://us-central1-maruta-records.cloudfunctions.net/api"
+  const url ="https://us-central1-maruta-records.cloudfunctions.net/api/api"
 
   const handleCheckout = async () => {
     try {
