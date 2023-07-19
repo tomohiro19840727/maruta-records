@@ -3,15 +3,13 @@ import {
   PaymentElement,
   LinkAuthenticationElement,
   useStripe,
-  useElements
+  useElements,
+  AddressElement
 } from "@stripe/react-stripe-js";
-import { Link } from "react-router-dom";
 
 export default function MobileCheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
-
-  // const [email, setEmail] = useState('');
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -50,8 +48,6 @@ export default function MobileCheckoutForm() {
     e.preventDefault();
 
     if (!stripe || !elements) {
-      // Stripe.js hasn't yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
 
@@ -61,7 +57,7 @@ export default function MobileCheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/",
+        return_url: "https://maruta-records.vercel.app/",
       },
     });
 
@@ -78,16 +74,18 @@ export default function MobileCheckoutForm() {
     layout: "tabs"
   }
 
+  const adressElementOptions = {
+    mode : "shipping",
+   }
+
   return (
     <>
     <div className="">
 
     <form className=" w-full self-center bg-white shadow-md rounded-md p-8">
-        {/* <LinkAuthenticationElement
-          id="link-authentication-element"
-          onChange={(e) => setEmail(e.target.value)}
-        /> */}
         <PaymentElement id="payment-element" className="mb-6" options={paymentElementOptions} />
+        <AddressElement className="mb-6"
+        options={adressElementOptions} />
         <button
           disabled={isLoading || !stripe || !elements}
           id="submit"

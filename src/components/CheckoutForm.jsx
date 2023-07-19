@@ -11,8 +11,6 @@ import {
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
-
-  // const [email, setEmail] = useState('');
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -51,8 +49,6 @@ export default function CheckoutForm() {
     e.preventDefault();
 
     if (!stripe || !elements) {
-      // Stripe.js hasn't yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
       return;
     }
 
@@ -87,19 +83,9 @@ export default function CheckoutForm() {
     <>
     <div className="flex justify-center">
 
-    <form id="payment-form" onSubmit={handleSubmit} className=" w-1/3 min-w-500px self-center bg-white shadow-md rounded-md p-8">
-        {/* <LinkAuthenticationElement
-          id="link-authentication-element"
-          onChange={(e) => setEmail(e.target.value)}
-        /> */}
-        <PaymentElement id="payment-element" className="mb-6" options={paymentElementOptions} />
-        <AddressElement  className="mb-6"
-        // onChange={(event) => {
-        //   if (event.complete) {
-        //     // Extract potentially complete address
-        //     const address = event.value.address;
-        //   }
-        // }}
+    <form id="payment-form" onSubmit={handleSubmit} className=" w-1/3 self-center bg-white shadow-md rounded-md p-8">
+        <PaymentElement  className="mb-6" options={paymentElementOptions} />
+        <AddressElement className="mb-6"
         options={adressElementOptions} />
         <button
           disabled={isLoading || !stripe || !elements}
