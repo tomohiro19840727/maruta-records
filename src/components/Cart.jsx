@@ -54,43 +54,12 @@ const Cart = ({ userId, setClientSecret, clientSecret}) => {
     window.location.href = '/cart';
   };
 
-  // const calculateTotal = () => {
-  //   const total = cartList.reduce((acc, item) => acc + item.price, 0);
-  //   return total + 720; 
-  // };
 
   useEffect(() => {
     const total = cartList.reduce((acc, item) => acc + item.price, 0);
     setTotalAmount(total + 720);
   }, [cartList]); 
 
-  // const handleCheckout = async () => {
-  //   const response = await fetch('/create-payment-intent', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       amount: totalAmount,
-  //     }),
-  //   });
-  // };
-
-  // const handleCheckout = async () => {
-  //   try {
-  //     const response = await axios.post('/create-payment-intent', {
-  //       amount: totalAmount,
-  //     });
-  //     // レスポンスを処理するコードを追加する
-  //     console.log('Payment Intent created:', response.data.clientSecret);
-  //     console.log(totalAmount)
-  //     // 例: ページ遷移や他のアクションのトリガーなど
-  //   } catch (error) {
-  //     console.log('Failed to create Payment Intent:', error.message);
-  //     // エラーレスポンスの処理
-  //     // 例: エラーメッセージの表示やリトライ処理など
-  //   }
-  // };
   const url ="https://us-central1-maruta-records.cloudfunctions.net/api/api"
 
   const handleCheckout = async () => {

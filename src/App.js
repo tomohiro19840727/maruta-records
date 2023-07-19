@@ -355,7 +355,10 @@ function App() {
         <Route path='/cart' element={
          <div>
          {isMobile ? ( 
-           <MobileCart  userId={userId} />
+           <MobileCart  userId={userId} 
+           clientSecret={clientSecret} 
+          setClientSecret={setClientSecret}
+           />
            )  : 
            (
              <Cart  userId={userId} 

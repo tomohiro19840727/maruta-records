@@ -2,9 +2,11 @@ import {  collection, deleteDoc, doc, getDocs, orderBy, query, where } from 'fir
 import React, { useEffect, useState } from 'react'
 import { db } from '../firebase';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const MobileCart = ({ userId }) => {
+const MobileCart = ({ userId, setClientSecret, clientSecret}) => {
   const [cartList, setCartList] = useState([]);
+  const [totalAmount, setTotalAmount] = useState(0);
 
   useEffect(() => {
     const targets = document.getElementsByClassName("fade");
@@ -53,8 +55,22 @@ const MobileCart = ({ userId }) => {
 
   const calculateTotal = () => {
     const total = cartList.reduce((acc, item) => acc + item.price, 0);
-    return total + 720; 
+    setTotalAmount(total + 720);; 
   };
+
+  const url ="https://us-central1-maruta-records.cloudfunctions.net/api/api"
+
+  const handleCheckout = async () => {
+    try {
+      const response = await axios.post(url, {
+        amount: totalAmount, // 任意の金額を指定する
+      });
+      setClientSecret(response.data.clientSecret);
+    } catch (error) {
+      console.log("Failed to create Payment Intent:", error.message);
+    }
+  };
+
 
 
   return (
@@ -121,7 +137,7 @@ const MobileCart = ({ userId }) => {
           </div>
         </div>
   
-        <Link to="/checkout" class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Check out</Link>
+        <Link to="/checkout" onClick={handleCheckout} class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Check out</Link>
       </div>
       
     </div>
