@@ -91,10 +91,11 @@ const Cart = ({ userId, setClientSecret, clientSecret}) => {
   //     // 例: エラーメッセージの表示やリトライ処理など
   //   }
   // };
+  const url ="https://us-central1-maruta-records.cloudfunctions.net/api"
 
   const handleCheckout = async () => {
     try {
-      const response = await axios.post("/create-payment-intent", {
+      const response = await axios.post(url, {
         amount: totalAmount, // 任意の金額を指定する
       });
       setClientSecret(response.data.clientSecret);
