@@ -53,10 +53,10 @@ const MobileCart = ({ userId, setClientSecret, clientSecret}) => {
     window.location.href = '/cart';
   };
 
-  const calculateTotal = () => {
+  useEffect(() => {
     const total = cartList.reduce((acc, item) => acc + item.price, 0);
-    setTotalAmount(total + 720);; 
-  };
+    setTotalAmount(total + 720);
+  }, [cartList]); 
 
   const url ="https://us-central1-maruta-records.cloudfunctions.net/api/api"
 
@@ -91,13 +91,6 @@ const MobileCart = ({ userId, setClientSecret, clientSecret}) => {
             <div>
               <div class="m-5 inline-block  font-bold text-gray-800 text-2xl">{item.title}</div>
             </div>
-  
-            <div>
-          
-             
-  
-            
-            </div>
           </div>
           
   
@@ -130,7 +123,7 @@ const MobileCart = ({ userId, setClientSecret, clientSecret}) => {
               <span class="text-lg font-bold">Total</span>
   
               <span class="flex flex-col items-end">
-                <span class="text-lg font-bold">{calculateTotal()}円</span>
+                <span class="text-lg font-bold">{totalAmount}円</span>
                 <span class="text-sm text-gray-500">消費税込み</span>
               </span>
             </div>
