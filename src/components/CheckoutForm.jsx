@@ -58,7 +58,7 @@ export default function CheckoutForm() {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "https://maruta-records.vercel.app/",
+        return_url: "https://maruta-records.vercel.app/checkoutcomplete/",
       },
     });
 
@@ -70,6 +70,8 @@ export default function CheckoutForm() {
 
     setIsLoading(false);
   };
+
+   
 
   const paymentElementOptions = {
     layout: "tabs"

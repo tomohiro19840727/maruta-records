@@ -38,6 +38,7 @@ import CheckoutForm from "./components/CheckoutForm";
 import MobileCheckoutForm from "./components/MobileCheckoutForm";
 import Test from "./components/Test";
 import axios from "axios";
+import CheckoutComplete from "./components/CheckoutComplete";
 
 
 const stripePromise = loadStripe("pk_test_51NNs3cEZdPzyB7DWjVWdabzCbPPH3DPHzGhVWfsGprXhWsVtdwli2KXru3HEI0PIdfJHu7nbw7j9Fd8NhUJkCZii00J7wjcxQL");
@@ -386,6 +387,7 @@ function App() {
         isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}
         />}/>
         <Route path='/signup' element={<Signup />}/>
+        <Route path='/checkoutcomplete' element={<CheckoutComplete />}/>
         <Route path='/faq' element={<Faq />}/>
         <Route path='/test' element={<Test />}/>
         <Route path='/use' element={<Use />}/>

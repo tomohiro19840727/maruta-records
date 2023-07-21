@@ -28,9 +28,23 @@ app.post(url, async (req, res) => {
 
   res.send({
     clientSecret: paymentIntent.client_secret,
+    sessionId: paymentIntent.id, 
   });
 });
 
+// app.get("/order/success", async (req, res) => {
+//   const paymentIntentId = req.query.paymentIntentId;
+//   const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+
+//   if (paymentIntent.status === "succeeded") {
+//     const customer = await stripe.customers.retrieve(paymentIntent.customer);
+//     res.send({
+//       customerName: customer.name, // 顧客の名前をフロントエンドに返す
+//     });
+//   } else {
+//     res.status(400).send({ error: "Payment not succeeded." });
+//   }
+// });
 
 
 
