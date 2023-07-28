@@ -38,7 +38,7 @@ const MobileMenuBar = ({ userId }) => {
 
   <a href="/" class="text-white inline-flex items-center gap-2.5 text-2xl font-bold md:text-3xl" aria-label="logo">
     <div className="">
-      <img src="./MARUTALOGO3.jpg" alt="Logo" className="h-15 w-15 m-3"  />
+      <img src="https://maruta-records.vercel.app/MARUTALOGO3.jpg" alt="Logo" className="h-15 w-15 m-3"  />
     </div>
     <div className="ml-3 mr-3">
     MARUTA-Records
