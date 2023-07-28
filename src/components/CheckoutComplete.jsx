@@ -33,7 +33,7 @@ const CheckoutComplete = () => {
       <div class="grid gap-8 sm:grid-cols-2">
         
         <div class="h-80 overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-auto">
-          <img src="./img/25293321_s.jpg" loading="lazy" alt="Photo by Theo Crazzolara" class="h-full w-full object-cover object-center" />
+          <img src="https://maruta-records.vercel.app/img/25293321_s.jpg" loading="lazy" alt="Photo by Theo Crazzolara" class="h-full w-full object-cover object-center" />
         </div>
         
   
