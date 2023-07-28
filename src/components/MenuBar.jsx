@@ -58,7 +58,7 @@ const MenuBar = ( ) => {
 
   <a href="/" class="text-white inline-flex items-center gap-2.5 text-2xl font-bold md:text-3xl" aria-label="logo">
   <div className="">
-      <img src="./MARUTALOGO3.jpg" alt="Logo" className="h-20 w-20 m-6"  />
+      <img src="https://maruta-records.vercel.app/MARUTALOGO3.jpg" alt="Logo" className="h-20 w-20 m-6"  />
     </div>
 
     MARUTA-Records
@@ -127,8 +127,6 @@ const MenuBar = ( ) => {
       </p>
       </h2>
       )}
-
-
       </>
     )}
      
