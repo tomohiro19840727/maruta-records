@@ -8,8 +8,8 @@ import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
 import Welcome from './Welcome';
 import Search from './Search';
-import Sale from './Sale';
 import Footer from './Footer';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -53,6 +53,28 @@ const Home = ({selectedTitle,selectedSetTitle, selectedPrice, selectedSetPrice, 
 
   return (
   <>
+   <HelmetProvider>
+
+   <Helmet>
+        <title>MARUTA-Records | レコードや最新曲を販売するECサイト</title>
+        <meta
+          name="description"
+          content="MARUTA-Recordsは様々なジャンルのレコードや曲、イベントを豊富に取り揃えるECサイトです。お気に入りの音楽を見つけてください！"
+          />
+        {/* OGPタグ */}
+        <meta property="og:title" content="MARUTA-Records | レコードや最新曲を販売するECサイト" />
+        <meta
+          property="og:description"
+          content="MARUTA-Recordsは様々なジャンルのレコードや曲、イベントを豊富に取り揃えるECサイトです。お気に入りの音楽を見つけてください！"
+          />
+        <meta property="og:image" content="https://maruta-records.vercel.app/MARUTALOGO3.jpg" />
+        <meta property="og:url" content="https://maruta-records.vercel.app/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="MARUTA-Records" />
+        <meta property="og:locale" content="ja_JP" />
+      </Helmet>
+      </HelmetProvider>
+
    <Welcome 
    welcomeTitle={welcomeTitle}
    welcomeSetTitle={welcomeSetTitle}

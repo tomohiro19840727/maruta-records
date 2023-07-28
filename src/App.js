@@ -77,27 +77,7 @@ function App() {
 
   const [clientSecret, setClientSecret] = useState("");
 
-  // useEffect(() => {
-  //   // Create PaymentIntent as soon as the page loads
-  //   fetch("/create-payment-intent", {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => setClientSecret(data.clientSecret));
-  // }, []);
-
-  // const handleCheckout = async () => {
-  //   try {
-  //     const response = await axios.post("/create-payment-intent", {
-  //       amount: 3400, // 任意の金額を指定する
-  //     });
-  //     setClientSecret(response.data.clientSecret);
-  //   } catch (error) {
-  //     console.log("Failed to create Payment Intent:", error.message);
-  //   }
-  // };
+  
 
 
   const appearance = {
@@ -176,7 +156,7 @@ function App() {
 
         <Route path='/' element={
           <div>
-          {isMobile ? ( 
+          {isMobile ? (   
             <MobileHome 
             isAuth={isAuth} isMobile={isMobile}
             selectedTitle={selectedTitle} selectedSetTitle={selectedSetTitle}
