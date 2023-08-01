@@ -102,8 +102,6 @@ export default function CheckoutForm() {
         {message && <div id="payment-message" className="text-gray-700 text-base pt-3 text-center">{message}</div>}
       </form>
           </div>
-
-   
       </>
   );
 }

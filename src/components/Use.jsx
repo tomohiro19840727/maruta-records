@@ -2,7 +2,7 @@ import React from 'react';
 
 const Use = () => {
   return (
-    <div>
+    <div className='mr-40 ml-40 mb-40'>
       <h1 className="text-4xl font-bold mb-4 text-center ">【ご利用規約】</h1>
       <p className="m-10">
         当ウェブサイトのご利用にあたっては、以下の利用規約に同意していただく必要があります。ご利用いただく前に、以下の内容をよくお読みください。
