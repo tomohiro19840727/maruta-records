@@ -36,7 +36,6 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "./components/CheckoutForm";
 import MobileCheckoutForm from "./components/MobileCheckoutForm";
-import Test from "./components/Test";
 import axios from "axios";
 import CheckoutComplete from "./components/CheckoutComplete";
 
@@ -369,7 +368,6 @@ function App() {
         <Route path='/signup' element={<Signup />}/>
         <Route path='/checkoutcomplete' element={<CheckoutComplete />}/>
         <Route path='/faq' element={<Faq />}/>
-        <Route path='/test' element={<Test />}/>
         <Route path='/use' element={<Use />}/>
         <Route path='/privacy' element={<Privacy />}/>
         <Route path='/login' element={<Login  setIsAuth={setIsAuth}  userId={userId} setUserId={setUserId} />}/>
