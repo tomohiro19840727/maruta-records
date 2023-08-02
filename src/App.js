@@ -140,13 +140,13 @@ function App() {
           {isMobile ? ( 
             
             <Elements options={options} stripe={stripePromise}>
-            <MobileCheckoutForm />
+            <MobileCheckoutForm  userId={userId}/>
           </Elements>    
             
             ) :(
               
               <Elements options={options} stripe={stripePromise}>
-              <CheckoutForm />
+              <CheckoutForm userId={userId} />
             </Elements>    
             )}
             </div>
