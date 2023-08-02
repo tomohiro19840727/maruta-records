@@ -82,6 +82,7 @@ export default function CheckoutForm() {
 
   return (
     <>
+    <h1>カートの内容です</h1>
     <div className="flex justify-center">
 
     <form id="payment-form" onSubmit={handleSubmit} className=" w-1/3 self-center bg-white shadow-md rounded-md p-8">
