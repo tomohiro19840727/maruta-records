@@ -3,12 +3,12 @@
  旅行先の景色や好きな景色を位置情報付きで共有できます。 <br >
  また管理者のみが商品やイベントを自由に投稿、削除ができます。　<br > 
  レスポンシブ対応しているのでスマホからもご確認いただけます。
- <img width="1400" alt="スクリーンショット 2020-05-07 0 06 18" src="https://user-images.githubusercontent.com/60876388/81193748-c51d9b00-8ff6-11ea-9981-46789f016300.png">
- <img width="350" height="700" src= "https://user-images.githubusercontent.com/60876388/81476543-643bd000-924d-11ea-9d26-cac305ca9f91.jpeg">
+ <img width="1400" alt="スクリーンショット 2023-08-04 0 06 18" src="https://maruta-records.vercel.app/img/スクリーンショット 2023-08-03 9.07.02.png">
+ <img width="350" height="700" src= "https://maruta-records.vercel.app/img/IMG_6904.jpg">
 
 # URL
 https://maruta-records.vercel.app/ <br >
-画面上部のsignupからメールアドレスとパスワードを決めて会員登録をし、Loginして頂ければCartから買い物ができます。
+画面上部のSignupからメールアドレスとパスワードを決めて会員登録をし、Loginして頂ければCartから買い物ができます。
 
 # 使用技術
 - Ruby 2.5.7
