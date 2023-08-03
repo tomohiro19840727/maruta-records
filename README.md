@@ -26,9 +26,6 @@ https://maruta-records.vercel.app/ <br >
 - Vercel 
 
 
-# AWS構成図
-<img width="995" alt="スクリーンショット 2020-05-07 11 14 01" src="">
-
 
 ## デプロイ
 - プロジェクトは自動的にVercelを使ってデプロイされます。`main`ブランチにプッシュした変更は自動的に[MARUTA-Recordsサイト](https://maruta-records.vercel.app/)にデプロイされます。
