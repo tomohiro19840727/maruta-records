@@ -1,7 +1,7 @@
 # MARUTA-Records（DJのチーム名）
  DJが自作の音楽やグッズを売るECサイトです。<br >
  旅行先の景色や好きな景色を位置情報付きで共有できます。 <br >
- また管理者のみが商品やイベントを自由に投稿、削除ができます。　<br > 
+ また管理者のみが商品やイベントを自由に投稿、削除ができます。<br > 
  レスポンシブ対応しているのでスマホからもご確認いただけます。
  <img width="1400" alt="スクリーンショット 2023-08-04 0 06 18" src="https://maruta-records.vercel.app/img/スクリーンショット 2023-08-03 9.07.02.png">
  <img width="350" height="700" src= "https://maruta-records.vercel.app/img/IMG_6904.jpg">
@@ -27,7 +27,7 @@ https://maruta-records.vercel.app/ <br >
 
 
 # AWS構成図
-<img width="995" alt="スクリーンショット 2020-05-07 11 14 01" src="https://user-images.githubusercontent.com/60876388/81247155-3ccde300-9054-11ea-91eb-d06eb38a63b3.png">
+<img width="995" alt="スクリーンショット 2020-05-07 11 14 01" src="">
 
 
 ## デプロイ
@@ -41,7 +41,7 @@ https://maruta-records.vercel.app/ <br >
 - 決済機能
   - クレジットカード決済
 - お問合せ機能
-- Shop検索機能(ransack)
+- Shop検索機能
 - スライダーのインデックスナビゲーション
 
 
