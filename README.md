@@ -11,44 +11,37 @@ https://maruta-records.vercel.app/ <br >
 画面上部のSignupからメールアドレスとパスワードを決めて会員登録をし、Loginして頂ければCartから買い物ができます。
 
 # 使用技術
-- Ruby 2.5.7
-- Ruby on Rails 5.2.4
-- MySQL 5.7
-- Nginx
-- Puma
-- AWS
-  - VPC
-  - EC2
-  - RDS
-  - Route53
-- Docker/Docker-compose
-- CircleCi CI/CD
-- Capistrano3
-- RSpec
-- Google Maps API
+- React 18.2.0,
+- Node.js 18.16.1
+- Express 4.18.2
+- axios 1.4.0
+- Stripe 12.13.0    
+- @emailjs/browser 3.11.0
+- Tailwindcss 3.3.2
+-  firebase: ^9.22.2,
+  - Functions
+  - Storage
+  - Firestore Detabase
+  - Authentication
+- Vercel 
+
 
 # AWS構成図
 <img width="995" alt="スクリーンショット 2020-05-07 11 14 01" src="https://user-images.githubusercontent.com/60876388/81247155-3ccde300-9054-11ea-91eb-d06eb38a63b3.png">
 
-## CircleCi CI/CD
-- Githubへのpush時に、RspecとRubocopが自動で実行されます。
-- masterブランチへのpushでは、RspecとRubocopが成功した場合、EC2への自動デプロイが実行されます
+
+## デプロイ
+- プロジェクトは自動的にVercelを使ってデプロイされます。`main`ブランチにプッシュした変更は自動的に[MARUTA-Recordsサイト](https://maruta-records.vercel.app/)にデプロイされます。
 
 # 機能一覧
-- ユーザー登録、ログイン機能(devise)
+- ユーザー登録、ログイン機能, 管理者ログイン機能
 - 投稿機能
-  - 画像投稿(refile)
-  - 位置情報検索機能(geocoder)
-- いいね機能(Ajax)
-  - ランキング機能
-- コメント機能(Ajax)
-- フォロー機能(Ajax)
-- ページネーション機能(kaminari)
-  - 無限スクロール(Ajax)
-- 検索機能(ransack)
+  - Shopの商品投稿
+  - Eventの投稿
+- 決済機能
+  - クレジットカード決済
+- お問合せ機能
+- Shop検索機能(ransack)
+- スライダーのインデックスナビゲーション
 
-# テスト
-- RSpec
-  - 単体テスト(model)
-  - 機能テスト(request)
-  - 統合テスト(feature)
+
