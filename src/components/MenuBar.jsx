@@ -65,39 +65,50 @@ const MenuBar = ( ) => {
 
 
 
-  <nav
-              className={`gap-12 lg:flex 2xl:ml-16 ${
-                isMenuOpen ? "" : "hidden"
-              }`}
-            >
-    <a href="/"  className={`${
-                  isMenuOpen ? "text-sm" : "text-3xl"
-                } font-semibold text-white hover:text-indigo-300 transition duration-100`}>Home</a>
+  <nav className="gap-12 lg:flex 2xl:ml-16">
+    <a href="/"  className="text-3xl font-semibold text-white hover:text-indigo-300 transition duration-100">Home</a>
 
 
 
-    <a href="/shop" className={`${
-                  isMenuOpen ? "text-sm" : "text-3xl"
-                } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>shop</a>
+    <a href="/shop" className="font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700 text-3xl">shop</a>
 
    
 
                   <div class="relative inline-block group">
-  <button  className="font-semibold text-white transition text-3xl duration-100 hover:text-indigo-300 active:text-indigo-700">Artis</button>
-  <div class="absolute hidden bg-gray-100 text-gray-700 py-2 px-4 rounded shadow-md mt-2 -left-2/3 group-hover:block">
+  <button onClick={toggleMenu} className="font-semibold text-white transition text-3xl duration-100 hover:text-indigo-300 active:text-indigo-700">Artist</button>
+  {/* <div class="absolute hidden bg-gray-100 text-gray-700 py-2 px-4 rounded shadow-md mt-2 -left-2/3 group-hover:block">
     <ul className="flex ">
       <Link to="/artist"   class="hover:bg-gray-200 py-1 px-2 m-5 font-serif font-bold text-xl">yamazaki taketo</Link>
       <Link  to="/artist2" class="hover:bg-gray-200 py-1 px-2 m-5 font-serif font-bold text-xl">kuriki tomohiro</Link>
       <Link  to="/artist3" class="hover:bg-gray-200 py-1 px-2 m-5 font-serif font-bold text-xl">iwaki haruka</Link>
       <Link  to="/artist4" class="hover:bg-gray-200 py-1 px-2 m-5 font-serif font-bold text-xl">satou takuya</Link>
     </ul>
-  </div>
+  </div> */}
+  <div
+  className={`${
+    isMenuOpen ? "block" : "hidden"
+  } absolute bg-gray-100 text-gray-700 py-2 px-4 rounded shadow-md mt-2 -left-2/3`}
+>
+  <ul className="flex">
+    <Link to="/artist" className="hover:bg-gray-200 py-1 px-2 m-5 font-serif font-bold text-xl">
+      yamazaki taketo
+    </Link>
+    <Link to="/artist2" className="hover:bg-gray-200 py-1 px-2 m-5 font-serif font-bold text-xl">
+      kuriki tomohiro
+    </Link>
+    <Link to="/artist3" className="hover:bg-gray-200 py-1 px-2 m-5 font-serif font-bold text-xl">
+      iwaki haruka
+    </Link>
+    <Link to="/artist4" className="hover:bg-gray-200 py-1 px-2 m-5 font-serif font-bold text-xl">
+      satou takuya
+    </Link>
+  </ul>
+</div>
+
 </div>
                   
 
-    <a href="/news" className={`${
-                  isMenuOpen ? "tenp xt-sm" : "text-3xl"
-                } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>News</a>
+    <a href="/news" className="font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700 text-3xl">News</a>
   </nav>
 
 

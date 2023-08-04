@@ -14,13 +14,13 @@ const Footer = ({ isAuth }) => {
               <svg width="95" height="94" viewBox="0 0 95 94" class="h-auto w-5 text-indigo-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M96 0V47L48 94H0V47L48 0H96Z" />
               </svg>
-  
               MARUTA-Records
             </a>
           </div>
   
   
-          <p class="mb-6 text-gray-500 sm:pr-8">Filler text is dummy text which has no meaning however looks very similar to real text.</p>
+          <p class="mb-6 text-gray-500 sm:pr-8">素晴らしい音楽を手軽に楽しむ。
+          <br ></br>あなたの日常を音楽で彩りましょう!!</p>
   
   
           <div class="flex gap-4">
