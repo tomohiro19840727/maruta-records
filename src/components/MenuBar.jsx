@@ -83,7 +83,7 @@ const MenuBar = ( ) => {
    
 
                   <div class="relative inline-block group">
-  <button  className="font-semibold text-white transition text-3xl duration-100 hover:text-indigo-300 active:text-indigo-700">Artist</button>
+  <button  className="font-semibold text-white transition text-3xl duration-100 hover:text-indigo-300 active:text-indigo-700">Artis</button>
   <div class="absolute hidden bg-gray-100 text-gray-700 py-2 px-4 rounded shadow-md mt-2 -left-2/3 group-hover:block">
     <ul className="flex ">
       <Link to="/artist"   class="hover:bg-gray-200 py-1 px-2 m-5 font-serif font-bold text-xl">yamazaki taketo</Link>
