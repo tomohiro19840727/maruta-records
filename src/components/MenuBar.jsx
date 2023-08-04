@@ -1,4 +1,4 @@
-import { collection, getDocs, onSnapshot, query, where } from "firebase/firestore";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { auth, db } from "../firebase";
@@ -60,7 +60,6 @@ const MenuBar = ( ) => {
   <div className="">
       <img src="https://maruta-records.vercel.app/MARUTALOGO3.jpg" alt="Logo" className="h-20 w-20 m-6"  />
     </div>
-
     MARUTA-Records
   </a>
 
@@ -84,9 +83,7 @@ const MenuBar = ( ) => {
    
 
                   <div class="relative inline-block group">
-  <button className={`${
-                  isMenuOpen ? "tenp xt-sm" : "text-3xl"
-                } font-semibold text-white transition duration-100 hover:text-indigo-300 active:text-indigo-700`}>Artist</button>
+  <button  className="font-semibold text-white transition text-3xl duration-100 hover:text-indigo-300 active:text-indigo-700">Artist</button>
   <div class="absolute hidden bg-gray-100 text-gray-700 py-2 px-4 rounded shadow-md mt-2 -left-2/3 group-hover:block">
     <ul className="flex ">
       <Link to="/artist"   class="hover:bg-gray-200 py-1 px-2 m-5 font-serif font-bold text-xl">yamazaki taketo</Link>

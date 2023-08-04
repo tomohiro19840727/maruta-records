@@ -4,7 +4,7 @@ import { db } from '../firebase';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-const Cart = ({ userId, setClientSecret, clientSecret}) => {
+const Cart = ({ userId, setClientSecret }) => {
   const [cartList, setCartList] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
 

@@ -12,7 +12,7 @@ const MemberLogin = ({ setUserId, setIsAuthenticated,}) => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // ログイン成功時の処理
-        const user = userCredential.user;
+        // const user = userCredential.user;
         alert('ログインに成功しました');
         localStorage.setItem("isAuthenticated", true);
         const userId = userCredential.user.uid;
@@ -20,12 +20,12 @@ const MemberLogin = ({ setUserId, setIsAuthenticated,}) => {
         setIsAuthenticated(true);
         console.log(userId);
         setUserId(userId)
-        // window.location.href = '/';
+        window.location.href = '/';
       })
       .catch((error) => {
         // ログインエラー時の処理
-        const errorCode = error.code;
-        const errorMessage = error.message;
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
         alert('ログインに失敗しました');
         // エラーメッセージを表示するなどの処理
       });
